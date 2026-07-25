@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7d2cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#000" flood-opacity=".65"/></filter>
+    <pattern id="scan" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 14L14 0" stroke="#fff" stroke-opacity=".08" stroke-width="2"/></pattern>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M168 1030L235 475 335 246 450 185 570 250 675 480 744 1030Z" fill="#11141b"/>
+    <path d="M255 480L333 275 451 224 568 280 650 485 594 1010H315Z" fill="url(#g)"/>
+    <path d="M357 270c-4-69 34-126 94-126s98 57 94 126l-28 81H385Z" fill="#1b1e26"/>
+    <ellipse cx="451" cy="197" rx="70" ry="82" fill="#262a35"/>
+    <path d="M384 185c15-68 116-91 151-20l-20 35c-23-32-90-38-126 10Z" fill="url(#g)"/>
+    <path d="M301 484L135 664 184 733 351 595Z" fill="#191c24"/>
+    <path d="M596 489L780 604 742 688 549 604Z" fill="#191c24"/>
+    <path d="M246 655L160 944 238 978 351 688Z" fill="#222733"/>
+    <path d="M617 655L724 943 647 979 540 687Z" fill="#222733"/>
+    <path d="M365 355h171v38H365z" fill="#f7f7f7" opacity=".86"/>
+    <path d="M338 430h225l52 241-72 338H355l-74-338Z" fill="url(#scan)" opacity=".42"/>
+    <path d="M315 1005h170l-20 62H285zM491 1005h171l31 62H511z" fill="#0b0d12"/>
+  </g>
+  <text x="450" y="1045" text-anchor="middle" fill="#fff" font-family="Arial Black,Arial" font-size="54" font-weight="900" letter-spacing="4">SID BURN</text>
+  <text x="450" y="1087" text-anchor="middle" fill="#22d3ee" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="8">TEMP CHARACTER ART</text>
+</svg>
