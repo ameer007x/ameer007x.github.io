@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0f15">
+  <meta name="theme-color" content="#080b10">
   <meta name="description" content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features.">
   <title>Vigilante 8: Second Offense Unity Project</title>
   <link rel="stylesheet" href="style.css">
@@ -15,15 +15,48 @@
     <a class="brand" href="#home" aria-label="Vigilante 8 home">
       <img src="assets/v8-logo.png" alt="Vigilante 8 1 & 2nd Offense">
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="main-nav" id="mainNav">
-      <a href="#news">NEWS</a>
-      <a href="#drivers">DRIVERS</a>
-      <a href="#tutorial">COMBAT TUTORIAL</a>
-      <a href="#features">GAME FEATURES</a>
-      <a href="#download">DOWNLOAD</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="#news">
+        <span class="nav-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>
+        </span>
+        <span class="nav-copy"><b>NEWS</b><small>PROJECT FEED</small></span>
+      </a>
+      <a href="#drivers">
+        <span class="nav-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20c.6-4 2.6-6 6-6s5.4 2 6 6M3 13h3M18 13h3"/></svg>
+        </span>
+        <span class="nav-copy"><b>DRIVERS</b><small>27 PROFILES</small></span>
+      </a>
+      <a href="#tutorial">
+        <span class="nav-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+        </span>
+        <span class="nav-copy"><b>TUTORIAL</b><small>LEARN COMBAT</small></span>
+      </a>
+      <a href="#features">
+        <span class="nav-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 9-12h-6z"/></svg>
+        </span>
+        <span class="nav-copy"><b>FEATURES</b><small>WHAT'S NEW</small></span>
+      </a>
+      <a href="#download">
+        <span class="nav-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"/></svg>
+        </span>
+        <span class="nav-copy"><b>DOWNLOAD</b><small>WINDOWS BUILD</small></span>
+      </a>
     </nav>
-    <a class="top-download" href="#download">GET THE PROJECT</a>
+
+    <a class="top-download" href="#download">
+      <span class="download-mark" aria-hidden="true">↓</span>
+      <span><b>GET THE PROJECT</b><small>LATEST BUILD</small></span>
+    </a>
   </header>
 
   <main>
@@ -79,30 +112,54 @@
     </section>
 
     <section class="drivers" id="drivers" aria-label="Driver introduction">
-      <div class="driver-paper"></div>
-      <div class="driver-ghost" id="driverGhost">CHASSEY</div>
-      <div class="driver-stripe stripe-one"></div>
-      <div class="driver-stripe stripe-two"></div>
-      <div class="driver-layout">
-        <div class="driver-copy" id="driverCopy">
-          <p class="driver-kicker">DRIVER INTRODUCTION</p>
-          <h2 id="driverName">CHASSEY BLUE</h2>
-          <p class="driver-vehicle" id="driverVehicle">RATTLER</p>
-          <p class="driver-tagline" id="driverTagline">Precision hunter with a nine-shot grid barrage.</p>
-          <div class="skill-list" id="skillList"></div>
-          <button class="view-profile" id="viewProfile">VIEW PROFILE <span>›</span></button>
+      <div class="driver-scene" id="driverScene">
+        <div class="driver-paper"></div>
+        <div class="driver-city driver-city-left"></div>
+        <div class="driver-ghost" id="driverGhost">CHASSEY</div>
+
+        <div class="driver-color-world" id="driverColorWorld">
+          <div class="driver-color-texture"></div>
+          <div class="driver-color-sparks"></div>
+          <img class="driver-backdrop-art" id="driverBackdropArt" src="assets/characters/chassey-blue.svg" alt="" aria-hidden="true">
         </div>
-        <div class="driver-art-wrap" id="driverArtWrap">
-          <img id="driverArt" src="assets/characters/chassey-blue.svg" alt="Chassey Blue">
-          <div class="driver-shadow"></div>
+        <div class="driver-slash slash-cyan"></div>
+        <div class="driver-slash slash-white"></div>
+        <div class="driver-slash slash-accent"></div>
+
+        <div class="driver-layout">
+          <div class="driver-copy" id="driverCopy">
+            <h2 id="driverName">CHASSEY BLUE</h2>
+            <p class="driver-kicker">DRIVER &amp; SPECIAL INTRODUCTION</p>
+            <p class="driver-vehicle" id="driverVehicle">RATTLER</p>
+            <p class="driver-tagline" id="driverTagline">Precision hunter with a nine-shot grid barrage.</p>
+            <div class="skill-list" id="skillList"></div>
+            <button class="view-profile" id="viewProfile"><span>VIEW FULL PROFILE</span><b>▶</b></button>
+          </div>
+
+          <div class="driver-art-wrap" id="driverArtWrap">
+            <div class="driver-art-glow"></div>
+            <img id="driverArt" src="assets/characters/chassey-blue.svg" alt="Chassey Blue">
+            <div class="driver-shadow"></div>
+          </div>
+
+          <aside class="driver-selector" aria-label="Choose driver">
+            <button class="selector-arrow" id="driverPrev" aria-label="Previous driver">
+              <svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg>
+            </button>
+            <div class="driver-thumbs" id="driverThumbs"></div>
+            <button class="selector-arrow" id="driverNext" aria-label="Next driver">
+              <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+          </aside>
         </div>
-        <aside class="driver-selector">
-          <button class="selector-arrow" id="driverPrev" aria-label="Previous driver">⌃</button>
-          <div class="driver-thumbs" id="driverThumbs"></div>
-          <button class="selector-arrow" id="driverNext" aria-label="Next driver">⌄</button>
-        </aside>
+
+        <div class="driver-progress">
+          <span id="driverIndex">01</span>
+          <i><b id="autoTimer"></b></i>
+          <span id="driverTotal">27</span>
+          <small>AUTO 6 SEC</small>
+        </div>
       </div>
-      <div class="driver-progress"><span id="driverIndex">01</span><i></i><span id="driverTotal">08</span></div>
     </section>
 
     <section class="creator section-shell">

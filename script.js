@@ -1,65 +1,285 @@
 (() => {
   const data = window.V8_SITE_DATA;
-  const q = (s, el=document) => el.querySelector(s);
-  const qa = (s, el=document) => [...el.querySelectorAll(s)];
+  const q = (selector, root = document) => root.querySelector(selector);
+  const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-  const navToggle=q('#navToggle'), mainNav=q('#mainNav');
-  navToggle?.addEventListener('click',()=>{const open=mainNav.classList.toggle('is-open');navToggle.setAttribute('aria-expanded',open)});
-  qa('.main-nav a').forEach(a=>a.addEventListener('click',()=>mainNav.classList.remove('is-open')));
+  /* Header: large at the top, compact while scrolling */
+  const topbar = q('#topbar');
+  const navToggle = q('#navToggle');
+  const mainNav = q('#mainNav');
 
-  const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');revealObserver.unobserve(e.target)}}),{threshold:.12});
-  qa('[data-reveal]').forEach(el=>revealObserver.observe(el));
+  const updateHeader = () => {
+    topbar?.classList.toggle('is-compact', window.scrollY > 48);
+  };
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 
-  const sections=qa('main section[id]');
-  const navLinks=qa('.main-nav a');
-  const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-35% 0px -55% 0px'});
-  sections.forEach(s=>sectionObserver.observe(s));
-
-  qa('[data-news-filter]').forEach(btn=>btn.addEventListener('click',()=>{
-    qa('[data-news-filter]').forEach(b=>b.classList.remove('is-active'));btn.classList.add('is-active');
-    const f=btn.dataset.newsFilter;qa('.news-card').forEach(card=>card.classList.toggle('is-hidden',f!=='all'&&card.dataset.category!==f));
+  navToggle?.addEventListener('click', () => {
+    const open = mainNav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+  qa('.main-nav a').forEach(link => link.addEventListener('click', () => {
+    mainNav.classList.remove('is-open');
+    navToggle?.setAttribute('aria-expanded', 'false');
   }));
 
-  let driverIndex=0, changing=false;
-  const driverName=q('#driverName'),driverVehicle=q('#driverVehicle'),driverTagline=q('#driverTagline'),driverGhost=q('#driverGhost'),driverArt=q('#driverArt'),driverArtWrap=q('#driverArtWrap'),driverCopy=q('#driverCopy'),skillList=q('#skillList'),driverThumbs=q('#driverThumbs'),driverIndexEl=q('#driverIndex'),driverTotal=q('#driverTotal'),driversSection=q('#drivers');
-  driverTotal.textContent=String(data.drivers.length).padStart(2,'0');
+  /* Reveal animation */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+  qa('[data-reveal]').forEach(element => revealObserver.observe(element));
 
-  function buildThumbs(){
-    driverThumbs.innerHTML='';
-    data.drivers.forEach((d,i)=>{const b=document.createElement('button');b.className='driver-thumb';b.title=d.name;b.innerHTML=`<img src="${d.avatar}" alt="${d.name}">`;b.addEventListener('click',()=>setDriver(i));driverThumbs.appendChild(b)});
+  /* Active navigation section */
+  const navLinks = qa('.main-nav a');
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+      });
+    });
+  }, { rootMargin: '-35% 0px -55% 0px' });
+  qa('main section[id]').forEach(section => sectionObserver.observe(section));
+
+  /* News filters */
+  qa('[data-news-filter]').forEach(button => button.addEventListener('click', () => {
+    qa('[data-news-filter]').forEach(item => item.classList.remove('is-active'));
+    button.classList.add('is-active');
+    const filter = button.dataset.newsFilter;
+    qa('.news-card').forEach(card => {
+      card.classList.toggle('is-hidden', filter !== 'all' && card.dataset.category !== filter);
+    });
+  }));
+
+  /* Driver selector */
+  const drivers = data.drivers;
+  const AUTO_DELAY = 6000;
+  const VISIBLE_THUMBS = 4;
+  let driverIndex = 0;
+  let changing = false;
+  let autoChangeId = 0;
+
+  const driverName = q('#driverName');
+  const driverVehicle = q('#driverVehicle');
+  const driverTagline = q('#driverTagline');
+  const driverGhost = q('#driverGhost');
+  const driverArt = q('#driverArt');
+  const driverBackdropArt = q('#driverBackdropArt');
+  const driverArtWrap = q('#driverArtWrap');
+  const driverColorWorld = q('#driverColorWorld');
+  const driverCopy = q('#driverCopy');
+  const skillList = q('#skillList');
+  const driverThumbs = q('#driverThumbs');
+  const driverIndexEl = q('#driverIndex');
+  const driverTotal = q('#driverTotal');
+  const autoTimer = q('#autoTimer');
+
+  driverTotal.textContent = String(drivers.length).padStart(2, '0');
+
+  const wrapIndex = index => (index + drivers.length) % drivers.length;
+
+  function restartTimerAnimation() {
+    if (!autoTimer) return;
+    autoTimer.style.animation = 'none';
+    void autoTimer.offsetWidth;
+    autoTimer.style.animation = '';
   }
-  function setDriver(next, instant=false){
-    if(changing||next===driverIndex&&!instant)return; changing=true; next=(next+data.drivers.length)%data.drivers.length;
-    const apply=()=>{
-      driverIndex=next;const d=data.drivers[next];
-      document.documentElement.style.setProperty('--driver-accent',d.accent);document.documentElement.style.setProperty('--driver-accent2',d.accent2);document.documentElement.style.setProperty('--progress',`${((next+1)/data.drivers.length)*100}%`);
-      driverName.textContent=d.name;driverVehicle.textContent=d.vehicle;driverTagline.textContent=d.tagline;driverGhost.textContent=d.name.split(' ')[0];driverArt.src=d.image;driverArt.alt=d.name;driverIndexEl.textContent=String(next+1).padStart(2,'0');
-      skillList.innerHTML=d.skills.map((s,i)=>`<article class="skill" style="animation-delay:${i*.1}s"><span class="skill-icon">${String(i+1).padStart(2,'0')}</span><div><h4>${s.title}</h4><p>${s.text}</p></div></article>`).join('');
-      qa('.driver-thumb').forEach((t,i)=>t.classList.toggle('is-active',i===next));
-      driverArtWrap.classList.remove('is-exiting');driverCopy.classList.remove('is-exiting');driverArt.style.animation='none';void driverArt.offsetWidth;driverArt.style.animation='';changing=false;
-    };
-    if(instant){apply();return}
-    driverArtWrap.classList.add('is-exiting');driverCopy.classList.add('is-exiting');
-    setTimeout(apply,340);
+
+  function startAutoChange() {
+    window.clearInterval(autoChangeId);
+    restartTimerAnimation();
+    autoChangeId = window.setInterval(() => {
+      setDriver(driverIndex + 1, { automatic: true });
+    }, AUTO_DELAY);
   }
-  buildThumbs();setDriver(0,true);
-  q('#driverPrev').addEventListener('click',()=>setDriver(driverIndex-1));q('#driverNext').addEventListener('click',()=>setDriver(driverIndex+1));
-  let wheelLock=false;driversSection.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<20||wheelLock)return;wheelLock=true;setDriver(driverIndex+(e.deltaY>0?1:-1));setTimeout(()=>wheelLock=false,650)},{passive:true});
-  document.addEventListener('keydown',e=>{if(document.activeElement?.tagName==='INPUT')return;if(e.key==='ArrowRight')setDriver(driverIndex+1);if(e.key==='ArrowLeft')setDriver(driverIndex-1)});
-  let touchX=0;driversSection.addEventListener('touchstart',e=>touchX=e.touches[0].clientX,{passive:true});driversSection.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>55)setDriver(driverIndex+(dx<0?1:-1))},{passive:true});
 
-  const modal=q('#profileModal');
-  q('#viewProfile').addEventListener('click',()=>{const d=data.drivers[driverIndex];q('#modalImage').src=d.image;q('#modalImage').alt=d.name;q('#profileTitle').textContent=d.name;q('#modalVehicle').textContent=d.vehicle;q('#modalDescription').textContent=d.description;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false')});
-  function closeModal(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true')}
-  q('#modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  function buildVisibleThumbs() {
+    driverThumbs.innerHTML = '';
+    const start = driverIndex;
 
-  let tutorialLevel='beginner';
-  function renderTutorial(level){tutorialLevel=level;const items=data.tutorial[level];q('#tutorialGrid').innerHTML=items.map((it,i)=>`<article class="tutorial-card" style="animation-delay:${i*.07}s"><img src="${it.image}" alt="${it.title}"><h3>${it.title}</h3></article>`).join('')}
-  qa('[data-tutorial]').forEach(btn=>btn.addEventListener('click',()=>{qa('[data-tutorial]').forEach(b=>b.classList.remove('is-active'));btn.classList.add('is-active');renderTutorial(btn.dataset.tutorial)}));renderTutorial('beginner');
+    for (let offset = 0; offset < VISIBLE_THUMBS; offset += 1) {
+      const index = wrapIndex(start + offset);
+      const driver = drivers[index];
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'driver-thumb';
+      button.classList.toggle('is-active', index === driverIndex);
+      button.title = `${String(index + 1).padStart(2, '0')} — ${driver.name}`;
+      button.setAttribute('aria-label', `Show ${driver.name}`);
+      button.innerHTML = `
+        <img src="${driver.avatar}" alt="${driver.name}">
+        <span class="driver-thumb-index">${String(index + 1).padStart(2, '0')}</span>
+      `;
+      button.addEventListener('click', () => setDriver(index, { manual: true }));
+      driverThumbs.appendChild(button);
+    }
+  }
 
-  let featureIndex=0;
-  const track=q('#featureTrack'),dots=q('#featureDots');
-  function buildFeatures(){track.innerHTML=data.features.map((f,i)=>`<article class="feature-card"><img src="${f.image}" alt="${f.title}"><div class="feature-caption"><h3>${f.title}</h3><p>${f.text}</p></div></article>`).join('');dots.innerHTML=data.features.map((_,i)=>`<button aria-label="Feature ${i+1}"></button>`).join('');qa('button',dots).forEach((b,i)=>b.addEventListener('click',()=>setFeature(i)));setFeature(0,true)}
-  function setFeature(next,instant=false){featureIndex=(next+data.features.length)%data.features.length;const cards=qa('.feature-card',track);cards.forEach((c,i)=>c.classList.toggle('is-active',i===featureIndex));qa('button',dots).forEach((d,i)=>d.classList.toggle('is-active',i===featureIndex));const card=cards[0];if(!card)return;const gap=25;const width=card.getBoundingClientRect().width+gap;const stage=q('.feature-stage').clientWidth;const offset=featureIndex*width-(stage-width)/2+60;track.style.transition=instant?'none':'';track.style.transform=`translateX(${-Math.max(0,offset)}px)`;if(instant)setTimeout(()=>track.style.transition='',20)}
-  buildFeatures();q('#featurePrev').addEventListener('click',()=>setFeature(featureIndex-1));q('#featureNext').addEventListener('click',()=>setFeature(featureIndex+1));window.addEventListener('resize',()=>setFeature(featureIndex,true));
+  function renderSkills(driver) {
+    skillList.innerHTML = driver.skills.map((skill, index) => `
+      <article class="skill" style="animation-delay:${index * 0.11}s">
+        <span class="skill-icon">
+          <img src="${skill.icon || 'assets/tutorial/specials.svg'}" alt="">
+        </span>
+        <div>
+          <h4>${skill.title}</h4>
+          <p>${skill.text}</p>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function applyDriver(index) {
+    driverIndex = wrapIndex(index);
+    const driver = drivers[driverIndex];
+
+    document.documentElement.style.setProperty('--driver-accent', driver.accent);
+    document.documentElement.style.setProperty('--driver-accent2', driver.accent2);
+    document.documentElement.style.setProperty('--driver-accent3', driver.accent3 || driver.accent);
+    document.documentElement.style.setProperty('--progress', `${((driverIndex + 1) / drivers.length) * 100}%`);
+
+    driverName.textContent = driver.name;
+    driverVehicle.textContent = driver.vehicle;
+    driverTagline.textContent = driver.tagline;
+    driverGhost.textContent = driver.name.replace(/\s+/g, ' ');
+    driverArt.src = driver.image;
+    driverArt.alt = driver.name;
+    driverBackdropArt.src = driver.backgroundImage || driver.image;
+    driverIndexEl.textContent = String(driverIndex + 1).padStart(2, '0');
+    renderSkills(driver);
+    buildVisibleThumbs();
+
+    driverArtWrap.classList.remove('is-exiting');
+    driverColorWorld.classList.remove('is-exiting');
+    driverCopy.classList.remove('is-exiting');
+
+    [driverArt, driverBackdropArt, driverColorWorld, driverCopy].forEach(element => {
+      if (!element) return;
+      element.style.animation = 'none';
+      void element.offsetWidth;
+      element.style.animation = '';
+    });
+
+    changing = false;
+    restartTimerAnimation();
+  }
+
+  function setDriver(next, options = {}) {
+    const target = wrapIndex(next);
+    if (changing || target === driverIndex && !options.instant) {
+      if (options.manual) startAutoChange();
+      return;
+    }
+
+    changing = true;
+    if (options.instant) {
+      applyDriver(target);
+    } else {
+      driverArtWrap.classList.add('is-exiting');
+      driverColorWorld.classList.add('is-exiting');
+      driverCopy.classList.add('is-exiting');
+      window.setTimeout(() => applyDriver(target), 390);
+    }
+
+    if (options.manual) startAutoChange();
+  }
+
+  q('#driverPrev')?.addEventListener('click', () => setDriver(driverIndex - 1, { manual: true }));
+  q('#driverNext')?.addEventListener('click', () => setDriver(driverIndex + 1, { manual: true }));
+
+  /* Deliberately no mouse-wheel, keyboard, or swipe driver switching. */
+  setDriver(0, { instant: true });
+  startAutoChange();
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      window.clearInterval(autoChangeId);
+    } else {
+      startAutoChange();
+    }
+  });
+
+  /* Driver profile modal */
+  const modal = q('#profileModal');
+  q('#viewProfile')?.addEventListener('click', () => {
+    const driver = drivers[driverIndex];
+    q('#modalImage').src = driver.image;
+    q('#modalImage').alt = driver.name;
+    q('#profileTitle').textContent = driver.name;
+    q('#modalVehicle').textContent = driver.vehicle;
+    q('#modalDescription').textContent = driver.description;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    window.clearInterval(autoChangeId);
+  });
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    startAutoChange();
+  }
+  q('#modalClose')?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', event => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
+  });
+
+  /* Tutorial cards */
+  function renderTutorial(level) {
+    q('#tutorialGrid').innerHTML = data.tutorial[level].map((item, index) => `
+      <article class="tutorial-card" style="animation-delay:${index * 0.07}s">
+        <img src="${item.image}" alt="${item.title}">
+        <h3>${item.title}</h3>
+      </article>
+    `).join('');
+  }
+  qa('[data-tutorial]').forEach(button => button.addEventListener('click', () => {
+    qa('[data-tutorial]').forEach(item => item.classList.remove('is-active'));
+    button.classList.add('is-active');
+    renderTutorial(button.dataset.tutorial);
+  }));
+  renderTutorial('beginner');
+
+  /* Features slider */
+  let featureIndex = 0;
+  const track = q('#featureTrack');
+  const dots = q('#featureDots');
+
+  function buildFeatures() {
+    track.innerHTML = data.features.map(feature => `
+      <article class="feature-card">
+        <img src="${feature.image}" alt="${feature.title}">
+        <div class="feature-caption"><h3>${feature.title}</h3><p>${feature.text}</p></div>
+      </article>
+    `).join('');
+    dots.innerHTML = data.features.map((_, index) => `<button aria-label="Feature ${index + 1}"></button>`).join('');
+    qa('button', dots).forEach((button, index) => button.addEventListener('click', () => setFeature(index)));
+    setFeature(0, true);
+  }
+
+  function setFeature(next, instant = false) {
+    featureIndex = (next + data.features.length) % data.features.length;
+    const cards = qa('.feature-card', track);
+    cards.forEach((card, index) => card.classList.toggle('is-active', index === featureIndex));
+    qa('button', dots).forEach((dot, index) => dot.classList.toggle('is-active', index === featureIndex));
+    const firstCard = cards[0];
+    if (!firstCard) return;
+    const width = firstCard.getBoundingClientRect().width + 25;
+    const stageWidth = q('.feature-stage').clientWidth;
+    const offset = featureIndex * width - (stageWidth - width) / 2 + 60;
+    track.style.transition = instant ? 'none' : '';
+    track.style.transform = `translateX(${-Math.max(0, offset)}px)`;
+    if (instant) window.setTimeout(() => { track.style.transition = ''; }, 20);
+  }
+
+  buildFeatures();
+  q('#featurePrev')?.addEventListener('click', () => setFeature(featureIndex - 1));
+  q('#featureNext')?.addEventListener('click', () => setFeature(featureIndex + 1));
+  window.addEventListener('resize', () => setFeature(featureIndex, true));
 })();
