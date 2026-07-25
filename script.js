@@ -1,303 +1,65 @@
 (() => {
-  const data = window.V8_SITE_DATA || { characters: [], features: [] };
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const data = window.V8_SITE_DATA;
+  const q = (s, el=document) => el.querySelector(s);
+  const qa = (s, el=document) => [...el.querySelectorAll(s)];
 
-  const siteLoader = $('#siteLoader');
-  const topbar = $('#topbar');
-  const menuButton = $('#menuButton');
-  const mainNav = $('#mainNav');
+  const navToggle=q('#navToggle'), mainNav=q('#mainNav');
+  navToggle?.addEventListener('click',()=>{const open=mainNav.classList.toggle('is-open');navToggle.setAttribute('aria-expanded',open)});
+  qa('.main-nav a').forEach(a=>a.addEventListener('click',()=>mainNav.classList.remove('is-open')));
 
-  window.addEventListener('load', () => {
-    window.setTimeout(() => siteLoader?.classList.add('is-hidden'), 450);
-  });
+  const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');revealObserver.unobserve(e.target)}}),{threshold:.12});
+  qa('[data-reveal]').forEach(el=>revealObserver.observe(el));
 
-  window.addEventListener('scroll', () => {
-    topbar?.classList.toggle('is-scrolled', window.scrollY > 20);
-  }, { passive: true });
+  const sections=qa('main section[id]');
+  const navLinks=qa('.main-nav a');
+  const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-35% 0px -55% 0px'});
+  sections.forEach(s=>sectionObserver.observe(s));
 
-  if (menuButton && mainNav) {
-    menuButton.addEventListener('click', () => {
-      const open = !mainNav.classList.contains('is-open');
-      mainNav.classList.toggle('is-open', open);
-      menuButton.classList.toggle('is-open', open);
-      menuButton.setAttribute('aria-expanded', String(open));
-    });
+  qa('[data-news-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+    qa('[data-news-filter]').forEach(b=>b.classList.remove('is-active'));btn.classList.add('is-active');
+    const f=btn.dataset.newsFilter;qa('.news-card').forEach(card=>card.classList.toggle('is-hidden',f!=='all'&&card.dataset.category!==f));
+  }));
 
-    $$('a', mainNav).forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('is-open');
-        menuButton.classList.remove('is-open');
-        menuButton.setAttribute('aria-expanded', 'false');
-      });
-    });
+  let driverIndex=0, changing=false;
+  const driverName=q('#driverName'),driverVehicle=q('#driverVehicle'),driverTagline=q('#driverTagline'),driverGhost=q('#driverGhost'),driverArt=q('#driverArt'),driverArtWrap=q('#driverArtWrap'),driverCopy=q('#driverCopy'),skillList=q('#skillList'),driverThumbs=q('#driverThumbs'),driverIndexEl=q('#driverIndex'),driverTotal=q('#driverTotal'),driversSection=q('#drivers');
+  driverTotal.textContent=String(data.drivers.length).padStart(2,'0');
+
+  function buildThumbs(){
+    driverThumbs.innerHTML='';
+    data.drivers.forEach((d,i)=>{const b=document.createElement('button');b.className='driver-thumb';b.title=d.name;b.innerHTML=`<img src="${d.avatar}" alt="${d.name}">`;b.addEventListener('click',()=>setDriver(i));driverThumbs.appendChild(b)});
   }
-
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  $$('.reveal').forEach(el => revealObserver.observe(el));
-
-  const sections = $$('main section[id]');
-  const navLinks = $$('.main-nav a');
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
-    });
-  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-  sections.forEach(section => navObserver.observe(section));
-
-  const hero = $('.hero');
-  const heroBg = $('.hero__background');
-  if (hero && heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    hero.addEventListener('pointermove', event => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 12;
-      const y = (event.clientY / window.innerHeight - 0.5) * 8;
-      heroBg.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
-    });
-    hero.addEventListener('pointerleave', () => {
-      heroBg.style.transform = 'scale(1.04)';
-    });
+  function setDriver(next, instant=false){
+    if(changing||next===driverIndex&&!instant)return; changing=true; next=(next+data.drivers.length)%data.drivers.length;
+    const apply=()=>{
+      driverIndex=next;const d=data.drivers[next];
+      document.documentElement.style.setProperty('--driver-accent',d.accent);document.documentElement.style.setProperty('--driver-accent2',d.accent2);document.documentElement.style.setProperty('--progress',`${((next+1)/data.drivers.length)*100}%`);
+      driverName.textContent=d.name;driverVehicle.textContent=d.vehicle;driverTagline.textContent=d.tagline;driverGhost.textContent=d.name.split(' ')[0];driverArt.src=d.image;driverArt.alt=d.name;driverIndexEl.textContent=String(next+1).padStart(2,'0');
+      skillList.innerHTML=d.skills.map((s,i)=>`<article class="skill" style="animation-delay:${i*.1}s"><span class="skill-icon">${String(i+1).padStart(2,'0')}</span><div><h4>${s.title}</h4><p>${s.text}</p></div></article>`).join('');
+      qa('.driver-thumb').forEach((t,i)=>t.classList.toggle('is-active',i===next));
+      driverArtWrap.classList.remove('is-exiting');driverCopy.classList.remove('is-exiting');driverArt.style.animation='none';void driverArt.offsetWidth;driverArt.style.animation='';changing=false;
+    };
+    if(instant){apply();return}
+    driverArtWrap.classList.add('is-exiting');driverCopy.classList.add('is-exiting');
+    setTimeout(apply,340);
   }
+  buildThumbs();setDriver(0,true);
+  q('#driverPrev').addEventListener('click',()=>setDriver(driverIndex-1));q('#driverNext').addEventListener('click',()=>setDriver(driverIndex+1));
+  let wheelLock=false;driversSection.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<20||wheelLock)return;wheelLock=true;setDriver(driverIndex+(e.deltaY>0?1:-1));setTimeout(()=>wheelLock=false,650)},{passive:true});
+  document.addEventListener('keydown',e=>{if(document.activeElement?.tagName==='INPUT')return;if(e.key==='ArrowRight')setDriver(driverIndex+1);if(e.key==='ArrowLeft')setDriver(driverIndex-1)});
+  let touchX=0;driversSection.addEventListener('touchstart',e=>touchX=e.touches[0].clientX,{passive:true});driversSection.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>55)setDriver(driverIndex+(dx<0?1:-1))},{passive:true});
 
-  // ------------------------------------------------------------
-  // Character showcase
-  // ------------------------------------------------------------
-  const characterStage = $('#characterStage');
-  const characterCopy = $('#characterCopy');
-  const characterArtWrap = $('#characterArtWrap');
-  const characterArt = $('#characterArt');
-  const characterRail = $('#characterRail');
-  const characterName = $('#characterName');
-  const characterVehicle = $('#characterVehicle');
-  const characterSubtitle = $('#characterSubtitle');
-  const characterDescription = $('#characterDescription');
-  const characterIndex = $('#characterIndex');
-  const characterTotal = $('#characterTotal');
-  const characterMobileLabel = $('#characterMobileLabel');
-  const characterBackdropWord = $('#characterBackdropWord');
-  const skillList = $('#skillList');
+  const modal=q('#profileModal');
+  q('#viewProfile').addEventListener('click',()=>{const d=data.drivers[driverIndex];q('#modalImage').src=d.image;q('#modalImage').alt=d.name;q('#profileTitle').textContent=d.name;q('#modalVehicle').textContent=d.vehicle;q('#modalDescription').textContent=d.description;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false')});
+  function closeModal(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true')}
+  q('#modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-  let activeCharacter = 0;
-  let characterLocked = false;
+  let tutorialLevel='beginner';
+  function renderTutorial(level){tutorialLevel=level;const items=data.tutorial[level];q('#tutorialGrid').innerHTML=items.map((it,i)=>`<article class="tutorial-card" style="animation-delay:${i*.07}s"><img src="${it.image}" alt="${it.title}"><h3>${it.title}</h3></article>`).join('')}
+  qa('[data-tutorial]').forEach(btn=>btn.addEventListener('click',()=>{qa('[data-tutorial]').forEach(b=>b.classList.remove('is-active'));btn.classList.add('is-active');renderTutorial(btn.dataset.tutorial)}));renderTutorial('beginner');
 
-  const pad2 = n => String(n).padStart(2, '0');
-
-  function buildCharacterRail() {
-    if (!characterRail || !data.characters.length) return;
-    characterRail.innerHTML = data.characters.map((character, index) => `
-      <button class="character-thumb${index === 0 ? ' is-active' : ''}" type="button" data-character-index="${index}" aria-label="Show ${character.name}">
-        <img src="${character.art}" alt="">
-        <span>${pad2(index + 1)}</span>
-      </button>
-    `).join('');
-
-    $$('.character-thumb', characterRail).forEach(button => {
-      button.addEventListener('click', () => showCharacter(Number(button.dataset.characterIndex)));
-    });
-  }
-
-  function renderSkills(skills = []) {
-    if (!skillList) return;
-    skillList.innerHTML = skills.map(skill => `
-      <article class="skill-item">
-        <div class="skill-item__icon">${skill.icon || 'V8'}</div>
-        <div>
-          <h3>${skill.title || ''}</h3>
-          <p>${skill.text || ''}</p>
-        </div>
-      </article>
-    `).join('');
-  }
-
-  function applyCharacter(character, index) {
-    if (!character) return;
-    characterStage?.style.setProperty('--char-accent', character.accent || '#ff3d21');
-    characterStage?.style.setProperty('--char-accent-2', character.accent2 || '#ffc400');
-    if (characterName) characterName.textContent = character.name;
-    if (characterVehicle) characterVehicle.textContent = character.vehicle;
-    if (characterSubtitle) characterSubtitle.textContent = character.subtitle;
-    if (characterDescription) characterDescription.textContent = character.description;
-    if (characterIndex) characterIndex.textContent = pad2(index + 1);
-    if (characterTotal) characterTotal.textContent = pad2(data.characters.length);
-    if (characterMobileLabel) characterMobileLabel.textContent = `${pad2(index + 1)} / ${pad2(data.characters.length)}`;
-    if (characterBackdropWord) characterBackdropWord.textContent = character.vehicle;
-    if (characterArt) {
-      characterArt.src = character.art;
-      characterArt.alt = `${character.name} character art`;
-    }
-    renderSkills(character.skills);
-
-    $$('.character-thumb', characterRail).forEach((thumb, thumbIndex) => {
-      thumb.classList.toggle('is-active', thumbIndex === index);
-    });
-
-    const nextCharacter = data.characters[(index + 1) % data.characters.length];
-    if (nextCharacter?.art) {
-      const preload = new Image();
-      preload.src = nextCharacter.art;
-    }
-  }
-
-  function showCharacter(index, direction = 0) {
-    if (!data.characters.length || characterLocked) return;
-    const normalized = (index + data.characters.length) % data.characters.length;
-    if (normalized === activeCharacter && direction === 0) return;
-
-    characterLocked = true;
-    characterCopy?.classList.add('is-out');
-    characterArtWrap?.classList.add('is-out');
-
-    window.setTimeout(() => {
-      activeCharacter = normalized;
-      applyCharacter(data.characters[activeCharacter], activeCharacter);
-
-      characterCopy?.classList.remove('is-out');
-      characterArtWrap?.classList.remove('is-out');
-      characterCopy?.classList.remove('is-in');
-      characterArtWrap?.classList.remove('is-in');
-      void characterCopy?.offsetWidth;
-      void characterArtWrap?.offsetWidth;
-      characterCopy?.classList.add('is-in');
-      characterArtWrap?.classList.add('is-in');
-
-      window.setTimeout(() => {
-        characterLocked = false;
-      }, 520);
-    }, 180);
-  }
-
-  function nextCharacter() { showCharacter(activeCharacter + 1, 1); }
-  function prevCharacter() { showCharacter(activeCharacter - 1, -1); }
-
-  buildCharacterRail();
-  if (data.characters.length) applyCharacter(data.characters[0], 0);
-
-  ['#characterNext', '#characterNextMobile'].forEach(selector => $(selector)?.addEventListener('click', nextCharacter));
-  ['#characterPrev', '#characterPrevMobile'].forEach(selector => $(selector)?.addEventListener('click', prevCharacter));
-
-  let wheelAccumulator = 0;
-  let wheelTimer = null;
-  characterStage?.addEventListener('wheel', event => {
-    if (window.innerWidth < 901 || characterLocked) return;
-    const rect = characterStage.getBoundingClientRect();
-    const fullyEngaged = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
-    if (!fullyEngaged) return;
-
-    wheelAccumulator += event.deltaY;
-    clearTimeout(wheelTimer);
-    wheelTimer = setTimeout(() => { wheelAccumulator = 0; }, 220);
-
-    if (Math.abs(wheelAccumulator) > 90) {
-      if (wheelAccumulator > 0 && activeCharacter < data.characters.length - 1) {
-        event.preventDefault();
-        nextCharacter();
-      } else if (wheelAccumulator < 0 && activeCharacter > 0) {
-        event.preventDefault();
-        prevCharacter();
-      }
-      wheelAccumulator = 0;
-    }
-  }, { passive: false });
-
-  characterStage?.addEventListener('keydown', event => {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextCharacter();
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') prevCharacter();
-  });
-
-  let touchStartX = 0;
-  characterStage?.addEventListener('touchstart', event => {
-    touchStartX = event.changedTouches[0].clientX;
-  }, { passive: true });
-  characterStage?.addEventListener('touchend', event => {
-    const delta = event.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(delta) < 50) return;
-    delta < 0 ? nextCharacter() : prevCharacter();
-  }, { passive: true });
-
-  // ------------------------------------------------------------
-  // Tutorial tabs and modal
-  // ------------------------------------------------------------
-  const tutorialTabs = $$('[data-tutorial-tab]');
-  const tutorialCards = $$('.tutorial-card');
-
-  function filterTutorials(level) {
-    tutorialCards.forEach(card => {
-      const visible = level === 'beginner'
-        ? true
-        : card.dataset.level === level;
-      card.classList.toggle('is-hidden', !visible);
-    });
-  }
-
-  tutorialTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tutorialTabs.forEach(item => item.classList.toggle('is-active', item === tab));
-      filterTutorials(tab.dataset.tutorialTab);
-    });
-  });
-
-  const mediaModal = $('#mediaModal');
-  const mediaModalClose = $('#mediaModalClose');
-
-  function openMediaModal() {
-    mediaModal?.classList.add('is-open');
-    mediaModal?.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('no-scroll');
-  }
-
-  function closeMediaModal() {
-    mediaModal?.classList.remove('is-open');
-    mediaModal?.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('no-scroll');
-  }
-
-  $$('.tutorial-card button').forEach(button => button.addEventListener('click', openMediaModal));
-  mediaModalClose?.addEventListener('click', closeMediaModal);
-  mediaModal?.addEventListener('click', event => {
-    if (event.target === mediaModal) closeMediaModal();
-  });
-  window.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeMediaModal();
-  });
-
-  // ------------------------------------------------------------
-  // Feature slider built from site-data.js
-  // ------------------------------------------------------------
-  const featureTrack = $('#featureTrack');
-
-  function buildFeatures() {
-    if (!featureTrack) return;
-    featureTrack.innerHTML = data.features.map((feature, index) => `
-      <article class="feature-card">
-        <div class="feature-card__media">
-          <img src="${feature.media}" alt="${feature.title} media">
-          <span class="feature-card__index">${pad2(index + 1)}</span>
-        </div>
-        <div class="feature-card__body">
-          <h3>${feature.title}</h3>
-          <p>${feature.text}</p>
-          <span class="feature-card__tag">PNG / JPG / WEBP / GIF</span>
-        </div>
-      </article>
-    `).join('');
-  }
-
-  buildFeatures();
-
-  function slideFeatures(direction) {
-    if (!featureTrack) return;
-    const card = $('.feature-card', featureTrack);
-    const amount = (card?.getBoundingClientRect().width || 520) + 22;
-    featureTrack.scrollBy({ left: amount * direction, behavior: 'smooth' });
-  }
-
-  $('#featurePrev')?.addEventListener('click', () => slideFeatures(-1));
-  $('#featureNext')?.addEventListener('click', () => slideFeatures(1));
+  let featureIndex=0;
+  const track=q('#featureTrack'),dots=q('#featureDots');
+  function buildFeatures(){track.innerHTML=data.features.map((f,i)=>`<article class="feature-card"><img src="${f.image}" alt="${f.title}"><div class="feature-caption"><h3>${f.title}</h3><p>${f.text}</p></div></article>`).join('');dots.innerHTML=data.features.map((_,i)=>`<button aria-label="Feature ${i+1}"></button>`).join('');qa('button',dots).forEach((b,i)=>b.addEventListener('click',()=>setFeature(i)));setFeature(0,true)}
+  function setFeature(next,instant=false){featureIndex=(next+data.features.length)%data.features.length;const cards=qa('.feature-card',track);cards.forEach((c,i)=>c.classList.toggle('is-active',i===featureIndex));qa('button',dots).forEach((d,i)=>d.classList.toggle('is-active',i===featureIndex));const card=cards[0];if(!card)return;const gap=25;const width=card.getBoundingClientRect().width+gap;const stage=q('.feature-stage').clientWidth;const offset=featureIndex*width-(stage-width)/2+60;track.style.transition=instant?'none':'';track.style.transform=`translateX(${-Math.max(0,offset)}px)`;if(instant)setTimeout(()=>track.style.transition='',20)}
+  buildFeatures();q('#featurePrev').addEventListener('click',()=>setFeature(featureIndex-1));q('#featureNext').addEventListener('click',()=>setFeature(featureIndex+1));window.addEventListener('resize',()=>setFeature(featureIndex,true));
 })();

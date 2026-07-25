@@ -1,127 +1,138 @@
-/*
-  ==============================================================
-  VIGILANTE 8 WEBSITE DATA
-  ==============================================================
-  This is the main file you edit when adding characters.
-
-  IMAGE SUPPORT:
-  - Character art: PNG / JPG / WEBP / GIF
-  - Feature media: PNG / JPG / WEBP / GIF
-  - A GIF works automatically: just use its file path below.
-*/
-
 window.V8_SITE_DATA = {
-  characters: [
+  drivers: [
     {
       name: "CHASSEY BLUE",
       vehicle: "RATTLER",
-      subtitle: "THE FIRST STRIKE",
-      description: "A fast, aggressive fighter built around pressure, mobility and precise special-weapon timing. Replace this sample text with the official character and vehicle story.",
-      accent: "#ff3d21",
-      accent2: "#ffc400",
-      art: "assets/characters/chassey-blue.svg",
+      tagline: "Precision hunter with a nine-shot grid barrage.",
+      description: "A disciplined road warrior built around control, positioning and the Gridlock special weapon.",
+      image: "assets/characters/chassey-blue.svg",
+      avatar: "assets/characters/chassey-blue.svg",
+      accent: "#ff3f22",
+      accent2: "#ffbb22",
       skills: [
-        { icon: "01", title: "GRIDLOCK", text: "Nine-shot special weapon with a wide impact pattern." },
-        { icon: "02", title: "FAST RESPONSE", text: "Designed for quick repositioning and sustained pressure." }
+        { title: "GRIDLOCK", text: "Launches a 3×3 wall of energy projectiles." },
+        { title: "TACTICAL CONTROL", text: "Locks lanes and punishes predictable movement." }
       ]
     },
     {
       name: "SID BURN",
-      vehicle: "'69 MANTA",
-      subtitle: "BREATH OF FIRE",
-      description: "A classic Vigilante with a destructive special attack and a bold playstyle. Replace this sample description with your final character biography.",
-      accent: "#7d2cff",
-      accent2: "#22d3ee",
-      art: "assets/characters/sid-burn.svg",
+      vehicle: "MANTA",
+      tagline: "Calls down fire from above.",
+      description: "Sid Burn brings explosive area pressure with the Breath of Fire special and aggressive hit-and-run driving.",
+      image: "assets/characters/sid-burn.svg",
+      avatar: "assets/characters/sid-burn.svg",
+      accent: "#ff4c24",
+      accent2: "#ffd43b",
       skills: [
-        { icon: "01", title: "BREATH OF FIRE", text: "Calls down a dangerous sequence of fiery attacks." },
-        { icon: "02", title: "CLASSIC MUSCLE", text: "Strong presence, balanced weight and dependable armor." }
+        { title: "BREATH OF FIRE", text: "Three fire strikes descend on the target zone." },
+        { title: "BURNING PRESSURE", text: "Forces enemies to abandon safe positions." }
       ]
     },
     {
       name: "BEEZWAX",
       vehicle: "STAG PICKUP",
-      subtitle: "GAMMA SWARM",
-      description: "A relentless hunter who overwhelms enemies with a living swarm. The large character image can be PNG, WEBP or an animated GIF.",
-      accent: "#ffc400",
-      accent2: "#ff4d00",
-      art: "assets/characters/beezwax.svg",
+      tagline: "Unleashes a relentless guided swarm.",
+      description: "A wild specialist whose Gamma Swarm surrounds targets, lifts them and strikes repeatedly before dispersing.",
+      image: "assets/characters/beezwax.svg",
+      avatar: "assets/characters/beezwax.svg",
+      accent: "#f3c91e",
+      accent2: "#ff6a1f",
       skills: [
-        { icon: "01", title: "GAMMA SWARM", text: "Releases a swarm that tracks and repeatedly attacks a target." },
-        { icon: "02", title: "HEAVY PICKUP", text: "Stable handling with a strong combat silhouette." }
+        { title: "GAMMA SWARM", text: "Sends a moving formation of sixteen attacking bees." },
+        { title: "AIRBORNE TRAP", text: "Disrupts movement while the swarm keeps attacking." }
       ]
     },
     {
       name: "MOLO",
       vehicle: "SCHOOL BUS",
-      subtitle: "HEAVY CHAOS",
-      description: "A huge target with a huge personality. This character entry is ready for a portrait, transparent full-body render or looping animated GIF.",
-      accent: "#00a8ff",
-      accent2: "#7a5cff",
-      art: "assets/characters/molo.svg",
+      tagline: "Heavy armor. Heavy impact.",
+      description: "Molo turns every road into a demolition lane, trading agility for durability and brutal close-range power.",
+      image: "assets/characters/molo.svg",
+      avatar: "assets/characters/molo.svg",
+      accent: "#ff9d18",
+      accent2: "#ffe04b",
       skills: [
-        { icon: "01", title: "HEAVY IMPACT", text: "Uses size and weight to dominate close-range encounters." },
-        { icon: "02", title: "ARMORED FRAME", text: "Built to absorb punishment and keep moving." }
+        { title: "HEAVY ASSAULT", text: "Controls space with mass and explosive force." },
+        { title: "ARMORED PUSH", text: "Survives punishment while closing the distance." }
       ]
     },
     {
       name: "BOOGIE",
       vehicle: "LEPRECHAUN",
-      subtitle: "TRICKSTER DRIVER",
-      description: "A strange and unpredictable combatant. Add the final story, allegiance, statistics and special-weapon details whenever they are ready.",
-      accent: "#18c37e",
-      accent2: "#d7ff38",
-      art: "assets/characters/boogie.svg",
+      tagline: "Fast tricks and unpredictable angles.",
+      description: "Boogie is built for evasive players who prefer speed, flanking and sudden special-weapon attacks.",
+      image: "assets/characters/boogie.svg",
+      avatar: "assets/characters/boogie.svg",
+      accent: "#38d66b",
+      accent2: "#d5ff39",
       skills: [
-        { icon: "01", title: "LUCKY STRIKE", text: "A special weapon built around surprise and disruption." },
-        { icon: "02", title: "QUICK ESCAPE", text: "Compact form helps with rapid changes of direction." }
+        { title: "LUCKY STRIKE", text: "A disruptive special designed for quick openings." },
+        { title: "HIGH AVOIDANCE", text: "Escapes danger and re-enters from a new angle." }
       ]
     },
     {
       name: "Y THE ALIEN",
       vehicle: "LUXO SAUCER",
-      subtitle: "OUT OF THIS WORLD",
-      description: "An unusual vehicle and an even more unusual driver. The character slider supports any number of entries and builds the right-side portrait list automatically.",
+      tagline: "Alien technology dominates the arena.",
+      description: "An unusual combatant with futuristic control, strange weapons and a silhouette unlike any other vehicle.",
+      image: "assets/characters/y-the-alien.svg",
+      avatar: "assets/characters/y-the-alien.svg",
       accent: "#00d7ff",
-      accent2: "#ff2bd6",
-      art: "assets/characters/y-the-alien.svg",
+      accent2: "#8cfffb",
       skills: [
-        { icon: "01", title: "ALIEN TECH", text: "Unconventional movement and a unique visual identity." },
-        { icon: "02", title: "LUXO SAUCER", text: "A futuristic silhouette unlike any other vehicle." }
+        { title: "ALIEN TECH", text: "Uses advanced energy systems and unusual trajectories." },
+        { title: "HOVER CONTROL", text: "Maintains pressure with unconventional movement." }
+      ]
+    },
+    {
+      name: "HOUSTON 3",
+      vehicle: "PALOMINO",
+      tagline: "A balanced fighter for every battlefield.",
+      description: "Houston 3 combines dependable handling, direct firepower and the flexibility to adapt to changing fights.",
+      image: "assets/characters/houston-3.svg",
+      avatar: "assets/characters/houston-3.svg",
+      accent: "#148cff",
+      accent2: "#72e8ff",
+      skills: [
+        { title: "BALANCED LOADOUT", text: "Reliable speed, armor and weapon response." },
+        { title: "FRONTLINE READY", text: "Comfortable in both attack and defense." }
+      ]
+    },
+    {
+      name: "CONVOY",
+      vehicle: "MOTH TRUCK",
+      tagline: "Long-range punishment on wheels.",
+      description: "Convoy specializes in target tracking and heavy projectile pressure through the Steelbelter launcher.",
+      image: "assets/characters/convoy.svg",
+      avatar: "assets/characters/convoy.svg",
+      accent: "#ff6924",
+      accent2: "#ffd33d",
+      skills: [
+        { title: "STEELBELTER", text: "A powerful tracking projectile built for direct impact." },
+        { title: "HEAVY KNOCKBACK", text: "Explosions throw enemies away from the hit direction." }
       ]
     }
   ],
-
+  tutorial: {
+    beginner: [
+      { title: "Movement", image: "assets/tutorial/movement.svg" },
+      { title: "Weapons", image: "assets/tutorial/weapons.svg" },
+      { title: "Lock-On", image: "assets/tutorial/lock-on.svg" }
+    ],
+    advanced: [
+      { title: "Team Play", image: "assets/tutorial/team-play.svg" },
+      { title: "Special Weapons", image: "assets/tutorial/specials.svg" },
+      { title: "Survival", image: "assets/tutorial/survival.svg" }
+    ],
+    master: [
+      { title: "Upgrades", image: "assets/tutorial/upgrades.svg" },
+      { title: "Combat Tips", image: "assets/tutorial/combat-tips.svg" }
+    ]
+  },
   features: [
-    {
-      title: "NEW GAME MODES",
-      text: "Custom modes, team rules, survival systems and new ways to play.",
-      media: "assets/features/new-modes.svg"
-    },
-    {
-      title: "ORIGINAL VEHICLES",
-      text: "Vehicles from the first game are ported into the Unity project.",
-      media: "assets/features/legacy-vehicles.svg"
-    },
-    {
-      title: "SPECIAL WEAPONS",
-      text: "Custom visuals, sound, damage behavior and faithful weapon mechanics.",
-      media: "assets/features/special-weapons.svg"
-    },
-    {
-      title: "ONLINE COMBAT",
-      text: "Expanded multiplayer systems and modes built around Photon networking.",
-      media: "assets/features/online-combat.svg"
-    },
-    {
-      title: "CUSTOM HUD SYSTEMS",
-      text: "Modern and legacy interface options with new weapon and vehicle displays.",
-      media: "assets/features/hud-systems.svg"
-    },
-    {
-      title: "ONGOING UPDATES",
-      text: "New vehicles, fixes, balancing, effects, audio and quality improvements.",
-      media: "assets/features/ongoing-updates.svg"
-    }
+    { title: "ORIGINAL VEHICLES RETURN", text: "Classic Vigilante 8 vehicles rebuilt and integrated into the Unity project.", image: "assets/features/legacy-grid.svg" },
+    { title: "NEW ONLINE MODES", text: "Expanded competitive modes, team systems and multiplayer-focused improvements.", image: "assets/features/online-war.svg" },
+    { title: "SPECIAL WEAPONS REBUILT", text: "Legacy specials recreated with custom visuals, audio, physics and gameplay behavior.", image: "assets/features/weapon-lab.svg" },
+    { title: "MODERN + LEGACY HUD", text: "Switch between updated interface systems and the classic presentation style.", image: "assets/features/hud-reborn.svg" }
   ]
 };
