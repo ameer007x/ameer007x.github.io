@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1d2b3a"/><stop offset=".55" stop-color="#151515"/><stop offset="1" stop-color="#73d9ff"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#73d9ff" stop-opacity=".8"/><stop offset="1" stop-color="#73d9ff" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .14"/></feComponentTransfer></filter>
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".11"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1260" cy="260" r="430" fill="url(#glow)" opacity=".42"/>
+  <path d="M-80 840 820 180h390L330 940z" fill="#fff" opacity=".055"/>
+  <path d="M920 -80 1640 430v220L810 50z" fill="#73d9ff" opacity=".18"/>
+  <path d="M0 650 280 300l160 210 240-370 230 330 180-260 510 440v250H0z" fill="#d8f4ff" opacity=".85"/><path d="M0 720h1600v180H0z" fill="#f4fbff"/><g fill="#29516d"><path d="m200 590 45-130 45 130z"/><path d="m330 630 60-180 60 180z"/><path d="m1250 610 55-170 55 170z"/></g>
+  <rect width="1600" height="900" fill="url(#dots)"/>
+  <rect width="1600" height="900" filter="url(#grain)" opacity=".52"/>
+  <path d="M0 760h1600" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>
+  <text x="85" y="120" fill="#fff" opacity=".95" font-family="Impact,Arial Black,sans-serif" font-size="72" letter-spacing="4">WINTER WASTELAND</text>
+  <text x="90" y="162" fill="#73d9ff" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">VIGILANTE 8 BATTLEFIELD</text>
+  <text x="90" y="820" fill="#fff" opacity=".65" font-family="Arial,sans-serif" font-size="24">Frozen roads, snow banks and dangerous ice lanes</text>
+</svg>

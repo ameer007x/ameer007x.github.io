@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#15133d"/><stop offset=".55" stop-color="#151515"/><stop offset="1" stop-color="#5ee8ff"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#5ee8ff" stop-opacity=".8"/><stop offset="1" stop-color="#5ee8ff" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .14"/></feComponentTransfer></filter>
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".11"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1260" cy="260" r="430" fill="url(#glow)" opacity=".42"/>
+  <path d="M-80 840 820 180h390L330 940z" fill="#fff" opacity=".055"/>
+  <path d="M920 -80 1640 430v220L810 50z" fill="#5ee8ff" opacity=".18"/>
+  <ellipse cx="1290" cy="190" rx="180" ry="70" fill="none" stroke="#5ee8ff" stroke-width="10" opacity=".7"/><path d="M1240 190h100l45 95-195 0z" fill="#11142d"/><path d="M0 670h1600v230H0z" fill="#151733"/><g fill="#222752"><rect x="120" y="390" width="280" height="280"/><rect x="520" y="250" width="360" height="420"/><rect x="1010" y="330" width="260" height="340"/></g><path d="M720 670V120l80-100 80 100v550z" fill="#d7e9f5"/><path d="m720 220-100 180h100zM880 220l100 180H880z" fill="#5ee8ff"/>
+  <rect width="1600" height="900" fill="url(#dots)"/>
+  <rect width="1600" height="900" filter="url(#grain)" opacity=".52"/>
+  <path d="M0 760h1600" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>
+  <text x="85" y="120" fill="#fff" opacity=".95" font-family="Impact,Arial Black,sans-serif" font-size="72" letter-spacing="4">SPACEPORT</text>
+  <text x="90" y="162" fill="#5ee8ff" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">VIGILANTE 8 BATTLEFIELD</text>
+  <text x="90" y="820" fill="#fff" opacity=".65" font-family="Arial,sans-serif" font-size="24">Launch pads, hangars and experimental alien technology</text>
+</svg>

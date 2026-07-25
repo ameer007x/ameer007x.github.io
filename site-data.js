@@ -182,6 +182,88 @@ const placeholderDrivers = Array.from({ length: 19 }, (_, itemIndex) => {
 
 window.V8_SITE_DATA = {
   drivers: [...baseDrivers, ...placeholderDrivers],
+  maps: [
+    {
+      name: "OIL FIELDS",
+      location: "SOUTHWEST INDUSTRIAL ZONE",
+      description: "Pumpjacks, pipelines and blazing refinery lights create an open industrial battlefield.",
+      image: "assets/maps/oil-fields.svg",
+      accent: "#ff7a16",
+      highlightTitle: "WIDE ROUTES / LONG SIGHTLINES",
+      highlightText: "Use the refinery structures as cover and watch the exposed center lanes.",
+      stats: [{ label: "SIZE", value: "LARGE" }, { label: "STYLE", value: "OPEN" }, { label: "HAZARD", value: "FIRE" }]
+    },
+    {
+      name: "CASINO CITY",
+      location: "DOWNTOWN ENTERTAINMENT DISTRICT",
+      description: "Neon towers, casino signs and tight urban routes create a fast battlefield full of ambush points.",
+      image: "assets/maps/casino-city.svg",
+      accent: "#ff3e62",
+      highlightTitle: "TIGHT CORNERS / VERTICAL COVER",
+      highlightText: "Break line of sight between towers, then attack through the illuminated side streets.",
+      stats: [{ label: "SIZE", value: "MEDIUM" }, { label: "STYLE", value: "URBAN" }, { label: "HAZARD", value: "TRAFFIC" }]
+    },
+    {
+      name: "WINTER WASTELAND",
+      location: "NORTHERN MOUNTAIN PASS",
+      description: "Frozen roads, deep snow banks and slippery ice lanes reward controlled driving and careful positioning.",
+      image: "assets/maps/winter-wasteland.svg",
+      accent: "#73d9ff",
+      highlightTitle: "LOW GRIP / LONG DESCENTS",
+      highlightText: "Manage speed on the ice and use the snow banks to redirect incoming attacks.",
+      stats: [{ label: "SIZE", value: "LARGE" }, { label: "STYLE", value: "SNOW" }, { label: "HAZARD", value: "ICE" }]
+    },
+    {
+      name: "BAYOU",
+      location: "SOUTHERN FLOODLAND",
+      description: "Swamp water, wooden bridges and hidden routes turn every chase into a dangerous close-range fight.",
+      image: "assets/maps/bayou.svg",
+      accent: "#9ecb4f",
+      highlightTitle: "HIDDEN PATHS / NARROW BRIDGES",
+      highlightText: "Use the vegetation to hide your approach and avoid getting trapped over open water.",
+      stats: [{ label: "SIZE", value: "MEDIUM" }, { label: "STYLE", value: "SWAMP" }, { label: "HAZARD", value: "WATER" }]
+    },
+    {
+      name: "DESERT RUN",
+      location: "RED CANYON HIGHWAY",
+      description: "Open dunes, canyon walls and high-speed straights create a battlefield built for pursuit and long attacks.",
+      image: "assets/maps/desert-run.svg",
+      accent: "#ffb02e",
+      highlightTitle: "HIGH SPEED / LIMITED COVER",
+      highlightText: "Control the canyon entrances and never remain exposed in the center of the dunes.",
+      stats: [{ label: "SIZE", value: "XL" }, { label: "STYLE", value: "DESERT" }, { label: "HAZARD", value: "CLIFFS" }]
+    },
+    {
+      name: "STEEL MILL",
+      location: "HEAVY INDUSTRY COMPLEX",
+      description: "Furnaces, rail tracks and massive machines create a dense combat maze with brutal environmental threats.",
+      image: "assets/maps/steel-mill.svg",
+      accent: "#ff5b28",
+      highlightTitle: "HEAVY COVER / HOT ZONES",
+      highlightText: "Fight between machinery, but stay clear of the open furnace and active rail lanes.",
+      stats: [{ label: "SIZE", value: "MEDIUM" }, { label: "STYLE", value: "INDUSTRIAL" }, { label: "HAZARD", value: "FURNACE" }]
+    },
+    {
+      name: "SPACEPORT",
+      location: "EXPERIMENTAL LAUNCH FACILITY",
+      description: "Launch pads, aircraft hangars and alien technology create an unusual arena with broad open platforms.",
+      image: "assets/maps/spaceport.svg",
+      accent: "#5ee8ff",
+      highlightTitle: "OPEN PLATFORMS / TECH COVER",
+      highlightText: "Use hangars to reset fights before crossing the exposed launch-pad areas.",
+      stats: [{ label: "SIZE", value: "LARGE" }, { label: "STYLE", value: "FUTURE" }, { label: "HAZARD", value: "LAUNCH" }]
+    },
+    {
+      name: "SECRET BASE",
+      location: "CLASSIFIED MILITARY SECTOR",
+      description: "Restricted tunnels, military compounds and hidden chambers form a tactical battlefield full of secrets.",
+      image: "assets/maps/secret-base.svg",
+      accent: "#e75030",
+      highlightTitle: "TUNNELS / SECRET ROUTES",
+      highlightText: "Search for alternate entrances and use the underground passages to escape target locks.",
+      stats: [{ label: "SIZE", value: "LARGE" }, { label: "STYLE", value: "BASE" }, { label: "HAZARD", value: "SECURITY" }]
+    }
+  ],
   tutorial: {
     beginner: [
       { title: "Movement", image: "assets/tutorial/movement.svg" },
@@ -197,11 +279,5 @@ window.V8_SITE_DATA = {
       { title: "Upgrades", image: "assets/tutorial/upgrades.svg" },
       { title: "Combat Tips", image: "assets/tutorial/combat-tips.svg" }
     ]
-  },
-  features: [
-    { title: "ORIGINAL VEHICLES RETURN", text: "Classic Vigilante 8 vehicles rebuilt and integrated into the Unity project.", image: "assets/features/legacy-grid.svg" },
-    { title: "NEW ONLINE MODES", text: "Expanded competitive modes, team systems and multiplayer-focused improvements.", image: "assets/features/online-war.svg" },
-    { title: "SPECIAL WEAPONS REBUILT", text: "Legacy specials recreated with custom visuals, audio, physics and gameplay behavior.", image: "assets/features/weapon-lab.svg" },
-    { title: "MODERN + LEGACY HUD", text: "Switch between updated interface systems and the classic presentation style.", image: "assets/features/hud-reborn.svg" }
-  ]
+  }
 };

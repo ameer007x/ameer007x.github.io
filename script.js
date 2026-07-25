@@ -42,14 +42,17 @@
   /* --------------------------------------------------------------------------
      News filters
   -------------------------------------------------------------------------- */
-  qa('[data-news-filter]').forEach(button => button.addEventListener('click', () => {
-    qa('[data-news-filter]').forEach(item => item.classList.remove('is-active'));
-    button.classList.add('is-active');
-    const filter = button.dataset.newsFilter;
+  function applyNewsFilter(filter) {
+    qa('[data-news-filter]').forEach(item => item.classList.toggle('is-active', item.dataset.newsFilter === filter));
     qa('.news-card').forEach(card => {
-      card.classList.toggle('is-hidden', filter !== 'all' && card.dataset.category !== filter);
+      card.classList.toggle('is-hidden', card.dataset.category !== filter);
     });
+  }
+
+  qa('[data-news-filter]').forEach(button => button.addEventListener('click', () => {
+    applyNewsFilter(button.dataset.newsFilter);
   }));
+  applyNewsFilter('news');
 
   /* --------------------------------------------------------------------------
      Driver selector
@@ -236,6 +239,139 @@
   });
 
   /* --------------------------------------------------------------------------
+     Map selector
+  -------------------------------------------------------------------------- */
+  const maps = data.maps || [];
+  const MAP_AUTO_DELAY = 7000;
+  const MAP_VISIBLE_THUMBS = 4;
+  let mapIndex = 0;
+  let mapChanging = false;
+  let mapAutoId = 0;
+  let mapSceneActive = false;
+
+  const mapBackground = q('#mapBackground');
+  const mapMiniImage = q('#mapMiniImage');
+  const mapName = q('#mapName');
+  const mapLocation = q('#mapLocation');
+  const mapDescription = q('#mapDescription');
+  const mapGhost = q('#mapGhost');
+  const mapStats = q('#mapStats');
+  const mapInfoCard = q('#mapInfoCard');
+  const mapHighlight = q('#mapHighlight');
+  const mapHighlightTitle = q('#mapHighlightTitle');
+  const mapHighlightText = q('#mapHighlightText');
+  const mapThumbs = q('#mapThumbs');
+  const mapIndexElement = q('#mapIndex');
+  const mapTotal = q('#mapTotal');
+  const mapAutoTimer = q('#mapAutoTimer');
+
+  if (mapTotal) mapTotal.textContent = String(maps.length).padStart(2, '0');
+
+  const wrapMapIndex = index => maps.length ? (index + maps.length) % maps.length : 0;
+
+  function restartMapTimerAnimation() {
+    if (!mapAutoTimer) return;
+    mapAutoTimer.style.animation = 'none';
+    void mapAutoTimer.offsetWidth;
+    mapAutoTimer.style.animation = '';
+  }
+
+  function stopMapAuto() {
+    window.clearInterval(mapAutoId);
+    mapAutoId = 0;
+  }
+
+  function startMapAuto() {
+    stopMapAuto();
+    if (!mapSceneActive || document.hidden || maps.length < 2) return;
+    restartMapTimerAnimation();
+    mapAutoId = window.setInterval(() => setMap(mapIndex + 1, { automatic: true }), MAP_AUTO_DELAY);
+  }
+
+  function buildMapThumbs() {
+    if (!mapThumbs || !maps.length) return;
+    mapThumbs.innerHTML = '';
+    for (let offset = 0; offset < Math.min(MAP_VISIBLE_THUMBS, maps.length); offset += 1) {
+      const index = wrapMapIndex(mapIndex + offset);
+      const map = maps[index];
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'map-thumb';
+      button.classList.toggle('is-active', index === mapIndex);
+      button.title = `${String(index + 1).padStart(2, '0')} — ${map.name}`;
+      button.setAttribute('aria-label', `Show ${map.name}`);
+      button.innerHTML = `<img src="${map.image}" alt="${map.name}" decoding="async">`;
+      button.addEventListener('click', () => setMap(index, { manual: true }));
+      mapThumbs.appendChild(button);
+    }
+  }
+
+  function renderMapStats(map) {
+    if (!mapStats) return;
+    mapStats.innerHTML = (map.stats || []).map(stat => `
+      <article><small>${stat.label}</small><strong>${stat.value}</strong></article>
+    `).join('');
+  }
+
+  function applyMap(index, { replay = true } = {}) {
+    if (!maps.length) return;
+    mapIndex = wrapMapIndex(index);
+    const map = maps[mapIndex];
+
+    document.documentElement.style.setProperty('--map-accent', map.accent || '#ff7714');
+    document.documentElement.style.setProperty('--map-progress', `${((mapIndex + 1) / maps.length) * 100}%`);
+
+    if (mapBackground) {
+      mapBackground.src = map.image;
+      mapBackground.alt = `${map.name} battlefield`;
+    }
+    if (mapMiniImage) {
+      mapMiniImage.src = map.image;
+      mapMiniImage.alt = `${map.name} preview`;
+    }
+    if (mapName) mapName.textContent = map.name;
+    if (mapLocation) mapLocation.textContent = map.location;
+    if (mapDescription) mapDescription.textContent = map.description;
+    if (mapGhost) mapGhost.textContent = map.name;
+    if (mapHighlightTitle) mapHighlightTitle.textContent = map.highlightTitle;
+    if (mapHighlightText) mapHighlightText.textContent = map.highlightText;
+    if (mapIndexElement) mapIndexElement.textContent = String(mapIndex + 1).padStart(2, '0');
+    renderMapStats(map);
+    buildMapThumbs();
+
+    [mapBackground, mapInfoCard, mapHighlight].forEach(element => element?.classList.remove('is-exiting'));
+    if (replay) [mapBackground, mapInfoCard, mapHighlight].forEach(restartElementAnimation);
+
+    mapChanging = false;
+    if (mapSceneActive) restartMapTimerAnimation();
+  }
+
+  function setMap(next, options = {}) {
+    if (!maps.length) return;
+    const target = wrapMapIndex(next);
+    if (mapChanging || (target === mapIndex && !options.instant)) {
+      if (options.manual) startMapAuto();
+      return;
+    }
+
+    mapChanging = true;
+    if (options.instant) {
+      applyMap(target);
+    } else {
+      mapBackground?.classList.add('is-exiting');
+      mapInfoCard?.classList.add('is-exiting');
+      mapHighlight?.classList.add('is-exiting');
+      window.setTimeout(() => applyMap(target), 390);
+    }
+
+    if (options.manual) startMapAuto();
+  }
+
+  q('#mapPrev')?.addEventListener('click', () => setMap(mapIndex - 1, { manual: true }));
+  q('#mapNext')?.addEventListener('click', () => setMap(mapIndex + 1, { manual: true }));
+  if (maps.length) setMap(0, { instant: true });
+
+  /* --------------------------------------------------------------------------
      Tutorial cards
   -------------------------------------------------------------------------- */
   function renderTutorial(level) {
@@ -257,95 +393,6 @@
   renderTutorial('beginner');
 
   /* --------------------------------------------------------------------------
-     Features slider
-  -------------------------------------------------------------------------- */
-  let featureIndex = 0;
-  const track = q('#featureTrack');
-  const dots = q('#featureDots');
-  const featureViewport = q('.feature-viewport');
-  const featurePrev = q('#featurePrev');
-  const featureNext = q('#featureNext');
-
-  function buildFeatures() {
-    if (!track || !dots) return;
-    track.innerHTML = data.features.map((feature, index) => `
-      <article class="feature-card" data-feature-index="${index}">
-        <div class="feature-media">
-          <img src="${feature.image}" alt="${feature.title}" loading="lazy" decoding="async">
-          <span class="feature-number">${String(index + 1).padStart(2, '0')}</span>
-        </div>
-        <div class="feature-caption"><h3>${feature.title}</h3><p>${feature.text}</p></div>
-      </article>
-    `).join('');
-
-    dots.innerHTML = data.features.map((_, index) => `<button aria-label="Feature ${index + 1}"></button>`).join('');
-    qa('button', dots).forEach((button, index) => button.addEventListener('click', () => setFeature(index)));
-    qa('.feature-card', track).forEach((card, index) => card.addEventListener('click', () => setFeature(index)));
-    setFeature(0, true);
-  }
-
-  function updateFeatureControls() {
-    const atStart = featureIndex === 0;
-    const atEnd = featureIndex === data.features.length - 1;
-    if (featurePrev) {
-      featurePrev.disabled = atStart;
-      featurePrev.setAttribute('aria-disabled', String(atStart));
-      featurePrev.title = atStart ? 'Beginning of features' : 'Previous feature';
-    }
-    if (featureNext) {
-      featureNext.disabled = atEnd;
-      featureNext.setAttribute('aria-disabled', String(atEnd));
-      featureNext.title = atEnd ? 'End of features' : 'Next feature';
-    }
-  }
-
-  function centerActiveFeature(instant = false) {
-    if (!track || !featureViewport) return;
-    const cards = qa('.feature-card', track);
-    const card = cards[featureIndex];
-    if (!card) return;
-    const targetCenter = card.offsetLeft + card.offsetWidth / 2;
-    const viewportCenter = featureViewport.clientWidth / 2;
-    const translateX = viewportCenter - targetCenter;
-    track.style.transition = instant ? 'none' : '';
-    track.style.transform = `translate3d(${translateX}px, 0, 0)`;
-    if (instant) window.setTimeout(() => { track.style.transition = ''; }, 30);
-  }
-
-  function setFeature(next, instant = false) {
-    if (!track || !dots) return;
-    const last = data.features.length - 1;
-    featureIndex = clamp(next, 0, last);
-    qa('.feature-card', track).forEach((card, index) => {
-      card.classList.toggle('is-active', index === featureIndex);
-      card.classList.toggle('is-before', index < featureIndex);
-      card.classList.toggle('is-after', index > featureIndex);
-      card.setAttribute('aria-current', index === featureIndex ? 'true' : 'false');
-    });
-    qa('button', dots).forEach((dot, index) => dot.classList.toggle('is-active', index === featureIndex));
-    updateFeatureControls();
-    window.requestAnimationFrame(() => centerActiveFeature(instant));
-  }
-
-  buildFeatures();
-  featurePrev?.addEventListener('click', () => {
-    if (!featurePrev.disabled) setFeature(featureIndex - 1);
-  });
-  featureNext?.addEventListener('click', () => {
-    if (!featureNext.disabled) setFeature(featureIndex + 1);
-  });
-
-  let resizeTicking = false;
-  window.addEventListener('resize', () => {
-    if (resizeTicking) return;
-    resizeTicking = true;
-    window.requestAnimationFrame(() => {
-      resizeTicking = false;
-      centerActiveFeature(true);
-    });
-  }, { passive: true });
-
-  /* --------------------------------------------------------------------------
      Ambient ash and section scenery
   -------------------------------------------------------------------------- */
   const ambientTargets = [
@@ -353,8 +400,8 @@
     q('.news'),
     q('.creator'),
     q('.tutorial'),
-    q('.features'),
-    q('.download')
+    q('.download'),
+    q('.credits')
   ].filter(Boolean);
 
   ambientTargets.forEach((section, sectionIndex) => {
@@ -367,10 +414,17 @@
     const decor = document.createElement('div');
     decor.className = 'v8-scene-decor';
     decor.setAttribute('aria-hidden', 'true');
-    const sceneNames = ['ROAD WAR', 'PROJECT FEED', 'UNITY BUILD', 'COMBAT SCHOOL', 'GAME FEATURES', 'DOWNLOAD'];
+    const sceneNames = {
+      home: 'ROAD WAR',
+      news: 'NEWS & FEATURES',
+      project: 'UNITY BUILD',
+      tutorial: 'COMBAT SCHOOL',
+      download: 'DOWNLOAD',
+      credits: 'CREDITS'
+    };
     decor.innerHTML = `
       <span class="scene-panel"></span>
-      <span class="scene-ghost">${sceneNames[sectionIndex] || 'VIGILANTE 8'}</span>
+      <span class="scene-ghost">${sceneNames[section.id] || 'VIGILANTE 8'}</span>
       <span class="scene-halftone"></span>
       <span class="scene-slash scene-slash-a"></span>
       <span class="scene-slash scene-slash-b"></span>
@@ -467,6 +521,10 @@
       applyDriver(driverIndex, { replay: true });
     }
 
+    if (section.id === 'maps') {
+      applyMap(mapIndex, { replay: true });
+    }
+
     if (section.id === 'tutorial') {
       qa('.tutorial-card', section).forEach((card, index) => {
         card.style.animationDelay = `${120 + index * 85}ms`;
@@ -474,12 +532,6 @@
       });
     }
 
-    if (section.id === 'features') {
-      window.requestAnimationFrame(() => centerActiveFeature(true));
-      qa('.feature-card', section).forEach((card, index) => {
-        card.style.setProperty('--scene-card-delay', `${120 + index * 75}ms`);
-      });
-    }
   }
 
   function setSceneActive(index, { initial = false } = {}) {
@@ -504,6 +556,10 @@
     driverSceneActive = activeSection.id === 'drivers';
     if (driverSceneActive) startAutoChange();
     else stopAutoChange();
+
+    mapSceneActive = activeSection.id === 'maps';
+    if (mapSceneActive) startMapAuto();
+    else stopMapAuto();
 
     window.clearTimeout(sceneAnimationId);
     activeSection.classList.remove('scene-entering');
@@ -715,8 +771,13 @@
   reducedMotionQuery.addEventListener?.('change', refreshCinematicMode);
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stopAutoChange();
-    else if (driverSceneActive) startAutoChange();
+    if (document.hidden) {
+      stopAutoChange();
+      stopMapAuto();
+    } else {
+      if (driverSceneActive) startAutoChange();
+      if (mapSceneActive) startMapAuto();
+    }
   });
 
   qa('main img').forEach((image, index) => {

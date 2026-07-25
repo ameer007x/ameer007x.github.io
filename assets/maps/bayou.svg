@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#253822"/><stop offset=".55" stop-color="#151515"/><stop offset="1" stop-color="#9ecb4f"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#9ecb4f" stop-opacity=".8"/><stop offset="1" stop-color="#9ecb4f" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .14"/></feComponentTransfer></filter>
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".11"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1260" cy="260" r="430" fill="url(#glow)" opacity=".42"/>
+  <path d="M-80 840 820 180h390L330 940z" fill="#fff" opacity=".055"/>
+  <path d="M920 -80 1640 430v220L810 50z" fill="#9ecb4f" opacity=".18"/>
+  <path d="M0 610c230-80 360 100 560 10s380-100 600 10 280-10 440-50v320H0z" fill="#354f28"/><g fill="#172218"><rect x="130" y="250" width="42" height="420"/><rect x="430" y="180" width="55" height="490"/><rect x="1180" y="230" width="48" height="440"/></g><g fill="none" stroke="#9ecb4f" stroke-width="7" opacity=".55"><path d="M0 730c350-70 500 80 820 10s500 80 780 0"/><path d="M0 790c300-50 530 90 850 5s490 65 750 0"/></g>
+  <rect width="1600" height="900" fill="url(#dots)"/>
+  <rect width="1600" height="900" filter="url(#grain)" opacity=".52"/>
+  <path d="M0 760h1600" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>
+  <text x="85" y="120" fill="#fff" opacity=".95" font-family="Impact,Arial Black,sans-serif" font-size="72" letter-spacing="4">BAYOU</text>
+  <text x="90" y="162" fill="#9ecb4f" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">VIGILANTE 8 BATTLEFIELD</text>
+  <text x="90" y="820" fill="#fff" opacity=".65" font-family="Arial,sans-serif" font-size="24">Swamp water, wooden bridges and hidden shortcuts</text>
+</svg>

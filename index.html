@@ -1,276 +1,269 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#d1cabd">
-  <meta name="description" content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features.">
-  <title>Vigilante 8: Second Offense Unity Project</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#d1cabd" name="theme-color"/>
+<meta content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features." name="description"/>
+<title>Vigilante 8: Second Offense Unity Project</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-
-  <div class="scene-transition" id="sceneTransition" aria-hidden="true">
-    <span class="scene-transition-rail rail-a"></span>
-    <span class="scene-transition-rail rail-b"></span>
-    <span class="scene-transition-badge">
-      <small>NEXT SCENE</small>
-      <b id="sceneTransitionLabel">VIGILANTE 8</b>
-    </span>
-  </div>
-
-  <header class="topbar" id="topbar">
-    <a class="brand" href="#home" aria-label="Vigilante 8 home">
-      <img src="assets/v8-logo.png" alt="Vigilante 8 1 & 2nd Offense">
-    </a>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
-      <a href="#news">
-        <span class="nav-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>
-        </span>
-        <span class="nav-copy"><b>NEWS</b><small>PROJECT FEED</small></span>
-      </a>
-      <a href="#drivers">
-        <span class="nav-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20c.6-4 2.6-6 6-6s5.4 2 6 6M3 13h3M18 13h3"/></svg>
-        </span>
-        <span class="nav-copy"><b>DRIVERS</b><small>27 PROFILES</small></span>
-      </a>
-      <a href="#tutorial">
-        <span class="nav-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-        </span>
-        <span class="nav-copy"><b>TUTORIAL</b><small>LEARN COMBAT</small></span>
-      </a>
-      <a href="#features">
-        <span class="nav-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 9-12h-6z"/></svg>
-        </span>
-        <span class="nav-copy"><b>FEATURES</b><small>WHAT'S NEW</small></span>
-      </a>
-      <a href="#download">
-        <span class="nav-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"/></svg>
-        </span>
-        <span class="nav-copy"><b>DOWNLOAD</b><small>WINDOWS BUILD</small></span>
-      </a>
-    </nav>
-
-    <a class="top-download" href="#download">
-      <span class="download-mark" aria-hidden="true">↓</span>
-      <span><b>GET THE PROJECT</b><small>LATEST BUILD</small></span>
-    </a>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-bg"></div>
-      <div class="hero-speed hero-speed-a"></div>
-      <div class="hero-speed hero-speed-b"></div>
-      <div class="hero-inner">
-        <div class="hero-copy" data-reveal>
-          <p class="kicker">THE ROAD WAR RETURNS</p>
-          <img class="hero-logo" src="assets/v8-logo.png" alt="Vigilante 8 1 & 2nd Offense logo">
-          <p class="hero-lead">A fan-made Unity project expanding Second Offense with original vehicles, new game modes, rebuilt special weapons and multiplayer systems.</p>
-          <div class="hero-actions">
-            <a class="action action-primary" href="#download"><span>DOWNLOAD</span><small>LATEST BUILD</small></a>
-            <a class="action action-dark" href="#drivers"><span>MEET THE DRIVERS</span><small>CHARACTERS & VEHICLES</small></a>
-          </div>
-        </div>
-        <div class="hero-poster" data-reveal>
-          <div class="poster-ring"></div>
-          <div class="poster-road"></div>
-          <div class="poster-title">UNITY<br>PROJECT</div>
-          <div class="poster-tag">LEGACY × NEW CHAOS</div>
-        </div>
-      </div>
-      <a class="scroll-cue" href="#news"><span>SCROLL</span><i></i></a>
-    </section>
-
-    <section class="news section-shell" id="news">
-      <div class="brush brush-cyan"></div>
-      <div class="section-heading" data-reveal>
-        <p class="section-eyebrow">PROJECT FEED</p>
-        <h2>NEWS</h2>
-      </div>
-      <div class="news-tabs" role="tablist" data-reveal>
-        <button class="tab is-active" data-news-filter="all">LATEST</button>
-        <button class="tab" data-news-filter="update">UPDATES</button>
-        <button class="tab" data-news-filter="announcement">ANNOUNCEMENTS</button>
-      </div>
-      <div class="news-grid">
-        <article class="news-card" data-category="update" data-reveal>
-          <img src="assets/news/legacy-arrives.svg" alt="Legacy vehicles update">
-          <div class="news-body"><span>PROJECT UPDATE</span><h3>Original Vigilante 8 vehicles join the Unity roster</h3><time>2026.07.25</time></div>
-        </article>
-        <article class="news-card" data-category="announcement" data-reveal>
-          <img src="assets/news/team-battle.svg" alt="New team modes announcement">
-          <div class="news-body"><span>ANNOUNCEMENT</span><h3>Team modes, lobby systems and online improvements</h3><time>2026.07.25</time></div>
-        </article>
-        <article class="news-card" data-category="update" data-reveal>
-          <img src="assets/news/special-weapons.svg" alt="Special weapons update">
-          <div class="news-body"><span>PROJECT UPDATE</span><h3>Classic special weapons rebuilt with new systems</h3><time>2026.07.25</time></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="drivers" id="drivers" aria-label="Driver introduction">
-      <div class="driver-scene" id="driverScene">
-        <div class="driver-paper"></div>
-        <div class="driver-city driver-city-left"></div>
-        <div class="driver-ghost" id="driverGhost">CHASSEY</div>
-
-        <div class="driver-color-world" id="driverColorWorld">
-          <div class="driver-color-texture"></div>
-          <div class="driver-color-sparks"></div>
-          <img class="driver-backdrop-art" id="driverBackdropArt" src="assets/characters/chassey-blue.svg" alt="" aria-hidden="true">
-        </div>
-        <div class="driver-slash slash-cyan"></div>
-        <div class="driver-slash slash-white"></div>
-        <div class="driver-slash slash-accent"></div>
-
-        <div class="driver-layout">
-          <div class="driver-copy" id="driverCopy">
-            <h2 id="driverName">CHASSEY BLUE</h2>
-            <p class="driver-kicker">DRIVER &amp; SPECIAL INTRODUCTION</p>
-            <p class="driver-vehicle" id="driverVehicle">RATTLER</p>
-            <p class="driver-tagline" id="driverTagline">Precision hunter with a nine-shot grid barrage.</p>
-            <div class="skill-list" id="skillList"></div>
-            <button class="view-profile" id="viewProfile"><span>VIEW FULL PROFILE</span><b>▶</b></button>
-          </div>
-
-          <div class="driver-art-wrap" id="driverArtWrap">
-            <div class="driver-art-glow"></div>
-            <img id="driverArt" src="assets/characters/chassey-blue.svg" alt="Chassey Blue">
-            <div class="driver-shadow"></div>
-          </div>
-
-          <aside class="driver-selector" aria-label="Choose driver">
-            <button class="selector-arrow" id="driverPrev" aria-label="Previous driver">
-              <svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg>
-            </button>
-            <div class="driver-thumbs" id="driverThumbs"></div>
-            <button class="selector-arrow" id="driverNext" aria-label="Next driver">
-              <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-          </aside>
-        </div>
-
-        <div class="driver-progress">
-          <span id="driverIndex">01</span>
-          <i><b id="autoTimer"></b></i>
-          <span id="driverTotal">27</span>
-          <small>AUTO 6 SEC</small>
-        </div>
-      </div>
-    </section>
-
-    <section class="creator section-shell" id="project">
-      <div class="creator-art" data-reveal>
-        <div class="creator-collage"><span>V8</span><b>ROAD<br>WAR</b></div>
-      </div>
-      <div class="creator-copy" data-reveal>
-        <p class="section-eyebrow">BUILT BY THE COMMUNITY</p>
-        <h2>THE PROJECT<br>KEEPS GROWING</h2>
-        <p>New vehicles, special weapons, game modes, interface systems and online fixes are continuously added to the Unity version.</p>
-        <div class="creator-points">
-          <article><strong>01</strong><span>ORIGINAL CONTENT PORTS</span></article>
-          <article><strong>02</strong><span>NEW GAMEPLAY SYSTEMS</span></article>
-        </div>
-        <a class="yellow-link" href="#features">EXPLORE FEATURES <span>›</span></a>
-      </div>
-    </section>
-
-    <section class="tutorial section-shell" id="tutorial">
-      <div class="brush brush-orange"></div>
-      <div class="section-heading center" data-reveal>
-        <p class="section-eyebrow">LEARN THE ROAD WAR</p>
-        <h2>COMBAT TUTORIAL</h2>
-      </div>
-      <div class="tutorial-tabs" id="tutorialTabs" data-reveal>
-        <button class="is-active" data-tutorial="beginner">BEGINNER</button>
-        <button data-tutorial="advanced">ADVANCED</button>
-        <button data-tutorial="master">MASTER</button>
-      </div>
-      <div class="tutorial-grid" id="tutorialGrid"></div>
-    </section>
-
-    <section class="features section-shell" id="features">
-      <div class="brush brush-blue"></div>
-      <div class="feature-impact" aria-hidden="true">
-        <span class="impact-flash"></span>
-        <span class="impact-ring ring-one"></span>
-        <span class="impact-ring ring-two"></span>
-        <span class="impact-wheel"><i></i></span>
-        <span class="impact-shard shard-one"></span>
-        <span class="impact-shard shard-two"></span>
-        <span class="impact-shard shard-three"></span>
-        <span class="impact-shard shard-four"></span>
-        <span class="impact-shard shard-five"></span>
-      </div>
-      <div class="section-heading" data-reveal>
-        <p class="section-eyebrow">WHY THIS BUILD IS DIFFERENT</p>
-        <h2>GAME FEATURES</h2>
-      </div>
-      <div class="feature-stage" data-reveal>
-        <button class="feature-arrow left" id="featurePrev" aria-label="Previous feature">
-          <span class="arrow-shell"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M31 10 17 24l14 14"/><path d="M18 24h20"/></svg></span>
-        </button>
-        <div class="feature-viewport">
-          <div class="feature-track" id="featureTrack"></div>
-        </div>
-        <button class="feature-arrow right" id="featureNext" aria-label="Next feature">
-          <span class="arrow-shell"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="m17 10 14 14-14 14"/><path d="M30 24H10"/></svg></span>
-        </button>
-      </div>
-      <div class="feature-dots" id="featureDots"></div>
-    </section>
-
-    <section class="download" id="download">
-      <div class="download-tire-trail" aria-hidden="true">
-        <span class="tire-line tire-line-a"></span>
-        <span class="tire-line tire-line-b"></span>
-        <i class="mud-splat mud-one"></i>
-        <i class="mud-splat mud-two"></i>
-        <i class="mud-splat mud-three"></i>
-      </div>
-      <div class="download-diagonal"></div>
-      <div class="download-inner" data-reveal>
-        <img src="assets/v8-logo.png" alt="Vigilante 8 logo">
-        <div>
-          <p class="section-eyebrow">WINDOWS PC</p>
-          <h2>ENTER THE<br>ROAD WAR</h2>
-          <p>Add your real build version, file size, installation guide and download link here when the release is ready.</p>
-        </div>
-        <div class="download-buttons">
-          <a href="#" class="big-download"><span>PRIMARY DOWNLOAD</span><small>LINK COMING SOON</small></a>
-          <a href="#" class="mirror">MIRROR DOWNLOAD</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="profile-modal" id="profileModal" aria-hidden="true">
-    <div class="profile-card" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
-      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-      <img id="modalImage" src="" alt="">
-      <div><p class="driver-kicker">DRIVER PROFILE</p><h2 id="profileTitle"></h2><h3 id="modalVehicle"></h3><p id="modalDescription"></p></div>
-    </div>
-  </div>
-
-  <footer>
-    <img src="assets/v8-logo.png" alt="Vigilante 8">
-    <p>Fan-made project website. Vigilante 8 and related properties belong to their respective owners.</p>
-    <span>© 2026 AMEER007x</span>
-  </footer>
-
-  <script src="site-data.js"></script>
-  <script src="script.js"></script>
+<div aria-hidden="true" class="page-noise"></div>
+<div aria-hidden="true" class="scene-transition" id="sceneTransition">
+<span class="scene-transition-rail rail-a"></span>
+<span class="scene-transition-rail rail-b"></span>
+<span class="scene-transition-badge">
+<small>NEXT SCENE</small>
+<b id="sceneTransitionLabel">VIGILANTE 8</b>
+</span>
+</div>
+<header class="topbar" id="topbar">
+<a aria-label="Vigilante 8 home" class="brand" href="#home">
+<img alt="Vigilante 8 1 &amp; 2nd Offense" src="assets/v8-logo.png"/>
+</a>
+<button aria-expanded="false" aria-label="Open navigation" class="nav-toggle" id="navToggle">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Main navigation" class="main-nav" id="mainNav"><a href="#news"><span aria-hidden="true" class="nav-icon"><svg viewbox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"></path></svg></span><span class="nav-copy"><b>NEWS &amp; FEATURES</b><small>PROJECT FEED</small></span></a><a href="#drivers"><span aria-hidden="true" class="nav-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="8" r="3"></circle><path d="M6 20c.6-4 2.6-6 6-6s5.4 2 6 6M3 13h3M18 13h3"></path></svg></span><span class="nav-copy"><b>DRIVERS</b><small>27 PROFILES</small></span></a><a href="#maps"><span aria-hidden="true" class="nav-icon"><svg viewbox="0 0 24 24"><path d="m3 6 5-2 8 3 5-2v13l-5 2-8-3-5 2zM8 4v13M16 7v13"></path></svg></span><span class="nav-copy"><b>MAPS</b><small>BATTLEFIELDS</small></span></a><a href="#tutorial"><span aria-hidden="true" class="nav-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></span><span class="nav-copy"><b>TUTORIAL</b><small>LEARN COMBAT</small></span></a><a href="#download"><span aria-hidden="true" class="nav-icon"><svg viewbox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"></path></svg></span><span class="nav-copy"><b>DOWNLOAD</b><small>WINDOWS BUILD</small></span></a><a href="#credits"><span aria-hidden="true" class="nav-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M5 21c.8-5 3.1-7 7-7s6.2 2 7 7M4 4h3M17 4h3"></path></svg></span><span class="nav-copy"><b>CREDITS</b><small>TEAM &amp; RIGHTS</small></span></a></nav>
+<a class="top-download" href="#download">
+<span aria-hidden="true" class="download-mark">↓</span>
+<span><b>GET THE PROJECT</b><small>LATEST BUILD</small></span>
+</a>
+</header>
+<main>
+<section class="hero" id="home">
+<div class="hero-bg"></div>
+<div class="hero-speed hero-speed-a"></div>
+<div class="hero-speed hero-speed-b"></div>
+<div class="hero-inner">
+<div class="hero-copy" data-reveal="">
+<p class="kicker">THE ROAD WAR RETURNS</p>
+<img alt="Vigilante 8 1 &amp; 2nd Offense logo" class="hero-logo" src="assets/v8-logo.png"/>
+<p class="hero-lead">A fan-made Unity project expanding Second Offense with original vehicles, new game modes, rebuilt special weapons and multiplayer systems.</p>
+<div class="hero-actions">
+<a class="action action-primary" href="#download"><span>DOWNLOAD</span><small>LATEST BUILD</small></a>
+<a class="action action-dark" href="#drivers"><span>MEET THE DRIVERS</span><small>CHARACTERS &amp; VEHICLES</small></a>
+</div>
+</div>
+<div class="hero-poster" data-reveal="">
+<div class="poster-ring"></div>
+<div class="poster-road"></div>
+<div class="poster-title">UNITY<br/>PROJECT</div>
+<div class="poster-tag">LEGACY × NEW CHAOS</div>
+</div>
+</div>
+<a class="scroll-cue" href="#news"><span>SCROLL</span><i></i></a>
+</section>
+<section class="news section-shell" id="news">
+<div class="brush brush-cyan"></div>
+<div class="section-heading" data-reveal="">
+<p class="section-eyebrow">PROJECT FEED</p>
+<h2>NEWS &amp; FEATURES</h2>
+</div>
+<div class="news-tabs" data-reveal="" role="tablist"><button class="tab is-active" data-news-filter="news">NEWS</button><button class="tab" data-news-filter="update">NEW UPDATES</button><button class="tab" data-news-filter="feature">NEW FEATURES</button></div>
+<div class="news-grid">
+<article class="news-card" data-category="news" data-reveal="">
+<img alt="Legacy vehicles update" src="assets/news/legacy-arrives.svg"/>
+<div class="news-body"><span>PROJECT NEWS</span><h3>Original Vigilante 8 vehicles join the Unity roster</h3><time>2026.07.25</time></div>
+</article>
+<article class="news-card" data-category="update" data-reveal="">
+<img alt="New team modes announcement" src="assets/news/team-battle.svg"/>
+<div class="news-body"><span>NEW UPDATE</span><h3>Team modes, lobby systems and online improvements</h3><time>2026.07.25</time></div>
+</article>
+<article class="news-card" data-category="feature" data-reveal="">
+<img alt="Special weapons update" src="assets/news/special-weapons.svg"/>
+<div class="news-body"><span>NEW FEATURE</span><h3>Classic special weapons rebuilt with new systems</h3><time>2026.07.25</time></div>
+</article>
+</div>
+</section>
+<section aria-label="Driver introduction" class="drivers" id="drivers">
+<div class="driver-scene" id="driverScene">
+<div class="driver-paper"></div>
+<div class="driver-city driver-city-left"></div>
+<div class="driver-ghost" id="driverGhost">CHASSEY</div>
+<div class="driver-color-world" id="driverColorWorld">
+<div class="driver-color-texture"></div>
+<div class="driver-color-sparks"></div>
+<img alt="" aria-hidden="true" class="driver-backdrop-art" id="driverBackdropArt" src="assets/characters/chassey-blue.svg"/>
+</div>
+<div class="driver-slash slash-cyan"></div>
+<div class="driver-slash slash-white"></div>
+<div class="driver-slash slash-accent"></div>
+<div class="driver-layout">
+<div class="driver-copy" id="driverCopy">
+<h2 id="driverName">CHASSEY BLUE</h2>
+<p class="driver-kicker">DRIVER &amp; SPECIAL INTRODUCTION</p>
+<p class="driver-vehicle" id="driverVehicle">RATTLER</p>
+<p class="driver-tagline" id="driverTagline">Precision hunter with a nine-shot grid barrage.</p>
+<div class="skill-list" id="skillList"></div>
+<button class="view-profile" id="viewProfile"><span>VIEW FULL PROFILE</span><b>▶</b></button>
+</div>
+<div class="driver-art-wrap" id="driverArtWrap">
+<div class="driver-art-glow"></div>
+<img alt="Chassey Blue" id="driverArt" src="assets/characters/chassey-blue.svg"/>
+<div class="driver-shadow"></div>
+</div>
+<aside aria-label="Choose driver" class="driver-selector">
+<button aria-label="Previous driver" class="selector-arrow" id="driverPrev">
+<svg viewbox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></svg>
+</button>
+<div class="driver-thumbs" id="driverThumbs"></div>
+<button aria-label="Next driver" class="selector-arrow" id="driverNext">
+<svg viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+</aside>
+</div>
+<div class="driver-progress">
+<span id="driverIndex">01</span>
+<i><b id="autoTimer"></b></i>
+<span id="driverTotal">27</span>
+<small>AUTO 6 SEC</small>
+</div>
+</div>
+</section><section aria-label="Map showcase" class="maps" id="maps">
+<div class="map-scene" id="mapScene">
+<img alt="Oil Fields battlefield" class="map-background" id="mapBackground" src="assets/maps/oil-fields.svg"/>
+<div class="map-shade"></div>
+<div class="map-grain"></div>
+<div class="map-orange-world"></div>
+<div class="map-speed-line map-speed-a"></div>
+<div class="map-speed-line map-speed-b"></div>
+<div class="map-ghost" id="mapGhost">OIL FIELDS</div>
+<div class="map-layout">
+<article class="map-info-card" id="mapInfoCard">
+<div class="map-mini-frame">
+<img alt="Oil Fields preview" id="mapMiniImage" src="assets/maps/oil-fields.svg"/>
+<span>MAP PREVIEW</span>
+</div>
+<p class="map-eyebrow">BATTLEFIELD INTRODUCTION</p>
+<h2 id="mapName">OIL FIELDS</h2>
+<p class="map-location" id="mapLocation">SOUTHWEST INDUSTRIAL ZONE</p>
+<p class="map-description" id="mapDescription">Pumpjacks, pipelines and blazing refinery lights create an open industrial battlefield.</p>
+<div class="map-stat-grid" id="mapStats"></div>
+</article>
+<div class="map-white-highlight" id="mapHighlight">
+<small>FIELD REPORT</small>
+<strong id="mapHighlightTitle">WIDE ROUTES / LONG SIGHTLINES</strong>
+<p id="mapHighlightText">Use the refinery structures as cover and watch the exposed center lanes.</p>
+</div>
+<aside aria-label="Choose map" class="map-selector">
+<button aria-label="Previous map" class="map-arrow" id="mapPrev">
+<svg viewbox="0 0 24 24"><path d="m6 15 6-6 6 6"></path></svg>
+</button>
+<div class="map-thumbs" id="mapThumbs"></div>
+<button aria-label="Next map" class="map-arrow" id="mapNext">
+<svg viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+</aside>
+</div>
+<div class="map-progress">
+<span id="mapIndex">01</span>
+<i><b id="mapAutoTimer"></b></i>
+<span id="mapTotal">08</span>
+<small>AUTO 7 SEC</small>
+</div>
+</div>
+</section>
+<section class="creator section-shell" id="project">
+<div class="creator-art" data-reveal="">
+<div class="creator-collage"><span>V8</span><b>ROAD<br/>WAR</b></div>
+</div>
+<div class="creator-copy" data-reveal="">
+<p class="section-eyebrow">BUILT BY THE COMMUNITY</p>
+<h2>THE PROJECT<br/>KEEPS GROWING</h2>
+<p>New vehicles, special weapons, game modes, interface systems and online fixes are continuously added to the Unity version.</p>
+<div class="creator-points">
+<article><strong>01</strong><span>ORIGINAL CONTENT PORTS</span></article>
+<article><strong>02</strong><span>NEW GAMEPLAY SYSTEMS</span></article>
+</div>
+<a class="yellow-link" href="#news">SEE NEW FEATURES <span>›</span></a>
+</div>
+</section>
+<section class="tutorial section-shell" id="tutorial">
+<div class="brush brush-orange"></div>
+<div class="section-heading center" data-reveal="">
+<p class="section-eyebrow">LEARN THE ROAD WAR</p>
+<h2>COMBAT TUTORIAL</h2>
+</div>
+<div class="tutorial-tabs" data-reveal="" id="tutorialTabs">
+<button class="is-active" data-tutorial="beginner">BEGINNER</button>
+<button data-tutorial="advanced">ADVANCED</button>
+<button data-tutorial="master">MASTER</button>
+</div>
+<div class="tutorial-grid" id="tutorialGrid"></div>
+</section>
+<section class="download" id="download">
+<div aria-hidden="true" class="download-tire-trail">
+<span class="tire-line tire-line-a"></span>
+<span class="tire-line tire-line-b"></span>
+<i class="mud-splat mud-one"></i>
+<i class="mud-splat mud-two"></i>
+<i class="mud-splat mud-three"></i>
+</div>
+<div class="download-diagonal"></div>
+<div class="download-inner" data-reveal="">
+<img alt="Vigilante 8 logo" src="assets/v8-logo.png"/>
+<div>
+<p class="section-eyebrow">WINDOWS PC</p>
+<h2>ENTER THE<br/>ROAD WAR</h2>
+<p>Add your real build version, file size, installation guide and download link here when the release is ready.</p>
+</div>
+<div class="download-buttons">
+<a class="big-download" href="#"><span>PRIMARY DOWNLOAD</span><small>LINK COMING SOON</small></a>
+<a class="mirror" href="#">MIRROR DOWNLOAD</a>
+</div>
+</div>
+</section><section class="credits section-shell" id="credits">
+<div aria-hidden="true" class="credits-crest">V8</div>
+<div class="credits-header" data-reveal="">
+<p class="section-eyebrow">TEAM, ACKNOWLEDGEMENTS &amp; RIGHTS</p>
+<h2>CREDITS</h2>
+<p>This page brings the project team, community acknowledgements and legal information into the final cinematic scene.</p>
+</div>
+<div class="credits-grid">
+<article class="credit-card credit-primary" data-reveal="">
+<span class="credit-number">01</span>
+<small>PROJECT CREATOR</small>
+<h3>AMEER007x</h3>
+<p>Unity project development, legacy vehicle integration, gameplay systems, special weapons, interface work and website direction.</p>
+</article>
+<article class="credit-card" data-reveal="">
+<span class="credit-number">02</span>
+<small>COMMUNITY</small>
+<h3>PLAYERS &amp; TESTERS</h3>
+<p>Thanks to every player who tests builds, reports issues, shares feedback and helps improve the road war.</p>
+</article>
+<article class="credit-card" data-reveal="">
+<span class="credit-number">03</span>
+<small>ORIGINAL GAME</small>
+<h3>VIGILANTE 8</h3>
+<p>Vigilante 8, Second Offense and all related names, characters and original properties belong to their respective owners.</p>
+</article>
+</div>
+<div class="credits-legal" data-reveal="">
+<img alt="Vigilante 8 logo" src="assets/v8-logo.png"/>
+<div>
+<strong>UNOFFICIAL FAN-MADE UNITY PROJECT</strong>
+<p>This website is not affiliated with or endorsed by the original publishers or rights holders. No ownership of original intellectual property is claimed.</p>
+</div>
+</div>
+<div class="credits-footer-strip" data-reveal="">
+<img alt="Vigilante 8" src="assets/v8-logo.png"/>
+<p>Fan-made project website. Vigilante 8 and related properties belong to their respective owners.</p>
+<span>© 2026 AMEER007x</span>
+</div>
+</section>
+</main>
+<div aria-hidden="true" class="profile-modal" id="profileModal">
+<div aria-labelledby="profileTitle" aria-modal="true" class="profile-card" role="dialog">
+<button aria-label="Close" class="modal-close" id="modalClose">×</button>
+<img alt="" id="modalImage" src=""/>
+<div><p class="driver-kicker">DRIVER PROFILE</p><h2 id="profileTitle"></h2><h3 id="modalVehicle"></h3><p id="modalDescription"></p></div>
+</div>
+</div>
+<script src="site-data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
