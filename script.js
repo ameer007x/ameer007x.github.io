@@ -379,7 +379,7 @@
     if (!tutorialGrid) return;
     tutorialGrid.innerHTML = data.tutorial[level].map((item, index) => `
       <article class="tutorial-card" style="animation-delay:${index * 0.07}s">
-        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async">
+        <img src="${item.image}" alt="${item.title}" loading="eager" decoding="async">
         <h3>${item.title}</h3>
       </article>
     `).join('');
@@ -398,7 +398,6 @@
   const ambientTargets = [
     q('.hero'),
     q('.news'),
-    q('.creator'),
     q('.tutorial'),
     q('.download'),
     q('.credits')
@@ -417,7 +416,6 @@
     const sceneNames = {
       home: 'ROAD WAR',
       news: 'NEWS & FEATURES',
-      project: 'UNITY BUILD',
       tutorial: 'COMBAT SCHOOL',
       download: 'DOWNLOAD',
       credits: 'CREDITS'
@@ -455,7 +453,6 @@
   -------------------------------------------------------------------------- */
   const SCROLL_DURATION = 860;
   const SCENE_ANIMATION_TIME = 1180;
-  const ASSET_WAIT_LIMIT = 900;
   const WHEEL_THRESHOLD = 34;
   const WHEEL_RELEASE_DELAY = 170;
   const POST_ANIMATION_COOLDOWN = 250;
@@ -571,7 +568,6 @@
       activeSection.classList.remove('scene-entering');
     }, SCENE_ANIMATION_TIME + 250);
 
-    if (!initial) warmAdjacentScenes(currentSceneIndex);
   }
 
   function nearestSceneIndex() {
@@ -626,48 +622,46 @@
     });
   }
 
-  function imageReady(image) {
-    if (!image) return Promise.resolve();
-    if (image.complete && image.naturalWidth > 0) {
-      if (typeof image.decode === 'function') return image.decode().catch(() => undefined);
-      return Promise.resolve();
-    }
 
-    return new Promise(resolve => {
-      const done = () => resolve();
-      image.addEventListener('load', done, { once: true });
-      image.addEventListener('error', done, { once: true });
-    });
+  /* Load every section and every dynamic driver/map/tutorial image concurrently.
+     Navigation never waits for decoding; assets are already warming from startup. */
+  const preloadedSources = new Set();
+  const preloadHandles = [];
+
+  function collectImageSources(value, output = preloadedSources) {
+    if (!value) return output;
+    if (typeof value === 'string') {
+      if (/\.(?:png|jpe?g|webp|gif|svg)(?:[?#].*)?$/i.test(value)) output.add(value);
+      return output;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(item => collectImageSources(item, output));
+      return output;
+    }
+    if (typeof value === 'object') {
+      Object.values(value).forEach(item => collectImageSources(item, output));
+    }
+    return output;
   }
 
-  function preloadSectionAssets(section) {
-    const images = qa('img', section);
-    images.forEach(image => {
+  function preloadAllSiteAssets() {
+    qa('img').forEach((image, index) => {
       image.loading = 'eager';
       image.decoding = 'async';
-    });
-
-    const readiness = Promise.all(images.map(imageReady));
-    return Promise.race([readiness, delay(ASSET_WAIT_LIMIT)]);
-  }
-
-  function warmSection(index) {
-    const section = scenes[index];
-    if (!section) return;
-    qa('img', section).forEach(image => {
+      if ('fetchPriority' in image) image.fetchPriority = index < 3 ? 'high' : 'auto';
       const source = image.currentSrc || image.src;
-      if (!source) return;
-      const preloader = new Image();
-      preloader.decoding = 'async';
-      preloader.src = source;
+      if (source) preloadedSources.add(source);
     });
-  }
 
-  function warmAdjacentScenes(index) {
-    window.setTimeout(() => {
-      warmSection(index + 1);
-      warmSection(index - 1);
-    }, 120);
+    collectImageSources(data);
+
+    preloadedSources.forEach(source => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.loading = 'eager';
+      image.src = source;
+      preloadHandles.push(image);
+    });
   }
 
   function showSceneTransition(section, direction) {
@@ -694,10 +688,7 @@
     showSceneTransition(targetSection, direction);
 
     const duration = immediate || reducedMotionQuery.matches ? 0 : SCROLL_DURATION;
-    const assetPromise = preloadSectionAssets(targetSection);
-    const scrollPromise = animateScrollTo(targetScrollY(targetSection), duration);
-
-    await Promise.all([assetPromise, scrollPromise]);
+    await animateScrollTo(targetScrollY(targetSection), duration);
     setSceneActive(targetIndex);
     await delay(reducedMotionQuery.matches ? 80 : SCENE_ANIMATION_TIME);
 
@@ -780,11 +771,11 @@
     }
   });
 
-  qa('main img').forEach((image, index) => {
+  qa('main img').forEach(image => {
     image.decoding = 'async';
-    if (index > 2 && !image.closest('.drivers')) image.loading = 'lazy';
+    image.loading = 'eager';
   });
 
+  preloadAllSiteAssets();
   refreshCinematicMode();
-  warmAdjacentScenes(currentSceneIndex);
 })();

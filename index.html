@@ -8,7 +8,7 @@
 <meta content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features." name="description"/>
 <title>Vigilante 8: Second Offense Unity Project</title>
 <link href="style.css" rel="stylesheet"/>
-</head>
+<link as="image" fetchpriority="low" href="assets/decor/download-orange-tracks.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-fire-wheel.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/news-tire-depth.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/news-skid-curves.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-bottom-skids.png" rel="preload"/></head>
 <body>
 <div aria-hidden="true" class="page-noise"></div>
 <div aria-hidden="true" class="scene-transition" id="sceneTransition">
@@ -40,7 +40,7 @@
 <div class="hero-inner">
 <div class="hero-copy" data-reveal="">
 <p class="kicker">THE ROAD WAR RETURNS</p>
-<img alt="Vigilante 8 1 &amp; 2nd Offense logo" class="hero-logo" src="assets/v8-logo.png"/>
+<img alt="Vigilante 8 1 &amp; 2nd Offense logo" class="hero-logo" decoding="async" loading="eager" src="assets/v8-logo.png"/>
 <p class="hero-lead">A fan-made Unity project expanding Second Offense with original vehicles, new game modes, rebuilt special weapons and multiplayer systems.</p>
 <div class="hero-actions">
 <a class="action action-primary" href="#download"><span>DOWNLOAD</span><small>LATEST BUILD</small></a>
@@ -57,7 +57,7 @@
 <a class="scroll-cue" href="#news"><span>SCROLL</span><i></i></a>
 </section>
 <section class="news section-shell" id="news">
-<div class="brush brush-cyan"></div>
+<div aria-hidden="true" class="news-tire-depth"><img alt="" decoding="async" loading="eager" src="assets/decor/news-tire-depth.png"/></div><div aria-hidden="true" class="news-skid-curves"><img alt="" decoding="async" loading="eager" src="assets/decor/news-skid-curves.png"/></div><div class="brush brush-cyan"></div>
 <div class="section-heading" data-reveal="">
 <p class="section-eyebrow">PROJECT FEED</p>
 <h2>NEWS &amp; FEATURES</h2>
@@ -65,15 +65,15 @@
 <div class="news-tabs" data-reveal="" role="tablist"><button class="tab is-active" data-news-filter="news">NEWS</button><button class="tab" data-news-filter="update">NEW UPDATES</button><button class="tab" data-news-filter="feature">NEW FEATURES</button></div>
 <div class="news-grid">
 <article class="news-card" data-category="news" data-reveal="">
-<img alt="Legacy vehicles update" src="assets/news/legacy-arrives.svg"/>
+<img alt="Legacy vehicles update" decoding="async" loading="eager" src="assets/news/legacy-arrives.svg"/>
 <div class="news-body"><span>PROJECT NEWS</span><h3>Original Vigilante 8 vehicles join the Unity roster</h3><time>2026.07.25</time></div>
 </article>
 <article class="news-card" data-category="update" data-reveal="">
-<img alt="New team modes announcement" src="assets/news/team-battle.svg"/>
+<img alt="New team modes announcement" decoding="async" loading="eager" src="assets/news/team-battle.svg"/>
 <div class="news-body"><span>NEW UPDATE</span><h3>Team modes, lobby systems and online improvements</h3><time>2026.07.25</time></div>
 </article>
 <article class="news-card" data-category="feature" data-reveal="">
-<img alt="Special weapons update" src="assets/news/special-weapons.svg"/>
+<img alt="Special weapons update" decoding="async" loading="eager" src="assets/news/special-weapons.svg"/>
 <div class="news-body"><span>NEW FEATURE</span><h3>Classic special weapons rebuilt with new systems</h3><time>2026.07.25</time></div>
 </article>
 </div>
@@ -86,7 +86,7 @@
 <div class="driver-color-world" id="driverColorWorld">
 <div class="driver-color-texture"></div>
 <div class="driver-color-sparks"></div>
-<img alt="" aria-hidden="true" class="driver-backdrop-art" id="driverBackdropArt" src="assets/characters/chassey-blue.svg"/>
+<img alt="" aria-hidden="true" class="driver-backdrop-art" decoding="async" id="driverBackdropArt" loading="eager" src="assets/characters/chassey-blue.svg"/>
 </div>
 <div class="driver-slash slash-cyan"></div>
 <div class="driver-slash slash-white"></div>
@@ -102,7 +102,7 @@
 </div>
 <div class="driver-art-wrap" id="driverArtWrap">
 <div class="driver-art-glow"></div>
-<img alt="Chassey Blue" id="driverArt" src="assets/characters/chassey-blue.svg"/>
+<img alt="Chassey Blue" decoding="async" id="driverArt" loading="eager" src="assets/characters/chassey-blue.svg"/>
 <div class="driver-shadow"></div>
 </div>
 <aside aria-label="Choose driver" class="driver-selector">
@@ -124,7 +124,7 @@
 </div>
 </section><section aria-label="Map showcase" class="maps" id="maps">
 <div class="map-scene" id="mapScene">
-<img alt="Oil Fields battlefield" class="map-background" id="mapBackground" src="assets/maps/oil-fields.svg"/>
+<img alt="Oil Fields battlefield" class="map-background" decoding="async" id="mapBackground" loading="eager" src="assets/maps/oil-fields.svg"/>
 <div class="map-shade"></div>
 <div class="map-grain"></div>
 <div class="map-orange-world"></div>
@@ -134,7 +134,7 @@
 <div class="map-layout">
 <article class="map-info-card" id="mapInfoCard">
 <div class="map-mini-frame">
-<img alt="Oil Fields preview" id="mapMiniImage" src="assets/maps/oil-fields.svg"/>
+<img alt="Oil Fields preview" decoding="async" id="mapMiniImage" loading="eager" src="assets/maps/oil-fields.svg"/>
 <span>MAP PREVIEW</span>
 </div>
 <p class="map-eyebrow">BATTLEFIELD INTRODUCTION</p>
@@ -166,23 +166,9 @@
 </div>
 </div>
 </section>
-<section class="creator section-shell" id="project">
-<div class="creator-art" data-reveal="">
-<div class="creator-collage"><span>V8</span><b>ROAD<br/>WAR</b></div>
-</div>
-<div class="creator-copy" data-reveal="">
-<p class="section-eyebrow">BUILT BY THE COMMUNITY</p>
-<h2>THE PROJECT<br/>KEEPS GROWING</h2>
-<p>New vehicles, special weapons, game modes, interface systems and online fixes are continuously added to the Unity version.</p>
-<div class="creator-points">
-<article><strong>01</strong><span>ORIGINAL CONTENT PORTS</span></article>
-<article><strong>02</strong><span>NEW GAMEPLAY SYSTEMS</span></article>
-</div>
-<a class="yellow-link" href="#news">SEE NEW FEATURES <span>›</span></a>
-</div>
-</section>
+
 <section class="tutorial section-shell" id="tutorial">
-<div class="brush brush-orange"></div>
+<div aria-hidden="true" class="tutorial-fire-wheel"><img alt="" class="tutorial-fire-wheel-base" decoding="async" loading="eager" src="assets/decor/tutorial-fire-wheel.png"/><img alt="" class="tutorial-fire-wheel-glow" decoding="async" loading="eager" src="assets/decor/tutorial-fire-wheel.png"/><img alt="" class="tutorial-fire-wheel-heat" decoding="async" loading="eager" src="assets/decor/tutorial-fire-wheel.png"/></div><div aria-hidden="true" class="tutorial-bottom-skids"><img alt="" decoding="async" loading="eager" src="assets/decor/tutorial-bottom-skids.png"/></div><div class="brush brush-orange"></div>
 <div class="section-heading center" data-reveal="">
 <p class="section-eyebrow">LEARN THE ROAD WAR</p>
 <h2>COMBAT TUTORIAL</h2>
@@ -194,17 +180,11 @@
 </div>
 <div class="tutorial-grid" id="tutorialGrid"></div>
 </section>
-<section class="download" id="download">
-<div aria-hidden="true" class="download-tire-trail">
-<span class="tire-line tire-line-a"></span>
-<span class="tire-line tire-line-b"></span>
-<i class="mud-splat mud-one"></i>
-<i class="mud-splat mud-two"></i>
-<i class="mud-splat mud-three"></i>
-</div>
+<section class="download" id="download"><div aria-hidden="true" class="download-track-wall"><img alt="" class="track-copy-a" decoding="async" loading="eager" src="assets/decor/download-orange-tracks.png"/><img alt="" class="track-copy-b" decoding="async" loading="eager" src="assets/decor/download-orange-tracks.png"/><img alt="" class="track-copy-c" decoding="async" loading="eager" src="assets/decor/download-orange-tracks.png"/></div>
+
 <div class="download-diagonal"></div>
 <div class="download-inner" data-reveal="">
-<img alt="Vigilante 8 logo" src="assets/v8-logo.png"/>
+<img alt="Vigilante 8 logo" decoding="async" loading="eager" src="assets/v8-logo.png"/>
 <div>
 <p class="section-eyebrow">WINDOWS PC</p>
 <h2>ENTER THE<br/>ROAD WAR</h2>
@@ -243,14 +223,14 @@
 </article>
 </div>
 <div class="credits-legal" data-reveal="">
-<img alt="Vigilante 8 logo" src="assets/v8-logo.png"/>
+<img alt="Vigilante 8 logo" decoding="async" loading="eager" src="assets/v8-logo.png"/>
 <div>
 <strong>UNOFFICIAL FAN-MADE UNITY PROJECT</strong>
 <p>This website is not affiliated with or endorsed by the original publishers or rights holders. No ownership of original intellectual property is claimed.</p>
 </div>
 </div>
 <div class="credits-footer-strip" data-reveal="">
-<img alt="Vigilante 8" src="assets/v8-logo.png"/>
+<img alt="Vigilante 8" decoding="async" loading="eager" src="assets/v8-logo.png"/>
 <p>Fan-made project website. Vigilante 8 and related properties belong to their respective owners.</p>
 <span>© 2026 AMEER007x</span>
 </div>
