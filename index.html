@@ -1,55 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Vigilante 8: Second Offense Unity Project</title>
-
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #080b0f;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .container {
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        p {
-            color: #b9c0c8;
-            font-size: 18px;
-        }
-
-        .status {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            border: 1px solid #ff5a36;
-            color: #ff795c;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vigilante 8: Second Offense Unity Project</title>
+  <meta name="description" content="Fan-made Vigilante 8 Unity project with new modes, features, and ported original vehicles." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="container">
-        <h1>VIGILANTE 8: SECOND OFFENSE</h1>
 
-        <p>Unity Project with new modes, features and original vehicles.</p>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grid"></div>
 
-        <div class="status">Official Website Coming Soon</div>
-    </div>
+  <header class="site-header">
+    <div class="logo">V8<span>UNITY</span></div>
+
+    <nav class="nav" id="navMenu">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#trailer">Trailer</a>
+      <a href="#download">Download</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">FAN-MADE UNITY PROJECT</p>
+        <h1>VIGILANTE 8:<br><span>SECOND OFFENSE</span></h1>
+        <p class="hero-text">
+          A reimagined Unity project with new modes, custom features,
+          and ported original vehicles — built for fans who want the chaos back.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#download" class="btn btn-primary">Download Project</a>
+          <a href="#trailer" class="btn btn-secondary">Watch Trailer</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">New</span>
+            <span class="stat-label">Modes</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Ported</span>
+            <span class="stat-label">Vehicles</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Custom</span>
+            <span class="stat-label">Features</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-card">
+          <div class="image-badge">MAIN VISUAL</div>
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80" alt="Main visual placeholder" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-header">
+        <p class="section-tag">PROJECT</p>
+        <h2>About This Build</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass reveal">
+          <h3>A modern fan-made experience</h3>
+          <p>
+            This project brings the spirit of Vigilante 8 into Unity with
+            expanded gameplay, polished features, fresh content, and a stronger foundation
+            for future updates.
+          </p>
+        </div>
+
+        <div class="about-card glass reveal">
+          <h3>Built with passion</h3>
+          <p>
+            From classic vehicles to new modes and custom systems, the goal is to
+            create a stylish, playable, and evolving version of the game for fans.
+          </p>
+        </div>
+
+        <div class="about-card glass reveal">
+          <h3>Made to grow</h3>
+          <p>
+            The website and project are designed to expand over time with new screenshots,
+            trailers, updates, downloads, patch notes, and more.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-header">
+        <p class="section-tag">FEATURES</p>
+        <h2>Why This Project Stands Out</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">⚡</div>
+          <h3>New Modes</h3>
+          <p>Expanded game modes and custom rule systems built for replayability.</p>
+        </div>
+
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🚗</div>
+          <h3>Original Vehicles Ported</h3>
+          <p>Classic vehicles brought into the Unity version with custom support systems.</p>
+        </div>
+
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🛠</div>
+          <h3>Custom Features</h3>
+          <p>New gameplay systems, balancing changes, UI work, and unique enhancements.</p>
+        </div>
+
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🌐</div>
+          <h3>Online Support</h3>
+          <p>Built with multiplayer-focused improvements and expanding online functionality.</p>
+        </div>
+
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🎯</div>
+          <h3>Weapon Variety</h3>
+          <p>Classic and custom weapon behavior with unique effects and personality.</p>
+        </div>
+
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🔥</div>
+          <h3>Ongoing Development</h3>
+          <p>More updates, polish, content, and quality improvements are planned over time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="section-header">
+        <p class="section-tag">MEDIA</p>
+        <h2>Screenshots</h2>
+        <p class="section-subtext">Temporary placeholders for now — later we replace them with your own images.</p>
+      </div>
+
+      <div class="shots-grid">
+        <div class="shot-card reveal">
+          <img src="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=1200&q=80" alt="Screenshot placeholder 1">
+          <div class="shot-overlay">Gameplay Shot 01</div>
+        </div>
+
+        <div class="shot-card reveal">
+          <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1200&q=80" alt="Screenshot placeholder 2">
+          <div class="shot-overlay">Gameplay Shot 02</div>
+        </div>
+
+        <div class="shot-card reveal">
+          <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80" alt="Screenshot placeholder 3">
+          <div class="shot-overlay">Gameplay Shot 03</div>
+        </div>
+
+        <div class="shot-card reveal">
+          <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80" alt="Screenshot placeholder 4">
+          <div class="shot-overlay">Gameplay Shot 04</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trailer">
+      <div class="section-header">
+        <p class="section-tag">VIDEO</p>
+        <h2>Project Trailer</h2>
+      </div>
+
+      <div class="trailer-box glass reveal">
+        <div class="trailer-placeholder">
+          <div class="play-circle">▶</div>
+          <h3>Trailer Placeholder</h3>
+          <p>Later we can replace this with your real YouTube video or uploaded trailer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="section-header">
+        <p class="section-tag">GET IT</p>
+        <h2>Download</h2>
+      </div>
+
+      <div class="download-box glass reveal">
+        <div class="download-info">
+          <h3>Vigilante 8: Second Offense Unity Project</h3>
+          <p>
+            Replace this section later with the real build version, file size,
+            changelog, and installation instructions.
+          </p>
+
+          <ul class="download-list">
+            <li><strong>Version:</strong> Coming Soon</li>
+            <li><strong>Platform:</strong> Windows PC</li>
+            <li><strong>Status:</strong> In Development</li>
+            <li><strong>Download Host:</strong> GitHub / Google Drive / MEGA</li>
+          </ul>
+        </div>
+
+        <div class="download-actions">
+          <a href="#" class="btn btn-primary">Primary Download</a>
+          <a href="#" class="btn btn-secondary">Mirror Download</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 AMEER007x — Fan-made project website.</p>
+    <p class="footer-note">Vigilante 8 and related properties belong to their respective owners.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
