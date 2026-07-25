@@ -246,42 +246,79 @@
   }));
   renderTutorial('beginner');
 
-  /* Features slider */
+  /* Features slider — centered card, side previews and hard end stops. */
   let featureIndex = 0;
   const track = q('#featureTrack');
   const dots = q('#featureDots');
+  const featureStage = q('.feature-stage');
+  const featureViewport = q('.feature-viewport');
+  const featurePrev = q('#featurePrev');
+  const featureNext = q('#featureNext');
 
   function buildFeatures() {
-    track.innerHTML = data.features.map(feature => `
-      <article class="feature-card">
-        <img src="${feature.image}" alt="${feature.title}">
+    track.innerHTML = data.features.map((feature, index) => `
+      <article class="feature-card" data-feature-index="${index}">
+        <div class="feature-media">
+          <img src="${feature.image}" alt="${feature.title}">
+          <span class="feature-number">${String(index + 1).padStart(2, '0')}</span>
+        </div>
         <div class="feature-caption"><h3>${feature.title}</h3><p>${feature.text}</p></div>
       </article>
     `).join('');
+
     dots.innerHTML = data.features.map((_, index) => `<button aria-label="Feature ${index + 1}"></button>`).join('');
     qa('button', dots).forEach((button, index) => button.addEventListener('click', () => setFeature(index)));
+    qa('.feature-card', track).forEach((card, index) => card.addEventListener('click', () => setFeature(index)));
     setFeature(0, true);
   }
 
-  function setFeature(next, instant = false) {
-    featureIndex = (next + data.features.length) % data.features.length;
+  function updateFeatureControls() {
+    const atStart = featureIndex === 0;
+    const atEnd = featureIndex === data.features.length - 1;
+    featurePrev.disabled = atStart;
+    featureNext.disabled = atEnd;
+    featurePrev.setAttribute('aria-disabled', String(atStart));
+    featureNext.setAttribute('aria-disabled', String(atEnd));
+    featurePrev.title = atStart ? 'Beginning of features' : 'Previous feature';
+    featureNext.title = atEnd ? 'End of features' : 'Next feature';
+  }
+
+  function centerActiveFeature(instant = false) {
     const cards = qa('.feature-card', track);
-    cards.forEach((card, index) => card.classList.toggle('is-active', index === featureIndex));
-    qa('button', dots).forEach((dot, index) => dot.classList.toggle('is-active', index === featureIndex));
-    const firstCard = cards[0];
-    if (!firstCard) return;
-    const width = firstCard.getBoundingClientRect().width + 25;
-    const stageWidth = q('.feature-stage').clientWidth;
-    const offset = featureIndex * width - (stageWidth - width) / 2 + 60;
+    const card = cards[featureIndex];
+    if (!card || !featureViewport) return;
+    const targetCenter = card.offsetLeft + card.offsetWidth / 2;
+    const viewportCenter = featureViewport.clientWidth / 2;
+    const translateX = viewportCenter - targetCenter;
     track.style.transition = instant ? 'none' : '';
-    track.style.transform = `translateX(${-Math.max(0, offset)}px)`;
-    if (instant) window.setTimeout(() => { track.style.transition = ''; }, 20);
+    track.style.transform = `translate3d(${translateX}px, 0, 0)`;
+    if (instant) window.setTimeout(() => { track.style.transition = ''; }, 30);
+  }
+
+  function setFeature(next, instant = false) {
+    const last = data.features.length - 1;
+    featureIndex = Math.max(0, Math.min(last, next));
+    const cards = qa('.feature-card', track);
+    cards.forEach((card, index) => {
+      card.classList.toggle('is-active', index === featureIndex);
+      card.classList.toggle('is-before', index < featureIndex);
+      card.classList.toggle('is-after', index > featureIndex);
+      card.setAttribute('aria-current', index === featureIndex ? 'true' : 'false');
+    });
+    qa('button', dots).forEach((dot, index) => dot.classList.toggle('is-active', index === featureIndex));
+    updateFeatureControls();
+    window.requestAnimationFrame(() => centerActiveFeature(instant));
   }
 
   buildFeatures();
-  q('#featurePrev')?.addEventListener('click', () => setFeature(featureIndex - 1));
-  q('#featureNext')?.addEventListener('click', () => setFeature(featureIndex + 1));
-  window.addEventListener('resize', () => setFeature(featureIndex, true));
+  featurePrev?.addEventListener('click', () => {
+    if (!featurePrev.disabled) setFeature(featureIndex - 1);
+  });
+  featureNext?.addEventListener('click', () => {
+    if (!featureNext.disabled) setFeature(featureIndex + 1);
+  });
+  window.addEventListener('resize', () => centerActiveFeature(true));
+
 })();
 
 /* V6 ambient ember layers — intentionally excludes the driver showcase. */
