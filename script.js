@@ -338,16 +338,34 @@
     layer.className = 'v6-embers';
     layer.setAttribute('aria-hidden', 'true');
 
-    const count = window.matchMedia('(max-width: 780px)').matches ? 10 : 18;
+    const decor = document.createElement('div');
+    decor.className = 'v8-scene-decor';
+    decor.setAttribute('aria-hidden', 'true');
+    const sceneNames = ['ROAD WAR', 'PROJECT FEED', 'UNITY BUILD', 'COMBAT SCHOOL', 'GAME FEATURES', 'DOWNLOAD'];
+    decor.innerHTML = `
+      <span class="scene-panel"></span>
+      <span class="scene-ghost">${sceneNames[sectionIndex] || 'VIGILANTE 8'}</span>
+      <span class="scene-halftone"></span>
+      <span class="scene-slash scene-slash-a"></span>
+      <span class="scene-slash scene-slash-b"></span>
+      <span class="scene-slash scene-slash-c"></span>
+    `;
+
+    const count = window.matchMedia('(max-width: 780px)').matches ? 12 : 24;
     for (let i = 0; i < count; i += 1) {
       const ember = document.createElement('i');
       const seed = (i * 37 + sectionIndex * 19) % 100;
-      ember.style.setProperty('--x', `${4 + (seed * 0.92)}%`);
-      ember.style.setProperty('--delay', `${-((i * 0.73 + sectionIndex) % 9)}s`);
-      ember.style.setProperty('--duration', `${6.4 + ((i * 11) % 38) / 10}s`);
-      ember.style.setProperty('--size', `${2 + ((i * 7) % 5)}px`);
+      ember.className = i % 6 === 0 ? 'ash' : (i % 3 === 0 ? 'spark' : 'ember');
+      ember.style.setProperty('--x', `${2 + (seed * 0.96)}%`);
+      ember.style.setProperty('--delay', `${-((i * 0.73 + sectionIndex) % 11)}s`);
+      ember.style.setProperty('--duration', `${7.2 + ((i * 11) % 46) / 10}s`);
+      ember.style.setProperty('--size', `${1.5 + ((i * 7) % 5)}px`);
+      ember.style.setProperty('--drift', `${-48 + ((i * 29 + sectionIndex * 13) % 96)}px`);
+      ember.style.setProperty('--sway', `${-16 + ((i * 17) % 32)}px`);
+      ember.style.setProperty('--alpha', `${0.34 + ((i * 9) % 38) / 100}`);
       layer.appendChild(ember);
     }
     section.prepend(layer);
+    section.prepend(decor);
   });
 })();
