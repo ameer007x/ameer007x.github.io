@@ -283,3 +283,34 @@
   q('#featureNext')?.addEventListener('click', () => setFeature(featureIndex + 1));
   window.addEventListener('resize', () => setFeature(featureIndex, true));
 })();
+
+/* V6 ambient ember layers — intentionally excludes the driver showcase. */
+(() => {
+  const targets = [
+    document.querySelector('.hero'),
+    document.querySelector('.news'),
+    document.querySelector('.creator'),
+    document.querySelector('.tutorial'),
+    document.querySelector('.features'),
+    document.querySelector('.download')
+  ].filter(Boolean);
+
+  targets.forEach((section, sectionIndex) => {
+    if (section.querySelector(':scope > .v6-embers')) return;
+    const layer = document.createElement('div');
+    layer.className = 'v6-embers';
+    layer.setAttribute('aria-hidden', 'true');
+
+    const count = window.matchMedia('(max-width: 780px)').matches ? 10 : 18;
+    for (let i = 0; i < count; i += 1) {
+      const ember = document.createElement('i');
+      const seed = (i * 37 + sectionIndex * 19) % 100;
+      ember.style.setProperty('--x', `${4 + (seed * 0.92)}%`);
+      ember.style.setProperty('--delay', `${-((i * 0.73 + sectionIndex) % 9)}s`);
+      ember.style.setProperty('--duration', `${6.4 + ((i * 11) % 38) / 10}s`);
+      ember.style.setProperty('--size', `${2 + ((i * 7) % 5)}px`);
+      layer.appendChild(ember);
+    }
+    section.prepend(layer);
+  });
+})();
