@@ -2260,3 +2260,310 @@ footer img { filter: drop-shadow(0 8px 8px rgba(88,40,16,.2)); }
 @media (prefers-reduced-motion: reduce) {
   .v8-scene-decor *, .v6-embers i { animation: none !important; }
 }
+
+/* ========================================================================== 
+   V9 — GPU cinematic section navigation and performance layer
+   Keeps every visual effect, but only the visible scene spends animation time.
+   ========================================================================== */
+
+html.scene-engine-ready {
+  scroll-behavior: auto;
+  overscroll-behavior-y: none;
+}
+
+body.scene-engine-ready {
+  overscroll-behavior-y: none;
+}
+
+.scene-section {
+  position: relative;
+  scroll-margin-top: 58px;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@media (min-width: 901px) and (min-height: 680px) {
+  body.scene-engine-ready main > .scene-section {
+    min-height: calc(100vh - 58px);
+    contain: layout paint style;
+  }
+
+  body.scene-engine-ready main > .hero.scene-section {
+    min-height: 100vh;
+  }
+
+  body.scene-engine-ready main > .drivers.scene-section {
+    height: calc(100vh - 58px);
+    min-height: calc(100vh - 58px);
+  }
+
+}
+
+/* Suspend all continuous scene animation off-screen. Nothing is deleted. */
+body.scene-engine-ready .scene-section:not(.scene-active) *,
+body.scene-engine-ready .scene-section:not(.scene-active)::before,
+body.scene-engine-ready .scene-section:not(.scene-active)::after {
+  animation-play-state: paused !important;
+}
+
+body.scene-engine-ready .scene-section.scene-active *,
+body.scene-engine-ready .scene-section.scene-active::before,
+body.scene-engine-ready .scene-section.scene-active::after {
+  animation-play-state: running;
+}
+
+/* Only active visual layers are promoted to the GPU. */
+body.scene-engine-ready .scene-section.scene-active .v8-scene-decor,
+body.scene-engine-ready .scene-section.scene-active .scene-panel,
+body.scene-engine-ready .scene-section.scene-active .scene-ghost,
+body.scene-engine-ready .scene-section.scene-active .scene-halftone,
+body.scene-engine-ready .scene-section.scene-active .scene-slash,
+body.scene-engine-ready .scene-section.scene-active .v6-embers,
+body.scene-engine-ready .scene-section.scene-active .hero-bg,
+body.scene-engine-ready .scene-section.scene-active .hero-speed,
+body.scene-engine-ready .scene-section.scene-active .driver-color-world,
+body.scene-engine-ready .scene-section.scene-active .driver-art-wrap,
+body.scene-engine-ready .scene-section.scene-active .feature-impact,
+body.scene-engine-ready .scene-section.scene-active .download-tire-trail {
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+body.scene-engine-ready .scene-section:not(.scene-active) .v8-scene-decor,
+body.scene-engine-ready .scene-section:not(.scene-active) .scene-panel,
+body.scene-engine-ready .scene-section:not(.scene-active) .scene-ghost,
+body.scene-engine-ready .scene-section:not(.scene-active) .scene-halftone,
+body.scene-engine-ready .scene-section:not(.scene-active) .scene-slash,
+body.scene-engine-ready .scene-section:not(.scene-active) .v6-embers,
+body.scene-engine-ready .scene-section:not(.scene-active) .hero-bg,
+body.scene-engine-ready .scene-section:not(.scene-active) .hero-speed,
+body.scene-engine-ready .scene-section:not(.scene-active) .driver-color-world,
+body.scene-engine-ready .scene-section:not(.scene-active) .driver-art-wrap,
+body.scene-engine-ready .scene-section:not(.scene-active) .feature-impact,
+body.scene-engine-ready .scene-section:not(.scene-active) .download-tire-trail {
+  will-change: auto;
+}
+
+/* Every scene is reset, then revealed only after the camera lands on it. */
+body.scene-engine-ready .scene-section [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 38px, 0) scale(.985);
+  transition-property: opacity, transform;
+  transition-duration: .78s;
+  transition-timing-function: cubic-bezier(.18,.82,.2,1);
+}
+
+body.scene-engine-ready .scene-section.scene-active [data-reveal].revealed {
+  opacity: 1;
+  transform: translate3d(0,0,0) scale(1);
+}
+
+/* Scene-specific cinematic entrances. Continuous original animation resumes after it. */
+body.scene-engine-ready .scene-section.scene-entering > .v8-scene-decor {
+  animation: v9SceneDecorIn .92s cubic-bezier(.16,.84,.2,1) both;
+}
+
+body.scene-engine-ready .scene-section.scene-entering > .v6-embers {
+  animation: v9AshFieldIn 1.05s .08s cubic-bezier(.16,.84,.2,1) both;
+}
+
+body.scene-engine-ready .hero.scene-entering .hero-bg {
+  animation: v9BackdropIn 1.05s cubic-bezier(.16,.84,.2,1) both, v6HeroPan 18s 1.05s ease-in-out infinite alternate;
+}
+
+body.scene-engine-ready .hero.scene-entering .hero-speed-a {
+  animation: v9SpeedStrikeIn .8s .08s cubic-bezier(.12,.88,.2,1) both, v6SpeedLine 5.5s .88s ease-in-out infinite alternate;
+}
+
+body.scene-engine-ready .hero.scene-entering .hero-speed-b {
+  animation: v9SpeedStrikeIn .8s .18s cubic-bezier(.12,.88,.2,1) both, v6SpeedLine 5.5s .98s ease-in-out infinite alternate;
+}
+
+body.scene-engine-ready .scene-section.scene-entering .brush {
+  animation: v9BrushIn .9s .12s cubic-bezier(.16,.84,.2,1) both;
+}
+
+body.scene-engine-ready .drivers.scene-entering .driver-paper,
+body.scene-engine-ready .drivers.scene-entering .driver-city {
+  animation: v9DriverFieldIn .85s cubic-bezier(.16,.84,.2,1) both;
+}
+
+body.scene-engine-ready .features.scene-entering .feature-impact {
+  animation: v9ImpactFieldIn .95s .12s cubic-bezier(.16,.84,.2,1) both;
+}
+
+body.scene-engine-ready .download.scene-entering .download-diagonal {
+  animation: v9DownloadSlashIn .9s cubic-bezier(.12,.88,.2,1) both;
+}
+
+body.scene-engine-ready .download.scene-entering .download-tire-trail {
+  animation: v9TireTrailIn 1.08s .12s cubic-bezier(.16,.84,.2,1) both;
+}
+
+body.scene-engine-ready .tutorial.scene-entering .tutorial-card {
+  animation-name: cardIn;
+  animation-duration: .58s;
+  animation-timing-function: cubic-bezier(.16,.84,.2,1);
+  animation-fill-mode: both;
+}
+
+/* Small on-screen transition accent. It masks decoding without covering the design. */
+.scene-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 1800;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .16s ease, visibility 0s linear .18s;
+}
+
+.scene-transition.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .12s ease, visibility 0s;
+}
+
+.scene-transition-rail {
+  position: absolute;
+  right: -20vw;
+  width: 78vw;
+  height: 9px;
+  transform-origin: center;
+  background: linear-gradient(90deg, transparent, var(--v8-gold) 18%, var(--v8-orange) 53%, var(--v8-red) 82%, transparent);
+  box-shadow: 0 0 24px rgba(255,112,10,.72);
+  opacity: 0;
+}
+
+.scene-transition .rail-a { top: 34%; }
+.scene-transition .rail-b { top: 38%; height: 3px; filter: brightness(1.45); }
+
+.scene-transition.is-forward .scene-transition-rail {
+  animation: v9TransitionForward .82s cubic-bezier(.14,.82,.19,1) both;
+}
+
+.scene-transition.is-backward .scene-transition-rail {
+  animation: v9TransitionBackward .82s cubic-bezier(.14,.82,.19,1) both;
+}
+
+.scene-transition .rail-b { animation-delay: .07s !important; }
+
+.scene-transition-badge {
+  position: absolute;
+  right: 3vw;
+  top: 43%;
+  min-width: 260px;
+  padding: 11px 22px 12px 28px;
+  display: flex;
+  flex-direction: column;
+  color: #18120d;
+  background: linear-gradient(135deg, var(--v8-gold), var(--v8-orange));
+  clip-path: polygon(18px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 18px);
+  box-shadow: 0 14px 34px rgba(103,44,14,.28);
+  opacity: 0;
+  transform: translate3d(80px,0,0) rotate(-2deg);
+}
+
+.scene-transition.is-active .scene-transition-badge {
+  animation: v9BadgeIn .72s .12s cubic-bezier(.14,.82,.19,1) both;
+}
+
+.scene-transition-badge small {
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: 2.3px;
+  opacity: .72;
+}
+
+.scene-transition-badge b {
+  margin-top: 3px;
+  font-family: Impact,"Arial Narrow Bold",sans-serif;
+  font-size: 1.18rem;
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+body.scene-navigation-locked {
+  user-select: none;
+}
+
+@keyframes v9SceneDecorIn {
+  0% { opacity: 0; transform: translate3d(6vw,0,0) scale(1.025); }
+  65% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes v9AshFieldIn {
+  0% { opacity: 0; transform: translate3d(0,34px,0); }
+  100% { opacity: .92; transform: translate3d(0,0,0); }
+}
+
+@keyframes v9BackdropIn {
+  0% { opacity: 0; transform: translate3d(3vw,0,0) scale(1.09); }
+  100% { opacity: .19; transform: translate3d(0,0,0) scale(1.02); }
+}
+
+@keyframes v9SpeedStrikeIn {
+  0% { opacity: 0; transform: translate3d(26vw,0,0) rotate(-31deg) scaleX(.45); }
+  100% { opacity: 1; transform: translate3d(0,0,0) rotate(-31deg) scaleX(1); }
+}
+
+@keyframes v9BrushIn {
+  0% { opacity: 0; transform: translate3d(18vw,0,0) rotate(-14deg) scaleX(.55); }
+  100% { opacity: .48; transform: translate3d(0,0,0) rotate(-9deg) scaleX(1); }
+}
+
+@keyframes v9DriverFieldIn {
+  0% { opacity: 0; transform: translate3d(5vw,0,0) scale(1.025); }
+  100% { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes v9ImpactFieldIn {
+  0% { opacity: 0; transform: translate3d(-4vw,28px,0) scale(.82) rotate(-4deg); }
+  100% { opacity: 1; transform: translate3d(0,0,0) scale(1) rotate(0); }
+}
+
+@keyframes v9DownloadSlashIn {
+  0% { opacity: 0; transform: translate3d(-18vw,0,0) skewX(-12deg); }
+  100% { opacity: .9; transform: translate3d(0,0,0) skewX(-12deg); }
+}
+
+@keyframes v9TireTrailIn {
+  0% { opacity: 0; transform: translate3d(-8vw,18vh,0) rotate(-4deg); }
+  100% { opacity: .52; transform: translate3d(0,0,0) rotate(0); }
+}
+
+@keyframes v9TransitionForward {
+  0% { opacity: 0; transform: translate3d(22vw,0,0) rotate(-31deg) scaleX(.3); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(-112vw,0,0) rotate(-31deg) scaleX(1.08); }
+}
+
+@keyframes v9TransitionBackward {
+  0% { opacity: 0; transform: translate3d(-112vw,0,0) rotate(-31deg) scaleX(.3); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(22vw,0,0) rotate(-31deg) scaleX(1.08); }
+}
+
+@keyframes v9BadgeIn {
+  0% { opacity: 0; transform: translate3d(80px,0,0) rotate(-2deg) scale(.96); }
+  26%,72% { opacity: 1; transform: translate3d(0,0,0) rotate(-2deg) scale(1); }
+  100% { opacity: 0; transform: translate3d(-30px,0,0) rotate(-2deg) scale(.985); }
+}
+
+@media (max-width: 900px), (max-height: 679px) {
+  .scene-transition { display: none; }
+  .scene-section { scroll-margin-top: 68px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-transition { display: none !important; }
+  body.scene-engine-ready .scene-section [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

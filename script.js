@@ -1,51 +1,47 @@
 (() => {
+  'use strict';
+
   const data = window.V8_SITE_DATA;
   const q = (selector, root = document) => root.querySelector(selector);
   const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const delay = milliseconds => new Promise(resolve => window.setTimeout(resolve, milliseconds));
+  const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
 
-  /* Header: large at the top, compact while scrolling */
+  /* --------------------------------------------------------------------------
+     Header
+  -------------------------------------------------------------------------- */
   const topbar = q('#topbar');
   const navToggle = q('#navToggle');
   const mainNav = q('#mainNav');
+  let headerTicking = false;
 
   const updateHeader = () => {
+    headerTicking = false;
     topbar?.classList.toggle('is-compact', window.scrollY > 48);
   };
+
+  const requestHeaderUpdate = () => {
+    if (headerTicking) return;
+    headerTicking = true;
+    window.requestAnimationFrame(updateHeader);
+  };
+
   updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
+  window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
 
   navToggle?.addEventListener('click', () => {
     const open = mainNav.classList.toggle('is-open');
     navToggle.setAttribute('aria-expanded', String(open));
   });
+
   qa('.main-nav a').forEach(link => link.addEventListener('click', () => {
     mainNav.classList.remove('is-open');
     navToggle?.setAttribute('aria-expanded', 'false');
   }));
 
-  /* Reveal animation */
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('revealed');
-      revealObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.12 });
-  qa('[data-reveal]').forEach(element => revealObserver.observe(element));
-
-  /* Active navigation section */
-  const navLinks = qa('.main-nav a');
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
-      });
-    });
-  }, { rootMargin: '-35% 0px -55% 0px' });
-  qa('main section[id]').forEach(section => sectionObserver.observe(section));
-
-  /* News filters */
+  /* --------------------------------------------------------------------------
+     News filters
+  -------------------------------------------------------------------------- */
   qa('[data-news-filter]').forEach(button => button.addEventListener('click', () => {
     qa('[data-news-filter]').forEach(item => item.classList.remove('is-active'));
     button.classList.add('is-active');
@@ -55,13 +51,16 @@
     });
   }));
 
-  /* Driver selector */
+  /* --------------------------------------------------------------------------
+     Driver selector
+  -------------------------------------------------------------------------- */
   const drivers = data.drivers;
   const AUTO_DELAY = 6000;
   const VISIBLE_THUMBS = 4;
   let driverIndex = 0;
-  let changing = false;
+  let driverChanging = false;
   let autoChangeId = 0;
+  let driverSceneActive = false;
 
   const driverName = q('#driverName');
   const driverVehicle = q('#driverVehicle');
@@ -78,7 +77,7 @@
   const driverTotal = q('#driverTotal');
   const autoTimer = q('#autoTimer');
 
-  driverTotal.textContent = String(drivers.length).padStart(2, '0');
+  if (driverTotal) driverTotal.textContent = String(drivers.length).padStart(2, '0');
 
   const wrapIndex = index => (index + drivers.length) % drivers.length;
 
@@ -89,8 +88,14 @@
     autoTimer.style.animation = '';
   }
 
-  function startAutoChange() {
+  function stopAutoChange() {
     window.clearInterval(autoChangeId);
+    autoChangeId = 0;
+  }
+
+  function startAutoChange() {
+    stopAutoChange();
+    if (!driverSceneActive || document.hidden || q('#profileModal')?.classList.contains('is-open')) return;
     restartTimerAnimation();
     autoChangeId = window.setInterval(() => {
       setDriver(driverIndex + 1, { automatic: true });
@@ -98,6 +103,7 @@
   }
 
   function buildVisibleThumbs() {
+    if (!driverThumbs) return;
     driverThumbs.innerHTML = '';
     const start = driverIndex;
 
@@ -111,7 +117,7 @@
       button.title = `${String(index + 1).padStart(2, '0')} — ${driver.name}`;
       button.setAttribute('aria-label', `Show ${driver.name}`);
       button.innerHTML = `
-        <img src="${driver.avatar}" alt="${driver.name}">
+        <img src="${driver.avatar}" alt="${driver.name}" decoding="async">
         <span class="driver-thumb-index">${String(index + 1).padStart(2, '0')}</span>
       `;
       button.addEventListener('click', () => setDriver(index, { manual: true }));
@@ -120,10 +126,11 @@
   }
 
   function renderSkills(driver) {
+    if (!skillList) return;
     skillList.innerHTML = driver.skills.map((skill, index) => `
       <article class="skill" style="animation-delay:${index * 0.11}s">
         <span class="skill-icon">
-          <img src="${skill.icon || 'assets/tutorial/specials.svg'}" alt="">
+          <img src="${skill.icon || 'assets/tutorial/specials.svg'}" alt="" decoding="async">
         </span>
         <div>
           <h4>${skill.title}</h4>
@@ -133,7 +140,7 @@
     `).join('');
   }
 
-  function applyDriver(index) {
+  function applyDriver(index, { replay = true } = {}) {
     driverIndex = wrapIndex(index);
     const driver = drivers[driverIndex];
 
@@ -142,46 +149,50 @@
     document.documentElement.style.setProperty('--driver-accent3', driver.accent3 || driver.accent);
     document.documentElement.style.setProperty('--progress', `${((driverIndex + 1) / drivers.length) * 100}%`);
 
-    driverName.textContent = driver.name;
-    driverVehicle.textContent = driver.vehicle;
-    driverTagline.textContent = driver.tagline;
-    driverGhost.textContent = driver.name.replace(/\s+/g, ' ');
-    driverArt.src = driver.image;
-    driverArt.alt = driver.name;
-    driverBackdropArt.src = driver.backgroundImage || driver.image;
-    driverIndexEl.textContent = String(driverIndex + 1).padStart(2, '0');
+    if (driverName) driverName.textContent = driver.name;
+    if (driverVehicle) driverVehicle.textContent = driver.vehicle;
+    if (driverTagline) driverTagline.textContent = driver.tagline;
+    if (driverGhost) driverGhost.textContent = driver.name.replace(/\s+/g, ' ');
+    if (driverArt) {
+      driverArt.src = driver.image;
+      driverArt.alt = driver.name;
+    }
+    if (driverBackdropArt) driverBackdropArt.src = driver.backgroundImage || driver.image;
+    if (driverIndexEl) driverIndexEl.textContent = String(driverIndex + 1).padStart(2, '0');
     renderSkills(driver);
     buildVisibleThumbs();
 
-    driverArtWrap.classList.remove('is-exiting');
-    driverColorWorld.classList.remove('is-exiting');
-    driverCopy.classList.remove('is-exiting');
+    driverArtWrap?.classList.remove('is-exiting');
+    driverColorWorld?.classList.remove('is-exiting');
+    driverCopy?.classList.remove('is-exiting');
 
-    [driverArt, driverBackdropArt, driverColorWorld, driverCopy].forEach(element => {
-      if (!element) return;
-      element.style.animation = 'none';
-      void element.offsetWidth;
-      element.style.animation = '';
-    });
+    if (replay) {
+      [driverArt, driverBackdropArt, driverColorWorld, driverCopy].forEach(element => {
+        if (!element) return;
+        element.style.animation = 'none';
+        void element.offsetWidth;
+        element.style.animation = '';
+      });
+    }
 
-    changing = false;
-    restartTimerAnimation();
+    driverChanging = false;
+    if (driverSceneActive) restartTimerAnimation();
   }
 
   function setDriver(next, options = {}) {
     const target = wrapIndex(next);
-    if (changing || target === driverIndex && !options.instant) {
+    if (driverChanging || (target === driverIndex && !options.instant)) {
       if (options.manual) startAutoChange();
       return;
     }
 
-    changing = true;
+    driverChanging = true;
     if (options.instant) {
       applyDriver(target);
     } else {
-      driverArtWrap.classList.add('is-exiting');
-      driverColorWorld.classList.add('is-exiting');
-      driverCopy.classList.add('is-exiting');
+      driverArtWrap?.classList.add('is-exiting');
+      driverColorWorld?.classList.add('is-exiting');
+      driverCopy?.classList.add('is-exiting');
       window.setTimeout(() => applyDriver(target), 390);
     }
 
@@ -191,20 +202,13 @@
   q('#driverPrev')?.addEventListener('click', () => setDriver(driverIndex - 1, { manual: true }));
   q('#driverNext')?.addEventListener('click', () => setDriver(driverIndex + 1, { manual: true }));
 
-  /* Deliberately no mouse-wheel, keyboard, or swipe driver switching. */
   setDriver(0, { instant: true });
-  startAutoChange();
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      window.clearInterval(autoChangeId);
-    } else {
-      startAutoChange();
-    }
-  });
-
-  /* Driver profile modal */
+  /* --------------------------------------------------------------------------
+     Driver profile modal
+  -------------------------------------------------------------------------- */
   const modal = q('#profileModal');
+
   q('#viewProfile')?.addEventListener('click', () => {
     const driver = drivers[driverIndex];
     q('#modalImage').src = driver.image;
@@ -214,14 +218,15 @@
     q('#modalDescription').textContent = driver.description;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
-    window.clearInterval(autoChangeId);
+    stopAutoChange();
   });
 
   function closeModal() {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
+    modal?.classList.remove('is-open');
+    modal?.setAttribute('aria-hidden', 'true');
     startAutoChange();
   }
+
   q('#modalClose')?.addEventListener('click', closeModal);
   modal?.addEventListener('click', event => {
     if (event.target === modal) closeModal();
@@ -230,15 +235,20 @@
     if (event.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
   });
 
-  /* Tutorial cards */
+  /* --------------------------------------------------------------------------
+     Tutorial cards
+  -------------------------------------------------------------------------- */
   function renderTutorial(level) {
-    q('#tutorialGrid').innerHTML = data.tutorial[level].map((item, index) => `
+    const tutorialGrid = q('#tutorialGrid');
+    if (!tutorialGrid) return;
+    tutorialGrid.innerHTML = data.tutorial[level].map((item, index) => `
       <article class="tutorial-card" style="animation-delay:${index * 0.07}s">
-        <img src="${item.image}" alt="${item.title}">
+        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async">
         <h3>${item.title}</h3>
       </article>
     `).join('');
   }
+
   qa('[data-tutorial]').forEach(button => button.addEventListener('click', () => {
     qa('[data-tutorial]').forEach(item => item.classList.remove('is-active'));
     button.classList.add('is-active');
@@ -246,20 +256,22 @@
   }));
   renderTutorial('beginner');
 
-  /* Features slider — centered card, side previews and hard end stops. */
+  /* --------------------------------------------------------------------------
+     Features slider
+  -------------------------------------------------------------------------- */
   let featureIndex = 0;
   const track = q('#featureTrack');
   const dots = q('#featureDots');
-  const featureStage = q('.feature-stage');
   const featureViewport = q('.feature-viewport');
   const featurePrev = q('#featurePrev');
   const featureNext = q('#featureNext');
 
   function buildFeatures() {
+    if (!track || !dots) return;
     track.innerHTML = data.features.map((feature, index) => `
       <article class="feature-card" data-feature-index="${index}">
         <div class="feature-media">
-          <img src="${feature.image}" alt="${feature.title}">
+          <img src="${feature.image}" alt="${feature.title}" loading="lazy" decoding="async">
           <span class="feature-number">${String(index + 1).padStart(2, '0')}</span>
         </div>
         <div class="feature-caption"><h3>${feature.title}</h3><p>${feature.text}</p></div>
@@ -275,18 +287,23 @@
   function updateFeatureControls() {
     const atStart = featureIndex === 0;
     const atEnd = featureIndex === data.features.length - 1;
-    featurePrev.disabled = atStart;
-    featureNext.disabled = atEnd;
-    featurePrev.setAttribute('aria-disabled', String(atStart));
-    featureNext.setAttribute('aria-disabled', String(atEnd));
-    featurePrev.title = atStart ? 'Beginning of features' : 'Previous feature';
-    featureNext.title = atEnd ? 'End of features' : 'Next feature';
+    if (featurePrev) {
+      featurePrev.disabled = atStart;
+      featurePrev.setAttribute('aria-disabled', String(atStart));
+      featurePrev.title = atStart ? 'Beginning of features' : 'Previous feature';
+    }
+    if (featureNext) {
+      featureNext.disabled = atEnd;
+      featureNext.setAttribute('aria-disabled', String(atEnd));
+      featureNext.title = atEnd ? 'End of features' : 'Next feature';
+    }
   }
 
   function centerActiveFeature(instant = false) {
+    if (!track || !featureViewport) return;
     const cards = qa('.feature-card', track);
     const card = cards[featureIndex];
-    if (!card || !featureViewport) return;
+    if (!card) return;
     const targetCenter = card.offsetLeft + card.offsetWidth / 2;
     const viewportCenter = featureViewport.clientWidth / 2;
     const translateX = viewportCenter - targetCenter;
@@ -296,10 +313,10 @@
   }
 
   function setFeature(next, instant = false) {
+    if (!track || !dots) return;
     const last = data.features.length - 1;
-    featureIndex = Math.max(0, Math.min(last, next));
-    const cards = qa('.feature-card', track);
-    cards.forEach((card, index) => {
+    featureIndex = clamp(next, 0, last);
+    qa('.feature-card', track).forEach((card, index) => {
       card.classList.toggle('is-active', index === featureIndex);
       card.classList.toggle('is-before', index < featureIndex);
       card.classList.toggle('is-after', index > featureIndex);
@@ -317,23 +334,32 @@
   featureNext?.addEventListener('click', () => {
     if (!featureNext.disabled) setFeature(featureIndex + 1);
   });
-  window.addEventListener('resize', () => centerActiveFeature(true));
 
-})();
+  let resizeTicking = false;
+  window.addEventListener('resize', () => {
+    if (resizeTicking) return;
+    resizeTicking = true;
+    window.requestAnimationFrame(() => {
+      resizeTicking = false;
+      centerActiveFeature(true);
+    });
+  }, { passive: true });
 
-/* V6 ambient ember layers — intentionally excludes the driver showcase. */
-(() => {
-  const targets = [
-    document.querySelector('.hero'),
-    document.querySelector('.news'),
-    document.querySelector('.creator'),
-    document.querySelector('.tutorial'),
-    document.querySelector('.features'),
-    document.querySelector('.download')
+  /* --------------------------------------------------------------------------
+     Ambient ash and section scenery
+  -------------------------------------------------------------------------- */
+  const ambientTargets = [
+    q('.hero'),
+    q('.news'),
+    q('.creator'),
+    q('.tutorial'),
+    q('.features'),
+    q('.download')
   ].filter(Boolean);
 
-  targets.forEach((section, sectionIndex) => {
+  ambientTargets.forEach((section, sectionIndex) => {
     if (section.querySelector(':scope > .v6-embers')) return;
+
     const layer = document.createElement('div');
     layer.className = 'v6-embers';
     layer.setAttribute('aria-hidden', 'true');
@@ -365,7 +391,339 @@
       ember.style.setProperty('--alpha', `${0.34 + ((i * 9) % 38) / 100}`);
       layer.appendChild(ember);
     }
+
     section.prepend(layer);
     section.prepend(decor);
   });
+
+  /* --------------------------------------------------------------------------
+     Cinematic one-section-at-a-time navigation engine
+  -------------------------------------------------------------------------- */
+  const SCROLL_DURATION = 860;
+  const SCENE_ANIMATION_TIME = 1180;
+  const ASSET_WAIT_LIMIT = 900;
+  const WHEEL_THRESHOLD = 34;
+  const WHEEL_RELEASE_DELAY = 170;
+  const POST_ANIMATION_COOLDOWN = 250;
+
+  const scenes = qa('main > section');
+  const navLinks = qa('.main-nav a');
+  const sceneTransition = q('#sceneTransition');
+  const sceneTransitionLabel = q('#sceneTransitionLabel');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const cinematicQuery = window.matchMedia('(min-width: 901px) and (min-height: 680px)');
+
+  let currentSceneIndex = 0;
+  let sceneLocked = false;
+  let wheelAccumulator = 0;
+  let wheelResetId = 0;
+  let ignoreWheelUntil = 0;
+  let sceneScrollTicking = false;
+  let sceneAnimationId = 0;
+
+  scenes.forEach((section, index) => {
+    section.classList.add('scene-section');
+    section.dataset.sceneIndex = String(index);
+    if (!section.id) section.id = `scene-${index + 1}`;
+  });
+
+  function cinematicEnabled() {
+    return cinematicQuery.matches && !reducedMotionQuery.matches;
+  }
+
+  function sectionLabel(section) {
+    const heading = section.querySelector('h2, .poster-title, .section-heading h2');
+    return (heading?.textContent || section.id || 'VIGILANTE 8').replace(/\s+/g, ' ').trim();
+  }
+
+  function updateActiveNavigation(section) {
+    navLinks.forEach(link => {
+      const target = link.getAttribute('href');
+      link.classList.toggle('active', target === `#${section.id}`);
+    });
+  }
+
+  function restartElementAnimation(element) {
+    if (!element) return;
+    element.style.animation = 'none';
+    void element.offsetWidth;
+    element.style.animation = '';
+  }
+
+  function replaySceneDetails(section) {
+    const revealItems = qa('[data-reveal]', section);
+    revealItems.forEach((element, index) => {
+      element.classList.remove('revealed');
+      element.style.transitionDelay = `${Math.min(index * 110, 330)}ms`;
+    });
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        revealItems.forEach(element => element.classList.add('revealed'));
+      });
+    });
+
+    if (section.id === 'drivers') {
+      applyDriver(driverIndex, { replay: true });
+    }
+
+    if (section.id === 'tutorial') {
+      qa('.tutorial-card', section).forEach((card, index) => {
+        card.style.animationDelay = `${120 + index * 85}ms`;
+        restartElementAnimation(card);
+      });
+    }
+
+    if (section.id === 'features') {
+      window.requestAnimationFrame(() => centerActiveFeature(true));
+      qa('.feature-card', section).forEach((card, index) => {
+        card.style.setProperty('--scene-card-delay', `${120 + index * 75}ms`);
+      });
+    }
+  }
+
+  function setSceneActive(index, { initial = false } = {}) {
+    currentSceneIndex = clamp(index, 0, scenes.length - 1);
+    const activeSection = scenes[currentSceneIndex];
+
+    scenes.forEach((section, sectionIndex) => {
+      const active = sectionIndex === currentSceneIndex;
+      section.classList.toggle('scene-active', active);
+      section.setAttribute('aria-current', active ? 'true' : 'false');
+      if (!active) {
+        section.classList.remove('scene-entering');
+        qa('[data-reveal]', section).forEach(element => element.classList.remove('revealed'));
+      }
+    });
+
+    document.body.dataset.sceneIndex = String(currentSceneIndex);
+    document.body.classList.toggle('scene-at-start', currentSceneIndex === 0);
+    document.body.classList.toggle('scene-at-end', currentSceneIndex === scenes.length - 1);
+    updateActiveNavigation(activeSection);
+
+    driverSceneActive = activeSection.id === 'drivers';
+    if (driverSceneActive) startAutoChange();
+    else stopAutoChange();
+
+    window.clearTimeout(sceneAnimationId);
+    activeSection.classList.remove('scene-entering');
+    void activeSection.offsetWidth;
+    activeSection.classList.add('scene-entering');
+    replaySceneDetails(activeSection);
+
+    sceneAnimationId = window.setTimeout(() => {
+      activeSection.classList.remove('scene-entering');
+    }, SCENE_ANIMATION_TIME + 250);
+
+    if (!initial) warmAdjacentScenes(currentSceneIndex);
+  }
+
+  function nearestSceneIndex() {
+    const marker = window.scrollY + window.innerHeight * 0.45;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    scenes.forEach((section, index) => {
+      const center = section.offsetTop + section.offsetHeight * 0.5;
+      const distance = Math.abs(center - marker);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    return closestIndex;
+  }
+
+  function targetScrollY(section) {
+    const compactHeader = window.innerWidth <= 820 ? 56 : 58;
+    const preferred = section.offsetTop - compactHeader;
+    const maximum = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    return clamp(preferred, 0, maximum);
+  }
+
+  function easeInOutCubic(value) {
+    return value < 0.5
+      ? 4 * value * value * value
+      : 1 - Math.pow(-2 * value + 2, 3) / 2;
+  }
+
+  function animateScrollTo(target, duration) {
+    const start = window.scrollY;
+    const distance = target - start;
+    if (Math.abs(distance) < 2 || duration === 0) {
+      window.scrollTo(0, target);
+      return Promise.resolve();
+    }
+
+    return new Promise(resolve => {
+      const startedAt = performance.now();
+
+      function frame(now) {
+        const progress = clamp((now - startedAt) / duration, 0, 1);
+        window.scrollTo(0, start + distance * easeInOutCubic(progress));
+        if (progress < 1) window.requestAnimationFrame(frame);
+        else resolve();
+      }
+
+      window.requestAnimationFrame(frame);
+    });
+  }
+
+  function imageReady(image) {
+    if (!image) return Promise.resolve();
+    if (image.complete && image.naturalWidth > 0) {
+      if (typeof image.decode === 'function') return image.decode().catch(() => undefined);
+      return Promise.resolve();
+    }
+
+    return new Promise(resolve => {
+      const done = () => resolve();
+      image.addEventListener('load', done, { once: true });
+      image.addEventListener('error', done, { once: true });
+    });
+  }
+
+  function preloadSectionAssets(section) {
+    const images = qa('img', section);
+    images.forEach(image => {
+      image.loading = 'eager';
+      image.decoding = 'async';
+    });
+
+    const readiness = Promise.all(images.map(imageReady));
+    return Promise.race([readiness, delay(ASSET_WAIT_LIMIT)]);
+  }
+
+  function warmSection(index) {
+    const section = scenes[index];
+    if (!section) return;
+    qa('img', section).forEach(image => {
+      const source = image.currentSrc || image.src;
+      if (!source) return;
+      const preloader = new Image();
+      preloader.decoding = 'async';
+      preloader.src = source;
+    });
+  }
+
+  function warmAdjacentScenes(index) {
+    window.setTimeout(() => {
+      warmSection(index + 1);
+      warmSection(index - 1);
+    }, 120);
+  }
+
+  function showSceneTransition(section, direction) {
+    if (!sceneTransition) return;
+    if (sceneTransitionLabel) sceneTransitionLabel.textContent = sectionLabel(section);
+    sceneTransition.classList.remove('is-forward', 'is-backward');
+    sceneTransition.classList.add(direction >= 0 ? 'is-forward' : 'is-backward');
+    void sceneTransition.offsetWidth;
+    sceneTransition.classList.add('is-active');
+  }
+
+  function hideSceneTransition() {
+    sceneTransition?.classList.remove('is-active');
+  }
+
+  async function navigateToScene(index, { immediate = false } = {}) {
+    const targetIndex = clamp(index, 0, scenes.length - 1);
+    if (sceneLocked || targetIndex === currentSceneIndex) return;
+
+    const targetSection = scenes[targetIndex];
+    const direction = targetIndex > currentSceneIndex ? 1 : -1;
+    sceneLocked = true;
+    document.body.classList.add('scene-navigation-locked', 'scene-switching');
+    showSceneTransition(targetSection, direction);
+
+    const duration = immediate || reducedMotionQuery.matches ? 0 : SCROLL_DURATION;
+    const assetPromise = preloadSectionAssets(targetSection);
+    const scrollPromise = animateScrollTo(targetScrollY(targetSection), duration);
+
+    await Promise.all([assetPromise, scrollPromise]);
+    setSceneActive(targetIndex);
+    await delay(reducedMotionQuery.matches ? 80 : SCENE_ANIMATION_TIME);
+
+    hideSceneTransition();
+    document.body.classList.remove('scene-switching');
+    ignoreWheelUntil = performance.now() + POST_ANIMATION_COOLDOWN;
+    sceneLocked = false;
+    document.body.classList.remove('scene-navigation-locked');
+  }
+
+  function handleWheel(event) {
+    if (!cinematicEnabled()) return;
+    if (modal?.classList.contains('is-open')) return;
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+    event.preventDefault();
+    if (sceneLocked || performance.now() < ignoreWheelUntil) return;
+
+    wheelAccumulator += event.deltaY;
+    window.clearTimeout(wheelResetId);
+    wheelResetId = window.setTimeout(() => { wheelAccumulator = 0; }, WHEEL_RELEASE_DELAY);
+
+    if (Math.abs(wheelAccumulator) < WHEEL_THRESHOLD) return;
+    const direction = wheelAccumulator > 0 ? 1 : -1;
+    wheelAccumulator = 0;
+    navigateToScene(currentSceneIndex + direction);
+  }
+
+  window.addEventListener('wheel', handleWheel, { passive: false });
+
+  function handleHashNavigation(event) {
+    const anchor = event.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const hash = anchor.getAttribute('href');
+    if (!hash || hash === '#') return;
+    const target = q(hash);
+    const index = scenes.indexOf(target);
+    if (index < 0) return;
+
+    event.preventDefault();
+    mainNav?.classList.remove('is-open');
+    navToggle?.setAttribute('aria-expanded', 'false');
+
+    if (cinematicEnabled()) navigateToScene(index);
+    else target.scrollIntoView({ behavior: reducedMotionQuery.matches ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  document.addEventListener('click', handleHashNavigation);
+
+  function handleNativeSceneTracking() {
+    if (sceneLocked || cinematicEnabled()) return;
+    if (sceneScrollTicking) return;
+    sceneScrollTicking = true;
+    window.requestAnimationFrame(() => {
+      sceneScrollTicking = false;
+      const nearest = nearestSceneIndex();
+      if (nearest !== currentSceneIndex) setSceneActive(nearest);
+    });
+  }
+
+  window.addEventListener('scroll', handleNativeSceneTracking, { passive: true });
+
+  function refreshCinematicMode() {
+    document.body.classList.toggle('scene-engine-ready', cinematicEnabled());
+    document.documentElement.classList.toggle('scene-engine-ready', cinematicEnabled());
+    currentSceneIndex = nearestSceneIndex();
+    setSceneActive(currentSceneIndex, { initial: true });
+  }
+
+  cinematicQuery.addEventListener?.('change', refreshCinematicMode);
+  reducedMotionQuery.addEventListener?.('change', refreshCinematicMode);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutoChange();
+    else if (driverSceneActive) startAutoChange();
+  });
+
+  qa('main img').forEach((image, index) => {
+    image.decoding = 'async';
+    if (index > 2 && !image.closest('.drivers')) image.loading = 'lazy';
+  });
+
+  refreshCinematicMode();
+  warmAdjacentScenes(currentSceneIndex);
 })();
