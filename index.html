@@ -7,7 +7,7 @@
 <meta content="#d1cabd" name="theme-color"/>
 <meta content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features." name="description"/>
 <title>Vigilante 8: Second Offense Unity Project</title>
-<link href="style-v14.css" rel="stylesheet"/>
+<link href="style-v15.css" rel="stylesheet"/>
 <link as="image" fetchpriority="low" href="assets/decor/download-orange-tracks.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-fire-wheel.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/news-skid-curves.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-bottom-skids.png" rel="preload"/></head>
 <body>
 <div aria-hidden="true" class="page-noise"></div>
@@ -63,19 +63,19 @@
 <h2>NEWS &amp; FEATURES</h2>
 </div>
 <div class="news-tabs" data-reveal="" role="tablist"><button class="tab is-active" data-news-filter="news">NEWS</button><button class="tab" data-news-filter="update">NEW UPDATES</button><button class="tab" data-news-filter="feature">NEW FEATURES</button></div>
-<div class="news-grid">
-<article class="news-card" data-category="news" data-reveal="">
-<img alt="Legacy vehicles update" decoding="async" loading="eager" src="assets/news/legacy-arrives.svg"/>
-<div class="news-body"><span>PROJECT NEWS</span><h3>Original Vigilante 8 vehicles join the Unity roster</h3><time>2026.07.25</time></div>
-</article>
-<article class="news-card" data-category="update" data-reveal="">
-<img alt="New team modes announcement" decoding="async" loading="eager" src="assets/news/team-battle.svg"/>
-<div class="news-body"><span>NEW UPDATE</span><h3>Team modes, lobby systems and online improvements</h3><time>2026.07.25</time></div>
-</article>
-<article class="news-card" data-category="feature" data-reveal="">
-<img alt="Special weapons update" decoding="async" loading="eager" src="assets/news/special-weapons.svg"/>
-<div class="news-body"><span>NEW FEATURE</span><h3>Classic special weapons rebuilt with new systems</h3><time>2026.07.25</time></div>
-</article>
+<div class="news-showcase news-grid" data-reveal="">
+<button aria-label="Previous item" class="news-arrow news-arrow-prev" id="newsPrev">
+<span class="news-arrow-label">PREV</span>
+<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M40 12 20 32l20 20"/><path d="M22 32h29"/></svg>
+</button>
+<div class="news-viewport" id="newsViewport">
+<div class="news-track" id="newsTrack"></div>
+</div>
+<button aria-label="Next item" class="news-arrow news-arrow-next" id="newsNext">
+<span class="news-arrow-label">NEXT</span>
+<svg viewBox="0 0 64 64" aria-hidden="true"><path d="m24 12 20 20-20 20"/><path d="M42 32H13"/></svg>
+</button>
+<div class="news-dots" id="newsDots" aria-label="Choose news item"></div>
 </div>
 </section>
 <section aria-label="Driver introduction" class="drivers" id="drivers">
@@ -243,7 +243,7 @@
 <div><p class="driver-kicker">DRIVER PROFILE</p><h2 id="profileTitle"></h2><h3 id="modalVehicle"></h3><p id="modalDescription"></p></div>
 </div>
 </div>
-<script src="site-data.js?v=14"></script>
-<script src="script-v14.js"></script>
+<script src="site-data.js?v=15"></script>
+<script src="script-v15.js"></script>
 </body>
 </html>
