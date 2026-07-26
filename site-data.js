@@ -16,20 +16,25 @@ const drivers = [
     "accent": "#1d69c7",
     "accent2": "#55d7ff",
     "accent3": "#173270",
-    "image": "assets/characters/v8-chassey-blue.svg",
-    "avatar": "assets/characters/v8-chassey-blue.svg",
-    "backgroundImage": "assets/characters/v8-chassey-blue.svg",
+    "image": "assets/drivers/large/01-v8-chassey-blue.webp",
+    "avatar": "assets/drivers/thumbs/01-v8-chassey-blue.webp",
+    "backgroundImage": "assets/drivers/large/01-v8-chassey-blue.webp",
     "skills": [
       {
         "title": "GRIDLOCK",
         "text": "Fires nine energy charges in a 3×3 formation. The grid detonates on contact and is designed to block lanes, punish predictable movement and disrupt enemy vehicles.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/01-v8-chassey-blue.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "An FBI agent assigned to investigate gun-running and violent corporate warfare across the Southwest.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/01-v8-chassey-blue.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/01-v8-chassey-blue-a.webp"
     ]
   },
   {
@@ -43,20 +48,25 @@ const drivers = [
     "accent": "#319bd5",
     "accent2": "#8feaff",
     "accent3": "#31558e",
-    "image": "assets/characters/v8-slick-clyde.svg",
-    "avatar": "assets/characters/v8-slick-clyde.svg",
-    "backgroundImage": "assets/characters/v8-slick-clyde.svg",
+    "image": "assets/drivers/large/02-v8-slick-clyde.webp",
+    "avatar": "assets/drivers/thumbs/02-v8-slick-clyde.webp",
+    "backgroundImage": "assets/drivers/large/02-v8-slick-clyde.webp",
     "skills": [
       {
         "title": "WHITE LIGHTNING",
         "text": "Calls down concentrated lightning on the selected vehicle. The electrical attack deals damage and briefly interferes with movement and weapon systems.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/02-v8-slick-clyde.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A smooth-talking, self-interested playboy whom John Torque pressures into joining the Vigilantes.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/02-v8-slick-clyde.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/02-v8-slick-clyde-a.webp"
     ]
   },
   {
@@ -70,20 +80,25 @@ const drivers = [
     "accent": "#ef7d1c",
     "accent2": "#ffd451",
     "accent3": "#9b3c25",
-    "image": "assets/characters/v8-sheila.svg",
-    "avatar": "assets/characters/v8-sheila.svg",
-    "backgroundImage": "assets/characters/v8-sheila.svg",
+    "image": "assets/drivers/large/03-v8-sheila.webp",
+    "avatar": "assets/drivers/thumbs/03-v8-sheila.webp",
+    "backgroundImage": "assets/drivers/large/03-v8-sheila.webp",
     "skills": [
       {
         "title": "TANTRUM GUN",
         "text": "Deploys an aggressive auto-tracking Gatling gun. Its rapid fire keeps pressure on the target and can knock loose weapons and power-ups.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/03-v8-sheila.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Convoy’s determined and rebellious niece.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/03-v8-sheila.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/03-v8-sheila-a.webp"
     ]
   },
   {
@@ -97,20 +112,25 @@ const drivers = [
     "accent": "#6bc7e9",
     "accent2": "#effbff",
     "accent3": "#426f9c",
-    "image": "assets/characters/v8-john-torque.svg",
-    "avatar": "assets/characters/v8-john-torque.svg",
-    "backgroundImage": "assets/characters/v8-john-torque.svg",
+    "image": "assets/drivers/large/04-v8-john-torque.webp",
+    "avatar": "assets/drivers/thumbs/04-v8-john-torque.webp",
+    "backgroundImage": "assets/drivers/large/04-v8-john-torque.webp",
     "skills": [
       {
         "title": "BASS QUAKE",
         "text": "Activates high-powered speakers that release an expanding seismic sound wave. The blast damages nearby enemies and throws them away from the Jefferson.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/04-v8-john-torque.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A confident Las Vegas high-roller, experienced fighter and Convoy’s trusted right-hand man.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/04-v8-john-torque.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/04-v8-john-torque-a.webp"
     ]
   },
   {
@@ -124,20 +144,25 @@ const drivers = [
     "accent": "#c9322f",
     "accent2": "#ff6544",
     "accent3": "#701d36",
-    "image": "assets/characters/v8-dave.svg",
-    "avatar": "assets/characters/v8-dave.svg",
-    "backgroundImage": "assets/characters/v8-dave.svg",
+    "image": "assets/drivers/large/05-v8-dave.webp",
+    "avatar": "assets/drivers/thumbs/05-v8-dave.webp",
+    "backgroundImage": "assets/drivers/large/05-v8-dave.webp",
     "skills": [
       {
         "title": "INVASION",
         "text": "Uses the van’s dish to summon a formation of small UFOs. The craft descend on the selected enemy and attack from above, even across long distances.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/05-v8-dave.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A free-spirited UFO believer who somehow becomes part of the Vigilantes’ fight.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/05-v8-dave.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/05-v8-dave-a.webp"
     ]
   },
   {
@@ -151,20 +176,25 @@ const drivers = [
     "accent": "#d8a91b",
     "accent2": "#ffe35c",
     "accent3": "#80522d",
-    "image": "assets/characters/v8-convoy.svg",
-    "avatar": "assets/characters/v8-convoy.svg",
-    "backgroundImage": "assets/characters/v8-convoy.svg",
+    "image": "assets/drivers/large/06-v8-convoy.webp",
+    "avatar": "assets/drivers/thumbs/06-v8-convoy.webp",
+    "backgroundImage": "assets/drivers/large/06-v8-convoy.webp",
     "skills": [
       {
         "title": "STEEL BELTER",
         "text": "Launches an explosive steel-belted tire. It rolls across the battlefield, tracks its selected target and delivers a heavy impact with powerful knockback.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/06-v8-convoy.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A good-hearted long-haul trucker with the manners of an old cowboy.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/06-v8-convoy.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/06-v8-convoy-a.webp"
     ]
   },
   {
@@ -178,20 +208,25 @@ const drivers = [
     "accent": "#3aa45b",
     "accent2": "#9fdf69",
     "accent3": "#27513d",
-    "image": "assets/characters/v8-loki.svg",
-    "avatar": "assets/characters/v8-loki.svg",
-    "backgroundImage": "assets/characters/v8-loki.svg",
+    "image": "assets/drivers/large/07-v8-loki.webp",
+    "avatar": "assets/drivers/thumbs/07-v8-loki.webp",
+    "backgroundImage": "assets/drivers/large/07-v8-loki.webp",
     "skills": [
       {
         "title": "SCATTER MISSILES",
         "text": "Launches three missiles that move above the selected target before breaking into a scattered cluster attack. The delayed pattern makes escape difficult.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/07-v8-loki.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A mentally unstable former military test pilot discharged after a serious flight accident at Site-4.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/07-v8-loki.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/07-v8-loki-a.webp"
     ]
   },
   {
@@ -205,20 +240,25 @@ const drivers = [
     "accent": "#d8a514",
     "accent2": "#ffe458",
     "accent3": "#885a28",
-    "image": "assets/characters/v8-houston-3.svg",
-    "avatar": "assets/characters/v8-houston-3.svg",
-    "backgroundImage": "assets/characters/v8-houston-3.svg",
+    "image": "assets/drivers/large/08-v8-houston-3.webp",
+    "avatar": "assets/drivers/thumbs/08-v8-houston-3.webp",
+    "backgroundImage": "assets/drivers/large/08-v8-houston-3.webp",
     "skills": [
       {
         "title": "SUPER FANTASTIC DEATH RAY 3-AX",
         "text": "Fires a piercing blue death ray through the selected target. Its concentrated energy inflicts heavy damage and can remove collected power-ups.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/08-v8-houston-3.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A woman brainwashed by OMAR and transformed into one of its most dangerous assassins.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/08-v8-houston-3.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/08-v8-houston-3-a.webp"
     ]
   },
   {
@@ -232,20 +272,25 @@ const drivers = [
     "accent": "#f07c1f",
     "accent2": "#b44bd0",
     "accent3": "#5a286c",
-    "image": "assets/characters/v8-boogie.svg",
-    "avatar": "assets/characters/v8-boogie.svg",
-    "backgroundImage": "assets/characters/v8-boogie.svg",
+    "image": "assets/drivers/large/09-v8-boogie.webp",
+    "avatar": "assets/drivers/thumbs/09-v8-boogie.webp",
+    "backgroundImage": "assets/drivers/large/09-v8-boogie.webp",
     "skills": [
       {
         "title": "DISCO INFERNO",
         "text": "Deploys a giant disco ball that fires explosive flares at nearby enemies. The blasts can spin, lift and juggle vehicles in the air.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/09-v8-boogie.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A flashy small-time criminal who owes Sid Burn a favor and joins the Coyotes.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/09-v8-boogie.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/09-v8-boogie-a.webp"
     ]
   },
   {
@@ -259,20 +304,25 @@ const drivers = [
     "accent": "#359c4e",
     "accent2": "#a9d84c",
     "accent3": "#315032",
-    "image": "assets/characters/v8-beezwax.svg",
-    "avatar": "assets/characters/v8-beezwax.svg",
-    "backgroundImage": "assets/characters/v8-beezwax.svg",
+    "image": "assets/drivers/large/10-v8-beezwax.webp",
+    "avatar": "assets/drivers/thumbs/10-v8-beezwax.webp",
+    "backgroundImage": "assets/drivers/large/10-v8-beezwax.webp",
     "skills": [
       {
         "title": "GAMMA SWARM",
         "text": "Releases a guided swarm of radioactive bees. They pursue the selected vehicle, surround it and deliver repeated attacks before dispersing.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/10-v8-beezwax.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A beekeeper driven psychotic after radiation transforms his hive.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/10-v8-beezwax.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/10-v8-beezwax-a.webp"
     ]
   },
   {
@@ -286,20 +336,25 @@ const drivers = [
     "accent": "#e2aa22",
     "accent2": "#ff7c1d",
     "accent3": "#794027",
-    "image": "assets/characters/v8-molo.svg",
-    "avatar": "assets/characters/v8-molo.svg",
-    "backgroundImage": "assets/characters/v8-molo.svg",
+    "image": "assets/drivers/large/11-v8-molo.webp",
+    "avatar": "assets/drivers/thumbs/11-v8-molo.webp",
+    "backgroundImage": "assets/drivers/large/11-v8-molo.webp",
     "skills": [
       {
         "title": "BAD DAY IN L.A.",
         "text": "Pumps out a thick toxic smoke cloud around the bus. Enemies caught inside take damage, lose visibility and may have their engines disrupted.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/11-v8-molo.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A reckless young delinquent who idolizes Sid Burn and is desperate to prove himself worthy of the Coyotes.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/11-v8-molo.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/11-v8-molo-a.webp"
     ]
   },
   {
@@ -313,20 +368,25 @@ const drivers = [
     "accent": "#d33b28",
     "accent2": "#ffd33f",
     "accent3": "#842033",
-    "image": "assets/characters/v8-sid-burn.svg",
-    "avatar": "assets/characters/v8-sid-burn.svg",
-    "backgroundImage": "assets/characters/v8-sid-burn.svg",
+    "image": "assets/drivers/large/12-v8-sid-burn.webp",
+    "avatar": "assets/drivers/thumbs/12-v8-sid-burn.webp",
+    "backgroundImage": "assets/drivers/large/12-v8-sid-burn.webp",
     "skills": [
       {
         "title": "BREATH OF FIRE",
         "text": "Launches burning fireballs into the target area. A successful hit ignites the enemy and continues dealing fire damage after the initial impact.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/12-v8-sid-burn.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "An Australian-born professional terrorist hired by OMAR to eliminate competing oil interests.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/12-v8-sid-burn.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/12-v8-sid-burn-a.webp"
     ]
   },
   {
@@ -340,20 +400,25 @@ const drivers = [
     "accent": "#dff8ff",
     "accent2": "#63d8ee",
     "accent3": "#4c73a0",
-    "image": "assets/characters/v8-y-the-alien.svg",
-    "avatar": "assets/characters/v8-y-the-alien.svg",
-    "backgroundImage": "assets/characters/v8-y-the-alien.svg",
+    "image": "assets/drivers/large/13-v8-y-the-alien.webp",
+    "avatar": "assets/drivers/thumbs/13-v8-y-the-alien.webp",
+    "backgroundImage": "assets/drivers/large/13-v8-y-the-alien.webp",
     "skills": [
       {
         "title": "BLUE LASER",
         "text": "Projects a sustained blue energy beam through the target line. The classified weapon delivers piercing damage and can strip away valuable combat resources.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/13-v8-y-the-alien.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A secret alien driver stranded on Earth and searching for the parts and energy needed to continue the journey home.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/13-v8-y-the-alien.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/13-v8-y-the-alien-a.webp"
     ]
   },
   {
@@ -367,20 +432,26 @@ const drivers = [
     "accent": "#ce3550",
     "accent2": "#ff82ad",
     "accent3": "#6e2a5c",
-    "image": "assets/characters/v82-sheila.svg",
-    "avatar": "assets/characters/v82-sheila.svg",
-    "backgroundImage": "assets/characters/v82-sheila.svg",
+    "image": "assets/drivers/large/14-v82-sheila.webp",
+    "avatar": "assets/drivers/thumbs/14-v82-sheila.webp",
+    "backgroundImage": "assets/drivers/large/14-v82-sheila.webp",
     "skills": [
       {
         "title": "TANTRUM GUN",
         "text": "Deploys the upgraded auto-tracking Tantrum Gatling gun. Its sustained burst chews through armor and can knock weapons or power-ups away from the target.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/14-v82-sheila.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Sheila studies at Berkeley and works toward a future in federal law enforcement after the first conflict.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/14-v82-sheila.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/14-v82-sheila-a.webp",
+      "assets/drivers/vehicles/14-v82-sheila-b.webp"
     ]
   },
   {
@@ -394,20 +465,26 @@ const drivers = [
     "accent": "#d0aa17",
     "accent2": "#ffe656",
     "accent3": "#11151a",
-    "image": "assets/characters/v82-john-torque.svg",
-    "avatar": "assets/characters/v82-john-torque.svg",
-    "backgroundImage": "assets/characters/v82-john-torque.svg",
+    "image": "assets/drivers/large/15-v82-john-torque.webp",
+    "avatar": "assets/drivers/thumbs/15-v82-john-torque.webp",
+    "backgroundImage": "assets/drivers/large/15-v82-john-torque.webp",
     "skills": [
       {
         "title": "WHEEL O' FORTUNE",
         "text": "Spins a revolver-style wheel before firing. The randomly selected round changes the projectile’s size, damage and recoil, making every shot a gamble.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/15-v82-john-torque.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "After the first war, Torque’s gambling and appetite for luxury send him toward bounty hunting.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/15-v82-john-torque.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/15-v82-john-torque-a.webp",
+      "assets/drivers/vehicles/15-v82-john-torque-b.webp"
     ]
   },
   {
@@ -421,20 +498,26 @@ const drivers = [
     "accent": "#dff8ff",
     "accent2": "#55c9ee",
     "accent3": "#527ca5",
-    "image": "assets/characters/v82-flying-all-star-trio.svg",
-    "avatar": "assets/characters/v82-flying-all-star-trio.svg",
-    "backgroundImage": "assets/characters/v82-flying-all-star-trio.svg",
+    "image": "assets/drivers/large/16-v82-flying-all-star-trio.webp",
+    "avatar": "assets/drivers/thumbs/16-v82-flying-all-star-trio.webp",
+    "backgroundImage": "assets/drivers/large/16-v82-flying-all-star-trio.webp",
     "skills": [
       {
         "title": "SOARING GLORY",
         "text": "Launches a spectacular aerial strike from the stunt cycle. The attack hits with explosive force and can strip useful power-ups from an enemy vehicle.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/16-v82-flying-all-star-trio.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Tomey, Romey and Leilah are motorcycle stunt performers collectively known as the Flying All-Star Trio.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/16-v82-flying-all-star-trio.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/16-v82-flying-all-star-trio-a.webp",
+      "assets/drivers/vehicles/16-v82-flying-all-star-trio-b.webp"
     ]
   },
   {
@@ -448,20 +531,26 @@ const drivers = [
     "accent": "#ef6b1d",
     "accent2": "#d93930",
     "accent3": "#782035",
-    "image": "assets/characters/v82-houston.svg",
-    "avatar": "assets/characters/v82-houston.svg",
-    "backgroundImage": "assets/characters/v82-houston.svg",
+    "image": "assets/drivers/large/17-v82-houston.webp",
+    "avatar": "assets/drivers/thumbs/17-v82-houston.webp",
+    "backgroundImage": "assets/drivers/large/17-v82-houston.webp",
     "skills": [
       {
         "title": "TOW HOOK",
         "text": "Fires a heavy tow hook that latches onto an enemy vehicle. Houston can drag, redirect and violently swing the captured target before releasing it.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/17-v82-houston.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "No longer the brainwashed Houston 3, she has built a life with Convoy but still carries missing memories from OMAR’s conditioning.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/17-v82-houston.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/17-v82-houston-a.webp",
+      "assets/drivers/vehicles/17-v82-houston-b.webp"
     ]
   },
   {
@@ -475,20 +564,26 @@ const drivers = [
     "accent": "#d6a515",
     "accent2": "#ffe55b",
     "accent3": "#8b5b29",
-    "image": "assets/characters/v82-convoy.svg",
-    "avatar": "assets/characters/v82-convoy.svg",
-    "backgroundImage": "assets/characters/v82-convoy.svg",
+    "image": "assets/drivers/large/18-v82-convoy.webp",
+    "avatar": "assets/drivers/thumbs/18-v82-convoy.webp",
+    "backgroundImage": "assets/drivers/large/18-v82-convoy.webp",
     "skills": [
       {
         "title": "ROLLING THUNDER",
         "text": "Blasts a focused sonic shockwave from the truck’s powerful air horns. The straight-line burst damages enemies and pushes them violently away.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/18-v82-convoy.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "After the first conflict, Convoy settles down, marries Houston and builds a trucking business.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/18-v82-convoy.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/18-v82-convoy-a.webp",
+      "assets/drivers/vehicles/18-v82-convoy-b.webp"
     ]
   },
   {
@@ -502,20 +597,26 @@ const drivers = [
     "accent": "#49bde5",
     "accent2": "#eefcff",
     "accent3": "#3e6f99",
-    "image": "assets/characters/v82-dave-s-cultsmen.svg",
-    "avatar": "assets/characters/v82-dave-s-cultsmen.svg",
-    "backgroundImage": "assets/characters/v82-dave-s-cultsmen.svg",
+    "image": "assets/drivers/large/19-v82-daves-cultists.webp",
+    "avatar": "assets/drivers/thumbs/19-v82-daves-cultists.webp",
+    "backgroundImage": "assets/drivers/large/19-v82-daves-cultists.webp",
     "skills": [
       {
         "title": "SUPER SAUCER INVASION",
         "text": "Calls a larger and more destructive formation of flying saucers. The craft converge on the selected enemy and bombard the area from above.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/19-v82-daves-cultists.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "A group of hippies who elevate Dave and his alien stories into a full belief system.",
-        "icon": "assets/tutorial/combat-tips.svg"
+        "icon": "assets/drivers/thumbs/19-v82-daves-cultists.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/19-v82-daves-cultists-a.webp",
+      "assets/drivers/vehicles/19-v82-daves-cultists-b.webp"
     ]
   },
   {
@@ -529,20 +630,26 @@ const drivers = [
     "accent": "#ed791c",
     "accent2": "#ffd64b",
     "accent3": "#893f29",
-    "image": "assets/characters/v82-dallas-13.svg",
-    "avatar": "assets/characters/v82-dallas-13.svg",
-    "backgroundImage": "assets/characters/v82-dallas-13.svg",
+    "image": "assets/drivers/large/20-v82-dallas-13.webp",
+    "avatar": "assets/drivers/thumbs/20-v82-dallas-13.webp",
+    "backgroundImage": "assets/drivers/large/20-v82-dallas-13.webp",
     "skills": [
       {
         "title": "MEGA COLLIDER",
         "text": "Fires opposing energy masses that converge around the selected vehicle. Their collision creates a violent implosion and throws the target with tremendous force.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/20-v82-dallas-13.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Dallas 13 is a cybernetic OMAR BioBot created in the future for Mission: Second Offense.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/20-v82-dallas-13.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/20-v82-dallas-13-a.webp",
+      "assets/drivers/vehicles/20-v82-dallas-13-b.webp"
     ]
   },
   {
@@ -556,20 +663,26 @@ const drivers = [
     "accent": "#329fd4",
     "accent2": "#79e4ff",
     "accent3": "#31598d",
-    "image": "assets/characters/v82-nina-loco.svg",
-    "avatar": "assets/characters/v82-nina-loco.svg",
-    "backgroundImage": "assets/characters/v82-nina-loco.svg",
+    "image": "assets/drivers/large/21-v82-nina-loco.webp",
+    "avatar": "assets/drivers/thumbs/21-v82-nina-loco.webp",
+    "backgroundImage": "assets/drivers/large/21-v82-nina-loco.webp",
     "skills": [
       {
         "title": "LEMMING MISSILE",
         "text": "Attaches a homing decoy to the selected vehicle. The device disrupts radar and draws other guided missiles toward its unwilling carrier.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/21-v82-nina-loco.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Nina Loco is a weapons smuggler, former partner of Sid Burn and a highly capable organizer.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/21-v82-nina-loco.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/21-v82-nina-loco-a.webp",
+      "assets/drivers/vehicles/21-v82-nina-loco-b.webp"
     ]
   },
   {
@@ -583,20 +696,26 @@ const drivers = [
     "accent": "#727b83",
     "accent2": "#c8d0d6",
     "accent3": "#363e47",
-    "image": "assets/characters/v82-molo.svg",
-    "avatar": "assets/characters/v82-molo.svg",
-    "backgroundImage": "assets/characters/v82-molo.svg",
+    "image": "assets/drivers/large/22-v82-molo.webp",
+    "avatar": "assets/drivers/thumbs/22-v82-molo.webp",
+    "backgroundImage": "assets/drivers/large/22-v82-molo.webp",
     "skills": [
       {
         "title": "SMOG CHECK",
         "text": "Spews a concentrated cloud of choking smog. Vehicles trapped in it take sustained damage, lose visibility and suffer severe engine disruption.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/22-v82-molo.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Molo is imprisoned after the first Coyote campaign, but Lord Clyde’s forces free him and put him back in the fight.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/22-v82-molo.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/22-v82-molo-a.webp",
+      "assets/drivers/vehicles/22-v82-molo-b.webp"
     ]
   },
   {
@@ -610,20 +729,26 @@ const drivers = [
     "accent": "#2863bd",
     "accent2": "#56d2f2",
     "accent3": "#233778",
-    "image": "assets/characters/v82-lord-clyde.svg",
-    "avatar": "assets/characters/v82-lord-clyde.svg",
-    "backgroundImage": "assets/characters/v82-lord-clyde.svg",
+    "image": "assets/drivers/large/23-v82-lord-clyde.webp",
+    "avatar": "assets/drivers/thumbs/23-v82-lord-clyde.webp",
+    "backgroundImage": "assets/drivers/large/23-v82-lord-clyde.webp",
     "skills": [
       {
         "title": "CHAIN LIGHTNING",
         "text": "Fires an electrical bolt that jumps between nearby vehicles. Enemies positioned close together become links in a damaging chain of lightning.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/23-v82-lord-clyde.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Lord Clyde is the older Slick Clyde, now the powerful head of OMAR in 2017.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/23-v82-lord-clyde.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/23-v82-lord-clyde-a.webp",
+      "assets/drivers/vehicles/23-v82-lord-clyde-b.webp"
     ]
   },
   {
@@ -637,20 +762,26 @@ const drivers = [
     "accent": "#c83235",
     "accent2": "#ff684c",
     "accent3": "#5d1b35",
-    "image": "assets/characters/v82-keiko-uzumi.svg",
-    "avatar": "assets/characters/v82-keiko-uzumi.svg",
-    "backgroundImage": "assets/characters/v82-keiko-uzumi.svg",
+    "image": "assets/drivers/large/24-v82-obake.webp",
+    "avatar": "assets/drivers/thumbs/24-v82-obake.webp",
+    "backgroundImage": "assets/drivers/large/24-v82-obake.webp",
     "skills": [
       {
         "title": "RIFT BLADE",
         "text": "Projects a razor-like energy rift in front of the Tsunami. The blade cuts through enemies at close range and can pass through multiple targets in its path.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/24-v82-obake.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Obake is the codename of elite assassin Keiko Uzumi, trained by OMAR and driven by a hidden search for the truth.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/24-v82-obake.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/24-v82-obake-a.webp",
+      "assets/drivers/vehicles/24-v82-obake-b.webp"
     ]
   },
   {
@@ -664,20 +795,26 @@ const drivers = [
     "accent": "#2869c4",
     "accent2": "#55d7f3",
     "accent3": "#293d7a",
-    "image": "assets/characters/v82-boogie.svg",
-    "avatar": "assets/characters/v82-boogie.svg",
-    "backgroundImage": "assets/characters/v82-boogie.svg",
+    "image": "assets/drivers/large/25-v82-boogie.webp",
+    "avatar": "assets/drivers/thumbs/25-v82-boogie.webp",
+    "backgroundImage": "assets/drivers/large/25-v82-boogie.webp",
     "skills": [
       {
         "title": "DISCO INFERNO",
         "text": "Unfolds a giant disco ball that fires explosive flares in every direction. Nearby enemies can be lifted, spun and repeatedly struck by the light show.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/25-v82-boogie.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Boogie is jailed after the original Coyote campaign but is freed when Nina Loco rebuilds the gang.",
-        "icon": "assets/tutorial/weapons.svg"
+        "icon": "assets/drivers/thumbs/25-v82-boogie.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/25-v82-boogie-a.webp",
+      "assets/drivers/vehicles/25-v82-boogie-b.webp"
     ]
   },
   {
@@ -691,20 +828,26 @@ const drivers = [
     "accent": "#e8f2f7",
     "accent2": "#e34b43",
     "accent3": "#7c2d3d",
-    "image": "assets/characters/v82-bob-o-astronaut.svg",
-    "avatar": "assets/characters/v82-bob-o-astronaut.svg",
-    "backgroundImage": "assets/characters/v82-bob-o-astronaut.svg",
+    "image": "assets/drivers/large/26-v82-astronaut-bob-o.webp",
+    "avatar": "assets/drivers/thumbs/26-v82-astronaut-bob-o.webp",
+    "backgroundImage": "assets/drivers/large/26-v82-astronaut-bob-o.webp",
     "skills": [
       {
         "title": "COLLECTOR",
         "text": "Extends the rover’s mechanical collection arms to seize and claw enemy vehicles. The grab damages armor and tears away carried weapons and power-ups.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/26-v82-astronaut-bob-o.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Astronaut Bob O. escaped NASA in a stolen Moon Trekker and roams the battlefield collecting anything that looks useful.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/26-v82-astronaut-bob-o.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/26-v82-astronaut-bob-o-a.webp",
+      "assets/drivers/vehicles/26-v82-astronaut-bob-o-b.webp"
     ]
   },
   {
@@ -718,20 +861,26 @@ const drivers = [
     "accent": "#3c4546",
     "accent2": "#858d55",
     "accent3": "#1e2527",
-    "image": "assets/characters/v82-garbage-man.svg",
-    "avatar": "assets/characters/v82-garbage-man.svg",
-    "backgroundImage": "assets/characters/v82-garbage-man.svg",
+    "image": "assets/drivers/large/27-v82-garbage-man.webp",
+    "avatar": "assets/drivers/thumbs/27-v82-garbage-man.webp",
+    "backgroundImage": "assets/drivers/large/27-v82-garbage-man.webp",
     "skills": [
       {
         "title": "COMPACTOR",
         "text": "Uses the loader’s compactor arms to grab and crush smaller vehicles. Larger targets can be slammed against the ground before being thrown away.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/27-v82-garbage-man.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "The Garbage Man is a mysterious drifter who roams the Southwest gathering discarded equipment and vehicle parts.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/27-v82-garbage-man.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/27-v82-garbage-man-a.webp",
+      "assets/drivers/vehicles/27-v82-garbage-man-b.webp"
     ]
   },
   {
@@ -745,20 +894,26 @@ const drivers = [
     "accent": "#7747c7",
     "accent2": "#d06dff",
     "accent3": "#33276e",
-    "image": "assets/characters/v82-agent-r-chase.svg",
-    "avatar": "assets/characters/v82-agent-r-chase.svg",
-    "backgroundImage": "assets/characters/v82-agent-r-chase.svg",
+    "image": "assets/drivers/large/28-v82-agent-r-chase.webp",
+    "avatar": "assets/drivers/thumbs/28-v82-agent-r-chase.webp",
+    "backgroundImage": "assets/drivers/large/28-v82-agent-r-chase.webp",
     "skills": [
       {
         "title": "HARD TIME",
         "text": "Launches a temporal bubble that freezes enemies, weapons and nearby scenery. Chase alone remains free to move and attack while time is suspended.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/28-v82-agent-r-chase.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Agent R.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/28-v82-agent-r-chase.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/28-v82-agent-r-chase-a.webp",
+      "assets/drivers/vehicles/28-v82-agent-r-chase-b.webp"
     ]
   },
   {
@@ -772,20 +927,26 @@ const drivers = [
     "accent": "#e8f4f7",
     "accent2": "#d94740",
     "accent3": "#702c3c",
-    "image": "assets/characters/v82-chassey-blue.svg",
-    "avatar": "assets/characters/v82-chassey-blue.svg",
-    "backgroundImage": "assets/characters/v82-chassey-blue.svg",
+    "image": "assets/drivers/large/29-v82-chassey-blue.webp",
+    "avatar": "assets/drivers/thumbs/29-v82-chassey-blue.webp",
+    "backgroundImage": "assets/drivers/large/29-v82-chassey-blue.webp",
     "skills": [
       {
         "title": "STAR POWER",
         "text": "Deploys a small orbiting satellite that searches for the selected enemy. Once locked, it moves over the target and fires a concentrated laser beam.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/29-v82-chassey-blue.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "After the original conflict, Chassey becomes a Hollywood action star before her career is derailed.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/29-v82-chassey-blue.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/29-v82-chassey-blue-a.webp",
+      "assets/drivers/vehicles/29-v82-chassey-blue-b.webp"
     ]
   },
   {
@@ -799,20 +960,26 @@ const drivers = [
     "accent": "#ec761d",
     "accent2": "#ffd14d",
     "accent3": "#843d29",
-    "image": "assets/characters/v82-padre-destino.svg",
-    "avatar": "assets/characters/v82-padre-destino.svg",
-    "backgroundImage": "assets/characters/v82-padre-destino.svg",
+    "image": "assets/drivers/large/30-v82-padre-destino.webp",
+    "avatar": "assets/drivers/thumbs/30-v82-padre-destino.webp",
+    "backgroundImage": "assets/drivers/large/30-v82-padre-destino.webp",
     "skills": [
       {
         "title": "HADES GATE",
         "text": "Opens a spectral gate that lets the Goliath sink beneath the ground. It then erupts below the selected enemy, launching the vehicle into the air.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/30-v82-padre-destino.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Padre Destino is a wandering preacher and former military man obsessed with proving that the end of the world is near.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/30-v82-padre-destino.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/30-v82-padre-destino-a.webp",
+      "assets/drivers/vehicles/30-v82-padre-destino-b.webp"
     ]
   },
   {
@@ -826,20 +993,26 @@ const drivers = [
     "accent": "#87502f",
     "accent2": "#e78a31",
     "accent3": "#493527",
-    "image": "assets/characters/v82-dusty-earth.svg",
-    "avatar": "assets/characters/v82-dusty-earth.svg",
-    "backgroundImage": "assets/characters/v82-dusty-earth.svg",
+    "image": "assets/drivers/large/31-v82-dusty-earth.webp",
+    "avatar": "assets/drivers/thumbs/31-v82-dusty-earth.webp",
+    "backgroundImage": "assets/drivers/large/31-v82-dusty-earth.webp",
     "skills": [
       {
         "title": "TRIBAL MAGIC",
         "text": "Summons a spirit falcon that calls a tornado beneath the selected vehicle. The vortex lifts the target high into the air before releasing it.",
-        "icon": "assets/tutorial/specials.svg"
+        "icon": "assets/drivers/weapons/31-v82-dusty-earth.webp",
+        "kind": "weapon"
       },
       {
         "title": "DRIVER BACKGROUND",
         "text": "Dusty Earth is a Zuni chief and shaman angered by the damage caused to tribal lands by the Vigilante–Coyote conflict.",
-        "icon": "assets/tutorial/movement.svg"
+        "icon": "assets/drivers/thumbs/31-v82-dusty-earth.webp",
+        "kind": "driver"
       }
+    ],
+    "vehicles": [
+      "assets/drivers/vehicles/31-v82-dusty-earth-a.webp",
+      "assets/drivers/vehicles/31-v82-dusty-earth-b.webp"
     ]
   }
 ];
