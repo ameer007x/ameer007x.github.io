@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="DREAMLAND">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffcf39"/><stop offset=".52" stop-color="#b44ee1"/><stop offset="1" stop-color="#52e2ff"/></linearGradient>
+  <radialGradient id="glow" cx="72%" cy="28%" r="65%"><stop stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".22"/></pattern>
+  <filter id="shadow"><feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#000" flood-opacity=".38"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<rect width="1600" height="900" fill="url(#glow)"/>
+<path d="M0 0h940L620 900H0z" fill="#f7f1e7" opacity=".82"/>
+<path d="M1600 0H980L690 900h910z" fill="#b44ee1" opacity=".18"/>
+<rect width="1600" height="900" fill="url(#dots)" opacity=".6"/>
+<g><g opacity=".75"><circle cx="260" cy="590" r="120" fill="#ff5fb7"/><circle cx="520" cy="440" r="150" fill="#64e5ff"/><circle cx="910" cy="550" r="165" fill="#ffd83d"/><circle cx="1260" cy="390" r="135" fill="#a664ff"/></g><g fill="#24143d" opacity=".78"><path d="M170 700h180l-25-210H195zM430 700h180l-28-310H455zM820 700h180l-25-270H845zM1180 700h180l-23-250H1202z"/></g><g fill="none" stroke="#fff" stroke-width="12" opacity=".55"><path d="M120 750c260-130 470-60 690-170s420-50 650-180"/></g></g>
+<g opacity=".24" fill="#fff"><path d="M0 140L650 0h220L0 220z"/><path d="M1600 680L880 900H620l980-310z"/></g>
+<g transform="translate(78 765)"><rect width="980" height="86" rx="3" fill="#08090c" opacity=".76"/><text x="28" y="47" fill="#fff" font-family="Impact,Arial Narrow,sans-serif" font-size="54" letter-spacing="3">DREAMLAND</text><text x="28" y="72" fill="#52e2ff" font-family="Arial,sans-serif" font-weight="800" font-size="16" letter-spacing="3">VIGILANTE 8 FIRST OFFENSE</text></g>
+</svg>

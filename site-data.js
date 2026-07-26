@@ -1,5 +1,5 @@
 /*
-  COMPLETE DRIVER DATABASE — VIGILANTE 8 FIRST OFFENSE + VIGILANTE 8 SECOND OFFENSE
+  COMPLETE DRIVER + MAP DATABASE — VIGILANTE 8 FIRST OFFENSE + VIGILANTE 8 SECOND OFFENSE
   Exact roster order requested by the project owner.
   Biographies, vehicles and special weapons are preserved from the researched V16 database.
 */
@@ -849,20 +849,23 @@ window.V8_SITE_DATA = {
   maps: [
   {
     "name": "OIL FIELDS",
-    "location": "SOUTHWEST INDUSTRIAL ZONE",
-    "description": "Pumpjacks, pipelines and blazing refinery lights create an open industrial battlefield.",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "HEXAGON PETROLEUM REFINERY — ANTELOPE RIDGE, NEW MEXICO",
+    "description": "A sprawling refinery filled with pumpjacks, spherical storage tanks, oil drums and exposed pipe routes. Fire and spilled fuel can turn its open lanes into dangerous traps.",
     "image": "assets/maps/oil-fields.svg",
-    "accent": "#ff7a16",
-    "highlightTitle": "WIDE ROUTES / LONG SIGHTLINES",
-    "highlightText": "Use the refinery structures as cover and watch the exposed center lanes.",
+    "accent": "#f06a16",
+    "accent2": "#ffba2e",
+    "accent3": "#4b2419",
+    "highlightTitle": "REFINERY ROUTES / HIDDEN RAMP",
+    "highlightText": "Use the tanks and refinery structures as cover, search for the hidden access route and stay clear of burning oil.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "LARGE"
+        "label": "REGION",
+        "value": "NEW MEXICO"
       },
       {
         "label": "STYLE",
-        "value": "OPEN"
+        "value": "REFINERY"
       },
       {
         "label": "HAZARD",
@@ -871,44 +874,310 @@ window.V8_SITE_DATA = {
     ]
   },
   {
-    "name": "CASINO CITY",
-    "location": "DOWNTOWN ENTERTAINMENT DISTRICT",
-    "description": "Neon towers, casino signs and tight urban routes create a fast battlefield full of ambush points.",
-    "image": "assets/maps/casino-city.svg",
-    "accent": "#ff3e62",
-    "highlightTitle": "TIGHT CORNERS / VERTICAL COVER",
-    "highlightText": "Break line of sight between towers, then attack through the illuminated side streets.",
+    "name": "AIRCRAFT GRAVEYARD",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "U.S.A.F. REPOSITORY — YUMA DESERT, ARIZONA",
+    "description": "A desert aircraft repository packed with wrecked planes, hangars, control towers and a long runway. Moving aircraft and crushing machinery make the open yard deceptively dangerous.",
+    "image": "assets/maps/aircraft-graveyard.svg",
+    "accent": "#b37b3b",
+    "accent2": "#8fc4dc",
+    "accent3": "#3e4b57",
+    "highlightTitle": "CONTROL TOWERS / SECRET HANGARS",
+    "highlightText": "Watch the radar towers, avoid the smashing machinery and break open hidden sections around the edge of the airfield.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "MEDIUM"
+        "label": "REGION",
+        "value": "ARIZONA"
       },
       {
         "label": "STYLE",
-        "value": "URBAN"
+        "value": "AIRFIELD"
       },
       {
         "label": "HAZARD",
-        "value": "TRAFFIC"
+        "value": "AIRSTRIKES"
       }
     ]
   },
   {
-    "name": "WINTER WASTELAND",
-    "location": "NORTHERN MOUNTAIN PASS",
-    "description": "Frozen roads, deep snow banks and slippery ice lanes reward controlled driving and careful positioning.",
-    "image": "assets/maps/winter-wasteland.svg",
-    "accent": "#73d9ff",
-    "highlightTitle": "LOW GRIP / LONG DESCENTS",
-    "highlightText": "Manage speed on the ice and use the snow banks to redirect incoming attacks.",
+    "name": "GHOST TOWN",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "MESA DIABLO — HUNTERS WASH, NEW MEXICO",
+    "description": "An abandoned western settlement crossed by train tracks, bridges, graveyards and burning ruins. A roaming tornado and the moving train keep the battlefield in constant motion.",
+    "image": "assets/maps/ghost-town.svg",
+    "accent": "#c34a24",
+    "accent2": "#e9a34b",
+    "accent3": "#5e3047",
+    "highlightTitle": "MOVING TRAIN / TORNADO PATH",
+    "highlightText": "Control the rail line, use the bridges carefully and never remain exposed when the tornado sweeps through town.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "LARGE"
+        "label": "REGION",
+        "value": "NEW MEXICO"
+      },
+      {
+        "label": "STYLE",
+        "value": "WESTERN"
+      },
+      {
+        "label": "HAZARD",
+        "value": "TORNADO"
+      }
+    ]
+  },
+  {
+    "name": "HOOVER DAM",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "HOOVER DAM — ARIZONA–NEVADA BORDER",
+    "description": "A concrete giant built around four tunnels, dam towers, a power station and narrow water channels. The arena mixes long straights with dangerous drops and electrical machinery.",
+    "image": "assets/maps/hoover-dam.svg",
+    "accent": "#2f8ebd",
+    "accent2": "#88e7ff",
+    "accent3": "#5a6067",
+    "highlightTitle": "ELECTRIFIED CHANNEL / FOUR TUNNELS",
+    "highlightText": "Trigger the electrical switch when enemies enter the channel, then use the tunnel network to escape retaliation.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "AZ / NV"
+      },
+      {
+        "label": "STYLE",
+        "value": "DAM"
+      },
+      {
+        "label": "HAZARD",
+        "value": "ELECTRIC"
+      }
+    ]
+  },
+  {
+    "name": "VALLEY FARMS",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "PREMIUM FRUIT CO. — SAN JOAQUIN VALLEY, CALIFORNIA",
+    "description": "Orchards, barns, grain silos, bridges and wind generators surround a working irrigation channel. The open farmland hides several destructive environmental machines.",
+    "image": "assets/maps/valley-farms.svg",
+    "accent": "#6e9e31",
+    "accent2": "#e0b63f",
+    "accent3": "#4b6732",
+    "highlightTitle": "WAVE MACHINE / WIND GENERATORS",
+    "highlightText": "Use the barns and groves as cover, but watch the channel when the wave machine comes alive.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "CALIFORNIA"
+      },
+      {
+        "label": "STYLE",
+        "value": "FARMLAND"
+      },
+      {
+        "label": "HAZARD",
+        "value": "WAVE"
+      }
+    ]
+  },
+  {
+    "name": "CASINO CITY",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "NUGGET CITY, NEVADA",
+    "description": "A neon casino district filled with rooftops, parking ramps, garages, hotel courtyards and narrow streets. The vertical routes reward drivers who learn how to reach the upper levels.",
+    "image": "assets/maps/casino-city.svg",
+    "accent": "#e53768",
+    "accent2": "#5bd8ff",
+    "accent3": "#673080",
+    "highlightTitle": "ROOFTOPS / PILOTABLE BLIMP",
+    "highlightText": "Use the hidden ramp and gas-station approaches to reach rooftop weapons, then watch for the city blimp overhead.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "NEVADA"
+      },
+      {
+        "label": "STYLE",
+        "value": "NEON CITY"
+      },
+      {
+        "label": "HAZARD",
+        "value": "HEIGHT"
+      }
+    ]
+  },
+  {
+    "name": "CANYONLANDS",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "ROUTE 191 — NEAR LA SAL JUNCTION, UTAH",
+    "description": "A sandstone maze of cliffs, broken bridges, desert roads, ruins and a small settlement. Narrow passes create ambushes while the exposed plateaus favor long-range weapons.",
+    "image": "assets/maps/canyonlands.svg",
+    "accent": "#d46024",
+    "accent2": "#f3b94d",
+    "accent3": "#526e72",
+    "highlightTitle": "HOVEKEEP TELEPORT / FALLING BOULDERS",
+    "highlightText": "Use the ancient ruins to reposition across the arena and stay alert near marked rockfall zones.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "UTAH"
+      },
+      {
+        "label": "STYLE",
+        "value": "CANYON"
+      },
+      {
+        "label": "HAZARD",
+        "value": "BOULDERS"
+      }
+    ]
+  },
+  {
+    "name": "SKI RESORT",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "BUSTED HUMP SKI RESORT — ROCKY MOUNTAINS, COLORADO",
+    "description": "A high-altitude resort with steep ski runs, cabins, slalom gates, snow machines and a working gondola route. Speed is high, but traction is limited.",
+    "image": "assets/maps/ski-resort.svg",
+    "accent": "#48b6e6",
+    "accent2": "#e8fbff",
+    "accent3": "#436695",
+    "highlightTitle": "AVALANCHES / GONDOLA ROUTE",
+    "highlightText": "Trigger avalanches to control the slopes and use the gondola area to move between elevation levels.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "COLORADO"
       },
       {
         "label": "STYLE",
         "value": "SNOW"
+      },
+      {
+        "label": "HAZARD",
+        "value": "AVALANCHE"
+      }
+    ]
+  },
+  {
+    "name": "SECRET BASE",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "ADVANCED WEAPONS RESEARCH CENTER SITE 4 — PAPOOSE DRY LAKE, NEVADA",
+    "description": "A classified military complex containing nuclear missile silos, radar dishes, laser turrets, stealth aircraft and hidden service routes.",
+    "image": "assets/maps/secret-base.svg",
+    "accent": "#6e8f44",
+    "accent2": "#f1603b",
+    "accent3": "#202f35",
+    "highlightTitle": "MISSILE COMMAND / LASER DEFENSES",
+    "highlightText": "Use the command systems to launch silos and aircraft, but avoid the automated laser turrets guarding the facility.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "NEVADA"
+      },
+      {
+        "label": "STYLE",
+        "value": "MILITARY"
+      },
+      {
+        "label": "HAZARD",
+        "value": "DEFENSES"
+      }
+    ]
+  },
+  {
+    "name": "SAND FACTORY",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "ANASAZI SANDWORX CO. — BACON SLAB, UTAH",
+    "description": "A desert processing plant built around conveyor belts, crushers, chutes and a constantly shifting mountain of sand. The machinery creates unusual vertical routes.",
+    "image": "assets/maps/sand-factory.svg",
+    "accent": "#c8892f",
+    "accent2": "#ffd268",
+    "accent3": "#73513b",
+    "highlightTitle": "CONVEYOR NETWORK / LAUNCH CHUTE",
+    "highlightText": "Ride the conveyor systems to reach elevated pickups and use the refinery chute as a rapid escape route.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "UTAH"
+      },
+      {
+        "label": "STYLE",
+        "value": "FACTORY"
+      },
+      {
+        "label": "HAZARD",
+        "value": "MACHINERY"
+      }
+    ]
+  },
+  {
+    "name": "DREAMLAND",
+    "game": "VIGILANTE 8 FIRST OFFENSE",
+    "location": "SUPER DREAMLAND — LOCATION UNKNOWN",
+    "description": "A surreal bonus arena of oversized mushrooms, toy-like terrain and impossible fantasy landmarks. Its bright appearance hides unpredictable movement and strange shortcuts.",
+    "image": "assets/maps/dreamland.svg",
+    "accent": "#b44ee1",
+    "accent2": "#52e2ff",
+    "accent3": "#ffcf39",
+    "highlightTitle": "MUSHROOM BOUNCES / DREAM LOGIC",
+    "highlightText": "Use the giant mushrooms to launch across the arena and expect the environment to behave unlike any normal battlefield.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "UNKNOWN"
+      },
+      {
+        "label": "STYLE",
+        "value": "FANTASY"
+      },
+      {
+        "label": "HAZARD",
+        "value": "TRICKERY"
+      }
+    ]
+  },
+  {
+    "name": "METEOR CRATER",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "ROUTE 40 — NEAR WINSLOW, ARIZONA",
+    "description": "A vast impact crater surrounded by desert highway, an observatory and roadside structures. The steep bowl pulls combat toward the center before launching vehicles back into the air.",
+    "image": "assets/maps/meteor-crater.svg",
+    "accent": "#d06a2c",
+    "accent2": "#77a6d9",
+    "accent3": "#4d3d4c",
+    "highlightTitle": "CRATER LAUNCH / OBSERVATORY",
+    "highlightText": "Use the center of the crater for dramatic aerial movement, then control the rim and observatory approaches.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "ARIZONA"
+      },
+      {
+        "label": "STYLE",
+        "value": "CRATER"
+      },
+      {
+        "label": "HAZARD",
+        "value": "IMPACT"
+      }
+    ]
+  },
+  {
+    "name": "WINTER GAMES",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "OLYMPUS GAMES RESORT — WASATCH RANGE, UTAH",
+    "description": "A wide mountain arena built around three winter events: slalom, ski jump and bobsled. Long descents produce extreme speed and limited braking control.",
+    "image": "assets/maps/winter-games.svg",
+    "accent": "#2ca9df",
+    "accent2": "#f0fdff",
+    "accent3": "#374f8c",
+    "highlightTitle": "SLALOM / SKI JUMP / BOBSLED",
+    "highlightText": "Choose the right mobility setup, look ahead on the bobsled run and use the ski jump to cross the arena at speed.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "UTAH"
+      },
+      {
+        "label": "STYLE",
+        "value": "SPORT"
       },
       {
         "label": "HAZARD",
@@ -917,17 +1186,20 @@ window.V8_SITE_DATA = {
     ]
   },
   {
-    "name": "BAYOU",
-    "location": "SOUTHERN FLOODLAND",
-    "description": "Swamp water, wooden bridges and hidden routes turn every chase into a dangerous close-range fight.",
-    "image": "assets/maps/bayou.svg",
-    "accent": "#9ecb4f",
-    "highlightTitle": "HIDDEN PATHS / NARROW BRIDGES",
-    "highlightText": "Use the vegetation to hide your approach and avoid getting trapped over open water.",
+    "name": "GHASTLY BAYOU",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "ABANDONED SUGAR PLANTATION — BAYOU VISTA, LOUISIANA",
+    "description": "A haunted swamp of flooded roads, plantation ruins, graveyards and dark wooden bridges. Water and narrow paths force close-range fights.",
+    "image": "assets/maps/ghastly-bayou.svg",
+    "accent": "#6a8e36",
+    "accent2": "#c5d957",
+    "accent3": "#3f3b52",
+    "highlightTitle": "GRAVEYARD TELEPORT / MANSION ROUTE",
+    "highlightText": "Use the graveyard building to travel between the cemetery and mansion, but avoid being trapped on the narrow swamp crossings.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "MEDIUM"
+        "label": "REGION",
+        "value": "LOUISIANA"
       },
       {
         "label": "STYLE",
@@ -940,40 +1212,46 @@ window.V8_SITE_DATA = {
     ]
   },
   {
-    "name": "DESERT RUN",
-    "location": "RED CANYON HIGHWAY",
-    "description": "Open dunes, canyon walls and high-speed straights create a battlefield built for pursuit and long attacks.",
-    "image": "assets/maps/desert-run.svg",
-    "accent": "#ffb02e",
-    "highlightTitle": "HIGH SPEED / LIMITED COVER",
-    "highlightText": "Control the canyon entrances and never remain exposed in the center of the dunes.",
+    "name": "LAUNCH SITE",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "NASA SPACE LAUNCH CENTER — CAPE CANAVERAL, FLORIDA",
+    "description": "A coastal aerospace complex with launch pads, service tunnels, hangars and towering rocket structures. The arena mixes technical corridors with huge exposed platforms.",
+    "image": "assets/maps/launch-site.svg",
+    "accent": "#e96b2b",
+    "accent2": "#67cfff",
+    "accent3": "#d9e4eb",
+    "highlightTitle": "ROCKET TUNNEL / AERIAL PICKUPS",
+    "highlightText": "Enter the launch tunnel at the correct signal to be fired high above the battlefield and collect weapons on the descent.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "XL"
+        "label": "REGION",
+        "value": "FLORIDA"
       },
       {
         "label": "STYLE",
-        "value": "DESERT"
+        "value": "SPACEPORT"
       },
       {
         "label": "HAZARD",
-        "value": "CLIFFS"
+        "value": "LAUNCH"
       }
     ]
   },
   {
     "name": "STEEL MILL",
-    "location": "HEAVY INDUSTRY COMPLEX",
-    "description": "Furnaces, rail tracks and massive machines create a dense combat maze with brutal environmental threats.",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "SUNSHINE STEEL WORKS — NEAR PITTSBURGH, PENNSYLVANIA",
+    "description": "A dense industrial battlefield of furnaces, rail tracks, bridges, foundry buildings and molten metal. Heavy machinery creates both cover and lethal traps.",
     "image": "assets/maps/steel-mill.svg",
-    "accent": "#ff5b28",
-    "highlightTitle": "HEAVY COVER / HOT ZONES",
-    "highlightText": "Fight between machinery, but stay clear of the open furnace and active rail lanes.",
+    "accent": "#e24f21",
+    "accent2": "#ffb52d",
+    "accent3": "#414951",
+    "highlightTitle": "ACTIVE RAIL SYSTEM / MOLTEN STEEL",
+    "highlightText": "Operate the track levers to redirect the train, then use the mill structures to avoid exposed furnace lanes.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "MEDIUM"
+        "label": "REGION",
+        "value": "PENNSYLVANIA"
       },
       {
         "label": "STYLE",
@@ -986,48 +1264,80 @@ window.V8_SITE_DATA = {
     ]
   },
   {
-    "name": "SPACEPORT",
-    "location": "EXPERIMENTAL LAUNCH FACILITY",
-    "description": "Launch pads, aircraft hangars and alien technology create an unusual arena with broad open platforms.",
-    "image": "assets/maps/spaceport.svg",
-    "accent": "#5ee8ff",
-    "highlightTitle": "OPEN PLATFORMS / TECH COVER",
-    "highlightText": "Use hangars to reset fights before crossing the exposed launch-pad areas.",
+    "name": "NUCLEAR PLANT",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "PANDER ISLAND NUCLEAR POWER PLANT — MINNESOTA",
+    "description": "A reactor complex of turbines, control terminals, cooling structures and toxic waste channels. Machinery can be activated to reshape the fight.",
+    "image": "assets/maps/nuclear-plant.svg",
+    "accent": "#77a934",
+    "accent2": "#ccf05b",
+    "accent3": "#45525c",
+    "highlightTitle": "CONTROL ROOM / TURBINE SYSTEM",
+    "highlightText": "Reach the computer room to manipulate the plant systems, but keep away from the reactor and contaminated water routes.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "LARGE"
+        "label": "REGION",
+        "value": "MINNESOTA"
       },
       {
         "label": "STYLE",
-        "value": "FUTURE"
+        "value": "REACTOR"
       },
       {
         "label": "HAZARD",
-        "value": "LAUNCH"
+        "value": "RADIATION"
       }
     ]
   },
   {
-    "name": "SECRET BASE",
-    "location": "CLASSIFIED MILITARY SECTOR",
-    "description": "Restricted tunnels, military compounds and hidden chambers form a tactical battlefield full of secrets.",
-    "image": "assets/maps/secret-base.svg",
-    "accent": "#e75030",
-    "highlightTitle": "TUNNELS / SECRET ROUTES",
-    "highlightText": "Search for alternate entrances and use the underground passages to escape target locks.",
+    "name": "ALASKAN PIPELINE",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "HEXAGON DRILLING CO. — VALDEZ BAY, ALASKA",
+    "description": "An arctic oil installation spread across snow, water, pipelines, storage drums and an offshore drilling area. Ice and narrow walkways make every route dangerous.",
+    "image": "assets/maps/alaskan-pipeline.svg",
+    "accent": "#359fc9",
+    "accent2": "#bcecff",
+    "accent3": "#243d4c",
+    "highlightTitle": "PIPE LAUNCHES / OFFSHORE RIG",
+    "highlightText": "Use the pipeline routes for rapid movement, fight for the drum platforms and watch the glaciers and wildlife in the bay.",
     "stats": [
       {
-        "label": "SIZE",
-        "value": "LARGE"
+        "label": "REGION",
+        "value": "ALASKA"
       },
       {
         "label": "STYLE",
-        "value": "BASE"
+        "value": "ARCTIC OIL"
       },
       {
         "label": "HAZARD",
-        "value": "SECURITY"
+        "value": "ICE"
+      }
+    ]
+  },
+  {
+    "name": "PACIFIC HARBOR",
+    "game": "VIGILANTE 8 SECOND OFFENSE",
+    "location": "COMMERCIAL SEAPORT OF LONG BEACH — CALIFORNIA",
+    "description": "A busy coastal port with cargo ships, cranes, warehouses, water routes, a lighthouse and a large bridge. The arena supports both land and water combat.",
+    "image": "assets/maps/pacific-harbor.svg",
+    "accent": "#267ea9",
+    "accent2": "#f49a3b",
+    "accent3": "#2f4658",
+    "highlightTitle": "CARGO SHIP / LIGHTHOUSE / BRIDGE",
+    "highlightText": "Use the harbor tunnels and water routes to reposition, then attack the transport ship and bridge from safer angles.",
+    "stats": [
+      {
+        "label": "REGION",
+        "value": "CALIFORNIA"
+      },
+      {
+        "label": "STYLE",
+        "value": "SEAPORT"
+      },
+      {
+        "label": "HAZARD",
+        "value": "WATER"
       }
     ]
   }

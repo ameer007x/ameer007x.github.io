@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="ALASKAN PIPELINE">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#243d4c"/><stop offset=".52" stop-color="#359fc9"/><stop offset="1" stop-color="#bcecff"/></linearGradient>
+  <radialGradient id="glow" cx="72%" cy="28%" r="65%"><stop stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".22"/></pattern>
+  <filter id="shadow"><feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#000" flood-opacity=".38"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<rect width="1600" height="900" fill="url(#glow)"/>
+<path d="M0 0h940L620 900H0z" fill="#f7f1e7" opacity=".82"/>
+<path d="M1600 0H980L690 900h910z" fill="#359fc9" opacity=".18"/>
+<rect width="1600" height="900" fill="url(#dots)" opacity=".6"/>
+<g><g fill="#1d3540" opacity=".82"><path d="M0 690h1600v110H0z"/><rect x="180" y="470" width="240" height="220"/><rect x="1120" y="430" width="300" height="260"/></g><g fill="none" stroke="#c9f3ff" stroke-width="14" opacity=".52"><path d="M70 550h850c180 0 180-180 360-180h250"/><path d="M220 470v-170M1340 430v-210"/><circle cx="220" cy="280" r="50"/><circle cx="1340" cy="200" r="62"/></g></g>
+<g opacity=".24" fill="#fff"><path d="M0 140L650 0h220L0 220z"/><path d="M1600 680L880 900H620l980-310z"/></g>
+<g transform="translate(78 765)"><rect width="980" height="86" rx="3" fill="#08090c" opacity=".76"/><text x="28" y="47" fill="#fff" font-family="Impact,Arial Narrow,sans-serif" font-size="54" letter-spacing="3">ALASKAN PIPELINE</text><text x="28" y="72" fill="#bcecff" font-family="Arial,sans-serif" font-weight="800" font-size="16" letter-spacing="3">VIGILANTE 8 SECOND OFFENSE</text></g>
+</svg>

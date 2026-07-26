@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="PACIFIC HARBOR">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2f4658"/><stop offset=".52" stop-color="#267ea9"/><stop offset="1" stop-color="#f49a3b"/></linearGradient>
+  <radialGradient id="glow" cx="72%" cy="28%" r="65%"><stop stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".22"/></pattern>
+  <filter id="shadow"><feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#000" flood-opacity=".38"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<rect width="1600" height="900" fill="url(#glow)"/>
+<path d="M0 0h940L620 900H0z" fill="#f7f1e7" opacity=".82"/>
+<path d="M1600 0H980L690 900h910z" fill="#267ea9" opacity=".18"/>
+<rect width="1600" height="900" fill="url(#dots)" opacity=".6"/>
+<g><g fill="#1c3444" opacity=".82"><path d="M0 620h1600v180H0z"/><rect x="160" y="440" width="360" height="180"/><rect x="980" y="420" width="420" height="200"/></g><g fill="none" stroke="#ffd29b" stroke-width="10" opacity=".5"><path d="M120 650h1360M360 440V230l160 210M1120 420V180l180 240"/><path d="M620 520c160-140 320-140 480 0"/><circle cx="1460" cy="330" r="70"/><path d="M1460 260V140"/></g></g>
+<g opacity=".24" fill="#fff"><path d="M0 140L650 0h220L0 220z"/><path d="M1600 680L880 900H620l980-310z"/></g>
+<g transform="translate(78 765)"><rect width="980" height="86" rx="3" fill="#08090c" opacity=".76"/><text x="28" y="47" fill="#fff" font-family="Impact,Arial Narrow,sans-serif" font-size="54" letter-spacing="3">PACIFIC HARBOR</text><text x="28" y="72" fill="#f49a3b" font-family="Arial,sans-serif" font-weight="800" font-size="16" letter-spacing="3">VIGILANTE 8 SECOND OFFENSE</text></g>
+</svg>
