@@ -7,7 +7,7 @@
 <meta content="#d1cabd" name="theme-color"/>
 <meta content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features." name="description"/>
 <title>Vigilante 8: Second Offense Unity Project</title>
-<link href="style-v16.css" rel="stylesheet"/>
+<link href="style-v17.css" rel="stylesheet"/>
 <link as="image" fetchpriority="low" href="assets/decor/download-orange-tracks.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-fire-wheel.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/news-skid-curves.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-bottom-skids.png" rel="preload"/></head>
 <body>
 <div aria-hidden="true" class="page-noise"></div>
@@ -94,7 +94,7 @@
 <div class="driver-layout">
 <div class="driver-copy" id="driverCopy">
 <h2 id="driverName">CHASSEY BLUE</h2>
-<p class="driver-kicker" id="driverKicker">VIGILANTE 8 • VIGILANTE</p>
+<p class="driver-kicker" id="driverKicker"><span class="driver-game-label">VIGILANTE 8 FIRST OFFENSE</span><span class="driver-kicker-separator"> • </span><span class="driver-faction faction-vigilante">VIGILANTE</span></p>
 <p class="driver-vehicle" id="driverVehicle">RATTLER</p>
 <p class="driver-tagline" id="driverTagline">Precision hunter with a nine-shot grid barrage.</p>
 <div class="skill-list" id="skillList"></div>
@@ -115,11 +115,12 @@
 </button>
 </aside>
 </div>
-<div class="driver-progress">
+<div class="driver-progress" id="driverProgress">
 <span id="driverIndex">01</span>
-<i><b id="autoTimer"></b></i>
+<i aria-hidden="true"><b id="autoTimer"></b></i>
 <span id="driverTotal">31</span>
-<small>AUTO 6 SEC</small>
+<button aria-label="Turn automatic driver changes off" aria-pressed="true" class="driver-auto-toggle is-on" id="driverAutoToggle" title="Automatic driver changes: on" type="button"><span class="auto-toggle-led" aria-hidden="true"></span><span id="driverAutoText">AUTO ON</span></button>
+<small id="driverAutoDelay">15 SEC</small>
 </div>
 </div>
 </section><section aria-label="Map showcase" class="maps" id="maps">
@@ -243,7 +244,7 @@
 <div><p class="driver-kicker" id="modalKicker">DRIVER PROFILE</p><h2 id="profileTitle"></h2><h3 id="modalVehicle"></h3><p class="modal-special" id="modalSpecial"></p><p id="modalDescription"></p></div>
 </div>
 </div>
-<script src="site-data.js?v=16"></script>
-<script src="script-v16.js"></script>
+<script src="site-data.js?v=17"></script>
+<script src="script-v17.js"></script>
 </body>
 </html>
