@@ -4491,20 +4491,20 @@ body.scene-engine-ready.all-ambient-animations .scene-section:not(.scene-active)
   box-shadow: 0 0 10px currentColor;
 }
 .driver-vehicle-label.label-primary {
-  left: 62.4%;
+  left: 58% !important;
   bottom: 8%;
   transform: translateX(-100%);
 }
 .driver-vehicle-label.label-secondary {
-  left: 64.8%;
+  left: 61% !important;
   bottom: 126%;
   transform: translateX(-100%);
 }
 @media (max-width: 980px) {
   .driver-art-wrap img { translate: 0 0; scale: 1; }
   .driver-vehicle-label { font-size: .58rem; padding: 3px 8px 2px; }
-  .driver-vehicle-label.label-primary { left: 47.2%; bottom: -1%; transform: translateX(-100%); }
-  .driver-vehicle-label.label-secondary { left: 50.4%; bottom: 116%; transform: translateX(-100%); }
+  .driver-vehicle-label.label-primary { left: 39% !important; bottom: -1%; transform: translateX(-100%); }
+  .driver-vehicle-label.label-secondary { left: 43% !important; bottom: 116%; transform: translateX(-100%); }
 }
 
 
