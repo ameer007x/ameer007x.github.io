@@ -7,12 +7,18 @@
 <meta content="#d1cabd" name="theme-color"/>
 <meta content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features." name="description"/>
 <title>Vigilante 8: Second Offense Unity Project</title>
-<link href="style-v34.css?v=34-left20" rel="stylesheet"/>
+<link href="style-v35.css?v=35-driver-labels" rel="stylesheet"/>
 <link as="image" fetchpriority="low" href="assets/decor/download-orange-tracks.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-fire-wheel.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/news-skid-curves.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-bottom-skids.png" rel="preload"/>
-<style id="v34-vehicle-label-left-fix">
+<style id="v35-vehicle-label-driver-tuning">
 @media (min-width: 981px) {
-  .driver-vehicle-art.has-two-vehicles .driver-vehicle-label.label-primary { left: 58% !important; }
-  .driver-vehicle-art.has-two-vehicles .driver-vehicle-label.label-secondary { left: 61% !important; }
+  .driver-vehicle-art.has-two-vehicles .driver-vehicle-label.label-primary {
+    left: var(--label-primary-left, 58%) !important;
+    bottom: var(--label-primary-bottom, 8%) !important;
+  }
+  .driver-vehicle-art.has-two-vehicles .driver-vehicle-label.label-secondary {
+    left: var(--label-secondary-left, 61%) !important;
+    bottom: var(--label-secondary-bottom, 126%) !important;
+  }
 }
 @media (max-width: 980px) {
   .driver-vehicle-art.has-two-vehicles .driver-vehicle-label.label-primary { left: 39% !important; }
@@ -259,7 +265,7 @@
 <div><p class="driver-kicker" id="modalKicker">DRIVER PROFILE</p><h2 id="profileTitle"></h2><h3 id="modalVehicle"></h3><p class="modal-special" id="modalSpecial"></p><p id="modalDescription"></p></div>
 </div>
 </div>
-<script src="site-data.js?v=34-left20"></script>
-<script src="script-v34.js?v=34-left20"></script>
+<script src="site-data.js?v=35-driver-labels"></script>
+<script src="script-v35.js?v=35-driver-labels"></script>
 </body>
 </html>
