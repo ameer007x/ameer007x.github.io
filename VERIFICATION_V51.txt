@@ -1,0 +1,8 @@
+V51 VERIFIED BEFORE PACKAGING:
+- index.html references style-v51.css and script-v51.js.
+- AMEER_007x description ends with: Website Design and Content Creation.
+- Bottom Credits strip contains the three exact requested legal paragraphs.
+- Four logos are ordered left-to-right: Activision, Luxoflux, ESRB Privacy Certified, ESRB Teen.
+- Assets exist under both credits-v50 and credits-v51 for cache-safe compatibility.
+- Runtime fallback applyCreditsV51 recreates the strip even if older HTML is cached.
+- HTML Credits section closing tags validated after final strip replacement.
