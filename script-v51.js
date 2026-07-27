@@ -1147,16 +1147,16 @@
   window.addEventListener('pageshow', applyCreditsV49);
 
 
-  // V51: definitive publisher-rights strip and Ameer credit fallback.
-  function applyCreditsV51() {
+  // V52: definitive publisher-rights layout, larger marks, and branded sign-off.
+  function applyCreditsV52() {
     const credits = document.querySelector('#credits');
     if (!credits) return;
 
     const cards = credits.querySelectorAll('.credits-grid .credit-card');
     const ameerCard = Array.from(cards).find(card => card.querySelector('h3')?.textContent.trim() === 'AMEER_007x') || cards[1];
     const ameerCopy = ameerCard?.querySelector('p');
-    if (ameerCopy) {
-      ameerCopy.textContent = 'Credit goes to him for porting the original vehicles of V8, integrating TDM and LTS modes into the multiplayer system, as well as adding new features, improving the gameplay experience, and fixing bugs. Website Design and Content Creation.';
+    if (ameerCopy && !ameerCopy.textContent.includes('Website Design and Content Creation.')) {
+      ameerCopy.textContent = `${ameerCopy.textContent.trim()} Website Design and Content Creation.`;
     }
 
     let strip = credits.querySelector('#creditsRightsStrip') || credits.querySelector('.credits-legal');
@@ -1168,20 +1168,24 @@
     strip.className = 'credits-legal credits-publisher-strip';
     strip.innerHTML = `
       <div class="credits-publisher-logos" aria-label="Publisher and ratings logos">
-        <img class="credits-mark credits-mark-activision" alt="Activision" decoding="async" loading="eager" src="assets/credits-v51/01-activision.png?v=51">
-        <img class="credits-mark credits-mark-luxoflux" alt="Luxoflux" decoding="async" loading="eager" src="assets/credits-v51/02-luxoflux.png?v=51">
-        <img class="credits-mark credits-mark-privacy" alt="ESRB Privacy Certified" decoding="async" loading="eager" src="assets/credits-v51/03-esrb-privacy.png?v=51">
-        <img class="credits-mark credits-mark-teen" alt="ESRB Teen rating" decoding="async" loading="eager" src="assets/credits-v51/04-esrb-teen.png?v=51">
+        <img class="credits-mark credits-mark-activision" alt="Activision" decoding="async" loading="eager" src="assets/credits-v52/01-activision.png?v=52">
+        <img class="credits-mark credits-mark-luxoflux" alt="Luxoflux" decoding="async" loading="eager" src="assets/credits-v52/02-luxoflux.png?v=52">
+        <img class="credits-mark credits-mark-privacy" alt="ESRB Privacy Certified" decoding="async" loading="eager" src="assets/credits-v52/03-esrb-privacy.png?v=52">
+        <img class="credits-mark credits-mark-teen" alt="ESRB Teen rating" decoding="async" loading="eager" src="assets/credits-v52/04-esrb-teen.png?v=52">
       </div>
       <div class="credits-rights-copy">
         <p>© 2022 Activision Publishing Inc. ACTIVISION, VIGILANTE 8 and VIGILANTE 8: SECOND OFFENSE are trademarks of Activision Publishing, Inc.</p>
         <p>© 2020 Valve Corporation. Steam and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries.</p>
         <p>The rating icon is a trademark of the Entertainment Software Association. All other trademarks and trade names are the properties of their respective owners.</p>
+      </div>
+      <div class="credits-brand-footer">
+        <p class="credits-asset-credit">Website design, media, and all digital assets created and managed by <strong>AMEER_007x</strong></p>
+        <p class="credits-rights-signoff">ALL RIGHTS RESERVED <span>•</span> 2026 <span>•</span> @AMEER_007x</p>
       </div>`;
   }
 
-  applyCreditsV51();
-  document.addEventListener('DOMContentLoaded', applyCreditsV51, { once: true });
-  window.addEventListener('pageshow', applyCreditsV51);
+  applyCreditsV52();
+  document.addEventListener('DOMContentLoaded', applyCreditsV52, { once: true });
+  window.addEventListener('pageshow', applyCreditsV52);
 
 })();
