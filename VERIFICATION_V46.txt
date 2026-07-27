@@ -1,0 +1,8 @@
+V46 VERIFIED
+
+1. Tutorial master title changed to: MODES & VEHICLES UPGRADES.
+2. Desktop tutorial master title forced to a single line with responsive sizing.
+3. Driver and map progress/AUTO groups use right: 2cm and bottom: 9px on desktop.
+4. GET THE GAME icon replaced with one centred upright SVG down arrow.
+5. Previous download composition restored, including the original descriptive paragraph and original title position.
+6. Requirements remain bottom-centre but are compacted to 730px/68vw, 3 columns, tighter spacing.
