@@ -1,0 +1,27 @@
+{
+  "version": 45,
+  "driver_progress": {
+    "right": "calc(104px + 2.2vw)",
+    "bottom": "10px"
+  },
+  "map_progress": {
+    "right": "calc(104px + 2.2vw)",
+    "bottom": "10px"
+  },
+  "header_icons": "white",
+  "top_download_text": "GET THE GAME",
+  "top_download_icon": "single downward arrow",
+  "tutorial_tabs": [
+    "WEAPONS & COMPOS",
+    "MULTIPLAYER TUTORIAL",
+    "MODES & UPGRADE"
+  ],
+  "tutorial_titles": {
+    "beginner": "COMBAT TUTORIAL",
+    "advanced": "HOW TO PLAY ONLINE",
+    "master": "OFFLINE MODES & VEHICLES UPGRADES"
+  },
+  "download_requirements_count": 7,
+  "download_copy_shift": "-58px",
+  "logo_and_download_buttons_modified": false
+}
