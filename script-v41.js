@@ -306,7 +306,7 @@
       const forceNewDriverBackground = isDriverBackground && driverNumber >= 14 && driverNumber <= 31;
       const fitClass = forceNewDriverBackground || skill.fit === 'contain' ? 'is-contain' : '';
       const iconSource = forceNewDriverBackground
-        ? `assets/drivers/backgrounds-v40/${driverNumber}.png?v=40`
+        ? `assets/drivers/backgrounds-v42/${driverNumber}.png?v=42`
         : (skill.icon || 'assets/tutorial/specials.svg');
       const alt = isDriverBackground ? `${driver.name} portrait` : `${driver.specialWeapon} weapon`;
       return `
