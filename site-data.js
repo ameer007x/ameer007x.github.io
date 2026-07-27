@@ -781,7 +781,7 @@ const drivers = [
     ],
     "vehicles": [
       "assets/drivers/vehicles/24-v82-obake-a.webp",
-      "assets/drivers/vehicles/24-v82-obake-b.webp"
+      "assets/drivers/vehicles/24-v82-obake-b-replacement.png"
     ]
   },
   {
