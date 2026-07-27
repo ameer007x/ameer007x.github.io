@@ -445,8 +445,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Sheila studies at Berkeley and works toward a future in federal law enforcement after the first conflict.",
-        "icon": "assets/drivers/thumbs/14-v82-sheila.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/14.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -478,8 +479,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "After the first war, Torque’s gambling and appetite for luxury send him toward bounty hunting.",
-        "icon": "assets/drivers/thumbs/15-v82-john-torque.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/15.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -511,8 +513,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Tomey, Romey and Leilah are motorcycle stunt performers collectively known as the Flying All-Star Trio.",
-        "icon": "assets/drivers/thumbs/16-v82-flying-all-star-trio.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/16.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -544,8 +547,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "No longer the brainwashed Houston 3, she has built a life with Convoy but still carries missing memories from OMAR’s conditioning.",
-        "icon": "assets/drivers/thumbs/17-v82-houston.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/17.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -577,8 +581,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "After the first conflict, Convoy settles down, marries Houston and builds a trucking business.",
-        "icon": "assets/drivers/thumbs/18-v82-convoy.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/18.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -610,8 +615,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "A group of hippies who elevate Dave and his alien stories into a full belief system.",
-        "icon": "assets/drivers/thumbs/19-v82-daves-cultists.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/19.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -643,8 +649,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Dallas 13 is a cybernetic OMAR BioBot created in the future for Mission: Second Offense.",
-        "icon": "assets/drivers/thumbs/20-v82-dallas-13.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/20.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -676,8 +683,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Nina Loco is a weapons smuggler, former partner of Sid Burn and a highly capable organizer.",
-        "icon": "assets/drivers/thumbs/21-v82-nina-loco.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/21.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -709,8 +717,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Molo is imprisoned after the first Coyote campaign, but Lord Clyde’s forces free him and put him back in the fight.",
-        "icon": "assets/drivers/thumbs/22-v82-molo.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/22.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -742,8 +751,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Lord Clyde is the older Slick Clyde, now the powerful head of OMAR in 2017.",
-        "icon": "assets/drivers/thumbs/23-v82-lord-clyde.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/23.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -775,8 +785,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Obake is the codename of elite assassin Keiko Uzumi, trained by OMAR and driven by a hidden search for the truth.",
-        "icon": "assets/drivers/thumbs/24-v82-obake.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/24.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -808,8 +819,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Boogie is jailed after the original Coyote campaign but is freed when Nina Loco rebuilds the gang.",
-        "icon": "assets/drivers/thumbs/25-v82-boogie.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/25.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -841,8 +853,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Astronaut Bob O. escaped NASA in a stolen Moon Trekker and roams the battlefield collecting anything that looks useful.",
-        "icon": "assets/drivers/thumbs/26-v82-astronaut-bob-o.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/26.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -874,8 +887,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "The Garbage Man is a mysterious drifter who roams the Southwest gathering discarded equipment and vehicle parts.",
-        "icon": "assets/drivers/thumbs/27-v82-garbage-man.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/27.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -907,8 +921,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Agent R.",
-        "icon": "assets/drivers/thumbs/28-v82-agent-r-chase.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/28.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -940,8 +955,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "After the original conflict, Chassey becomes a Hollywood action star before her career is derailed.",
-        "icon": "assets/drivers/thumbs/29-v82-chassey-blue.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/29.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -973,8 +989,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Padre Destino is a wandering preacher and former military man obsessed with proving that the end of the world is near.",
-        "icon": "assets/drivers/thumbs/30-v82-padre-destino.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/30.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
@@ -1006,8 +1023,9 @@ const drivers = [
       {
         "title": "DRIVER BACKGROUND",
         "text": "Dusty Earth is a Zuni chief and shaman angered by the damage caused to tribal lands by the Vigilante–Coyote conflict.",
-        "icon": "assets/drivers/thumbs/31-v82-dusty-earth.webp",
-        "kind": "driver"
+        "icon": "assets/drivers/backgrounds/31.png",
+        "kind": "driver",
+        "fit": "contain"
       }
     ],
     "vehicles": [
