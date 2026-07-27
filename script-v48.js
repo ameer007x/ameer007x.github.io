@@ -1098,4 +1098,52 @@
 
   preloadAllSiteAssets();
   refreshCinematicMode();
+
+
+  // V49: force the requested Credits copy at runtime as a cache-safe fallback.
+  function applyCreditsV49() {
+    const credits = document.querySelector('#credits');
+    if (!credits) return;
+
+    const eyebrow = credits.querySelector('.credits-header .section-eyebrow');
+    const subtitle = credits.querySelector('.credits-header > p:last-child');
+    const cards = credits.querySelectorAll('.credits-grid .credit-card');
+
+    if (eyebrow) eyebrow.textContent = 'ACKNOWLEDGEMENT & RIGHTS';
+    if (subtitle) subtitle.textContent = 'This page brings the project developers and legal information.';
+
+    const requested = [
+      {
+        role: 'PROJECT CREATOR',
+        name: 'Stefan Vranjes',
+        description: 'Credit goes to him for the Unity project development and PC porting and bringing the game to life again.'
+      },
+      {
+        role: 'ASSOCIATE DEVELOPER',
+        name: 'AMEER_007x',
+        description: 'Credit goes to him for porting the original vehicles of V8, integrating TDM and LTS modes into the multiplayer system, as well as adding new features, improving the gameplay experience, and fixing bugs.'
+      },
+      {
+        role: 'ASSOCIATE DEVELOPER',
+        name: 'INFINITY',
+        description: 'Credit goes to him for fixing bugs, maintaining the online community, providing support to players, and streaming online gameplay weekly.'
+      }
+    ];
+
+    requested.forEach((entry, index) => {
+      const card = cards[index];
+      if (!card) return;
+      const role = card.querySelector('small');
+      const name = card.querySelector('h3');
+      const description = card.querySelector('p');
+      if (role) role.textContent = entry.role;
+      if (name) name.textContent = entry.name;
+      if (description) description.textContent = entry.description;
+    });
+  }
+
+  applyCreditsV49();
+  document.addEventListener('DOMContentLoaded', applyCreditsV49, { once: true });
+  window.addEventListener('pageshow', applyCreditsV49);
+
 })();
