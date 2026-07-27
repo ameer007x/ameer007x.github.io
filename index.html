@@ -7,7 +7,7 @@
 <meta content="#d1cabd" name="theme-color"/>
 <meta content="Vigilante 8: Second Offense Unity Project — new modes, legacy vehicles, custom weapons and online features." name="description"/>
 <title>Vigilante 8: Second Offense Unity Project</title>
-<link href="style-v43.css?v=43-profile-gallery" rel="stylesheet"/>
+<link href="style-v44.css?v=44-maps" rel="stylesheet"/>
 <link as="image" fetchpriority="low" href="assets/decor/download-orange-tracks.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-fire-wheel.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/news-skid-curves.png" rel="preload"/><link as="image" fetchpriority="low" href="assets/decor/tutorial-bottom-skids.png" rel="preload"/>
 <style id="v35-vehicle-label-driver-tuning">
 @media (min-width: 981px) {
@@ -145,7 +145,7 @@
 </div>
 </section><section aria-label="Map showcase" class="maps" id="maps">
 <div class="map-scene" id="mapScene">
-<img alt="Oil Fields battlefield" class="map-background" decoding="async" id="mapBackground" loading="eager" src="assets/maps/oil-fields.svg"/>
+<img alt="Oil Fields battlefield" class="map-background" decoding="async" id="mapBackground" loading="eager" src="assets/maps-v44/backgrounds/01.jpg?v=44"/>
 <div class="map-shade"></div>
 <div class="map-grain"></div>
 <div class="map-orange-world"></div>
@@ -155,7 +155,7 @@
 <div class="map-layout">
 <article class="map-info-card" id="mapInfoCard">
 <div class="map-mini-frame">
-<img alt="Oil Fields preview" decoding="async" id="mapMiniImage" loading="eager" src="assets/maps/oil-fields.svg"/>
+<img alt="Oil Fields preview" decoding="async" id="mapMiniImage" loading="eager" src="assets/maps-v44/previews/01.jpg?v=44"/>
 <span>MAP PREVIEW</span>
 </div>
 <p class="map-game" id="mapGame">VIGILANTE 8 FIRST OFFENSE</p>
@@ -180,11 +180,12 @@
 </button>
 </aside>
 </div>
-<div class="map-progress">
+<div class="map-progress" id="mapProgress">
 <span id="mapIndex">01</span>
-<i><b id="mapAutoTimer"></b></i>
+<i aria-hidden="true"><b id="mapAutoTimer"></b></i>
 <span id="mapTotal">19</span>
-<small>AUTO 7 SEC</small>
+<button aria-label="Turn automatic map changes off" aria-pressed="true" class="driver-auto-toggle is-on" id="mapAutoToggle" title="Automatic map changes: on" type="button"><span class="auto-toggle-led" aria-hidden="true"></span><span id="mapAutoText">AUTO ON</span></button>
+<small id="mapAutoDelay">15 SEC</small>
 </div>
 </div>
 </section>
@@ -274,7 +275,7 @@
 <div class="profile-info-panel"><p class="driver-kicker" id="modalKicker">DRIVER PROFILE</p><h2 id="profileTitle"></h2><h3 id="modalVehicle"></h3><p class="modal-special" id="modalSpecial"></p><p id="modalDescription"></p></div>
 </div>
 </div>
-<script src="site-data-v40.js?v=43-profile-gallery"></script>
-<script src="script-v43.js?v=43-profile-gallery"></script>
+<script src="site-data-v44.js?v=44-maps"></script>
+<script src="script-v44.js?v=44-maps"></script>
 </body>
 </html>
