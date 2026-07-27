@@ -1,6 +1,0 @@
-V48 verified credits update:
-- Eyebrow: ACKNOWLEDGEMENT & RIGHTS
-- Subtitle: This page brings the project developers and legal information.
-- Card 01: PROJECT CREATOR / Stefan Vranjes
-- Card 02: ASSOCIATE DEVELOPER / AMEER_007x
-- Card 03: ASSOCIATE DEVELOPER / INFINITY

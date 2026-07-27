@@ -1,9 +1,0 @@
-V47 verification
-
-- Driver and map progress/AUTO groups moved farther right: desktop right = 1cm.
-- Tutorial master title remains “MODES & VEHICLES UPGRADES”.
-- Master tutorial title uses the same base font size as sibling tutorial titles and stays on one line via horizontal compression.
-- Home hero text replaced with the requested project description.
-- Download subtitle replaced with professional no-installation instructions.
-- Download area now contains 4 links total: 1 primary + 3 mirror links.
-- Mirror links are arranged in an equal three-column grid on desktop.
