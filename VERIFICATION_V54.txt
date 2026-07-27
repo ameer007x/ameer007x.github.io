@@ -1,0 +1,10 @@
+V54 VERIFIED
+
+SOCIAL changes:
+- AMEER_007x role changed from PROJECT DEVELOPER to ASSOCIATE DEVELOPER in index.html and the JavaScript fallback.
+- Social cards increased to min-height 338px.
+- Description text increased to 0.86rem with 1.52 line-height.
+- Contact buttons increased to 57px minimum height.
+- Contact icon boxes increased to 42x42px; SVG icons to 25x25px.
+- Contact labels increased to 0.57rem; link values to 0.82rem.
+- Responsive short-screen/mobile values were also increased while preserving fit.
