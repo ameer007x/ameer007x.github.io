@@ -42,6 +42,40 @@
   /* --------------------------------------------------------------------------
      News & Features cinematic carousel
   -------------------------------------------------------------------------- */
+  const teamModesUpdateInformation = `
+    <h3>VIGILANTE 8 Online Multiplayer Update – New Features &amp; Improvements</h3>
+
+    <p>I’m excited to share the latest updates and improvements added to the game, focused on making the online multiplayer experience more organized, competitive, and enjoyable.</p>
+
+    <h4>✅ New Features &amp; Improvements:</h4>
+
+    <ul>
+      <li>Added a fully developed Team Deathmatch mode and Last Team Standing with a clear team-based system during matches without deleting the FREE FOR ALL mode.</li>
+      <li>Added team selection in the lobby, allowing players to choose their teams before the match begins.</li>
+      <li>Added a Random Teams option to automatically and fairly distribute players between teams.</li>
+      <li>Added support for 4 Teams, allowing more varied match setups such as 2v2v2v2.</li>
+      <li>Improved team colors across the game, including the radar, player UI, HUD elements, and results screen.</li>
+      <li>Improved targeting and lock-on logic so teammates are no longer targeted, allowing players to focus only on enemies.</li>
+      <li>Disabled Friendly Fire between teammates while keeping enemy damage working normally.</li>
+      <li>Improved the lobby interface, making match options clearer and easier to use.</li>
+      <li>Added new match options, including game mode selection, number of teams, and team distribution settings.</li>
+      <li>Improved the post-match statistics and results screen, with better display of teams, scores, kills, and deaths.</li>
+      <li>Improved in-game player information display, including team-colored UI elements and HUD improvements.</li>
+      <li>Improved the overall multiplayer experience, especially in distinguishing teammates from enemies during combat.</li>
+      <li>Fixed the specter mode issue when players shifting between others players.</li>
+      <li>Fixed nina special weapon ability.</li>
+      <li>Add camera control for the keyboard.</li>
+      <li>And a lot of new features added you gonna find out your self.</li>
+    </ul>
+
+    <p>These updates clear team-based system during are an important step forward in improving the online experience. Development is still ongoing, with more work planned for game modes, balancing, UI improvements, and overall polish.</p>
+
+    <p>Thank you all for watching. Your feedback, ideas, and suggestions are always highly appreciated.</p>
+
+    <p>Vigilante 8 is still evolving… more updates are coming soon.</p>
+
+    <p>youtube link: <a href="https://www.youtube.com/watch?v=bKZzpjuAMFU" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=bKZzpjuAMFU</a></p>`;
+
   const newsCollections = {
     news: [
       {
@@ -55,7 +89,14 @@
       { image: 'assets/news/special-weapons.svg', eyebrow: 'PROJECT NEWS', title: 'Development report: the legacy arsenal expands', date: '2026.07.25' }
     ],
     update: [
-      { image: 'assets/news/team-battle.svg', eyebrow: 'NEW UPDATE', title: 'Team modes, lobby systems and online improvements', date: '2026.07.25' },
+      {
+        poster: 'assets/news/team-modes-update-cover.jpg',
+        video: 'assets/news/team-modes-update.mp4',
+        eyebrow: 'NEW UPDATE',
+        title: 'NEW UPDATE: Team modes, threats warning, online improvements and so much features!',
+        date: '2026.07.28',
+        infoHtml: teamModesUpdateInformation
+      },
       { image: 'assets/news/legacy-arrives.svg', eyebrow: 'NEW UPDATE', title: 'Vehicle balance and survival progression refined', date: '2026.07.25' },
       { image: 'assets/news/special-weapons.svg', eyebrow: 'NEW UPDATE', title: 'Interface, audio and stability pass now in testing', date: '2026.07.25' }
     ],
@@ -73,6 +114,60 @@
   let activeNewsFilter = 'news';
   let activeNewsIndex = 0;
   const newsIndexes = { news: 0, update: 0, feature: 0 };
+
+  const informationModal = q('#informationModal');
+  const informationPanel = q('#informationPanel');
+  const informationClose = q('#informationClose');
+  const informationKicker = q('#informationKicker');
+  const informationTitle = q('#informationTitle');
+  const informationBody = q('#informationBody');
+  const informationBackdrop = q('#informationBackdrop');
+  let informationReturnFocus = null;
+
+  function escapeInformationText(value) {
+    return String(value || '').replace(/[&<>'"]/g, character => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    })[character]);
+  }
+
+  function defaultInformationHtml(item) {
+    return `<p>More information about <strong>${escapeInformationText(item?.title || 'this item')}</strong> will be added here.</p>`;
+  }
+
+  function openInformationModal(item, kicker = 'MORE INFORMATION', trigger = null) {
+    if (!informationModal || !informationPanel || !item) return;
+    informationReturnFocus = trigger || document.activeElement;
+    const visual = item.poster || item.image || '';
+    if (informationKicker) informationKicker.textContent = kicker;
+    if (informationTitle) informationTitle.textContent = item.title || 'More information';
+    if (informationBody) informationBody.innerHTML = item.infoHtml || defaultInformationHtml(item);
+    if (informationBackdrop) {
+      informationBackdrop.style.backgroundImage = visual ? `url("${visual}")` : '';
+      informationBackdrop.classList.toggle('has-image', Boolean(visual));
+    }
+    informationModal.classList.add('is-open');
+    informationModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('information-modal-open');
+    requestAnimationFrame(() => informationClose?.focus());
+  }
+
+  function closeInformationModal() {
+    if (!informationModal?.classList.contains('is-open')) return;
+    informationModal.classList.remove('is-open');
+    informationModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('information-modal-open');
+    const returnTarget = informationReturnFocus;
+    informationReturnFocus = null;
+    if (returnTarget && typeof returnTarget.focus === 'function') returnTarget.focus();
+  }
+
+  informationClose?.addEventListener('click', closeInformationModal);
+  informationModal?.addEventListener('click', event => {
+    if (event.target === informationModal) closeInformationModal();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && informationModal?.classList.contains('is-open')) closeInformationModal();
+  });
 
   function getNewsRelativePosition(index, current, total) {
     if (index === current) return 0;
@@ -132,6 +227,9 @@
             <h3>${item.title}</h3>
             <time>${item.date}</time>
           </div>
+          <div class="news-more-row">
+            <button type="button" class="more-information-button" data-news-more="${index}">MORE INFORMATION</button>
+          </div>
         </article>`;
     }).join('');
 
@@ -168,6 +266,18 @@
           return;
         }
         if (event.target.closest('video')) return;
+      });
+    });
+
+    qa('[data-news-more]', newsTrack).forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        const itemIndex = Number(button.dataset.newsMore);
+        const item = collection[itemIndex];
+        if (!item) return;
+        qa('video', newsTrack).forEach(video => video.pause());
+        openInformationModal(item, item.eyebrow || 'MORE INFORMATION', button);
       });
     });
 
@@ -792,12 +902,25 @@
     if (!tutorialGrid) return;
     if (tutorialTitle) tutorialTitle.textContent = tutorialTitles[level] || tutorialTitles.beginner;
     if (tutorialSection) tutorialSection.dataset.tutorialLevel = level;
-    tutorialGrid.innerHTML = data.tutorial[level].map((item, index) => `
+    const collection = data.tutorial[level] || [];
+    tutorialGrid.innerHTML = collection.map((item, index) => `
       <article class="tutorial-card" style="animation-delay:${index * 0.07}s">
-        <img src="${item.image}" alt="${item.title}" loading="eager" decoding="async">
-        <h3>${item.title}</h3>
+        <div class="tutorial-card-media">
+          <img src="${item.image}" alt="${item.title}" loading="eager" decoding="async">
+          <h3>${item.title}</h3>
+        </div>
+        <div class="tutorial-more-row">
+          <button type="button" class="more-information-button" data-tutorial-more="${index}">MORE INFORMATION</button>
+        </div>
       </article>
     `).join('');
+
+    qa('[data-tutorial-more]', tutorialGrid).forEach(button => {
+      button.addEventListener('click', () => {
+        const item = collection[Number(button.dataset.tutorialMore)];
+        if (item) openInformationModal(item, tutorialTitles[level] || 'COMBAT TUTORIAL', button);
+      });
+    });
   }
 
   qa('[data-tutorial]').forEach(button => button.addEventListener('click', () => {

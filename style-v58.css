@@ -5736,3 +5736,396 @@ body.scene-engine-ready .social.scene-entering .social-card:nth-child(3) { anima
   animation: none !important;
   transform: none !important;
 }
+
+/* ========================================================================== 
+   V59 — MORE INFORMATION PANELS + NEW UPDATE VIDEO
+   ========================================================================== */
+
+.news-showcase {
+  height: clamp(520px, 66vh, 650px);
+}
+
+.news-slide {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-more-row,
+.tutorial-more-row {
+  position: relative;
+  z-index: 7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 18px 15px;
+  background:
+    linear-gradient(90deg, rgba(255,77,16,.13), transparent 24% 76%, rgba(255,177,20,.12)),
+    linear-gradient(180deg, #171513, #0d0d0d);
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.more-information-button {
+  position: relative;
+  min-width: 210px;
+  min-height: 42px;
+  padding: 11px 28px 10px;
+  border: 1px solid rgba(255,197,50,.72);
+  color: #111;
+  background: linear-gradient(110deg, #ffd629 0%, #ff9c12 62%, #ff5b12 100%);
+  clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.72);
+  font: 950 .72rem/1 Arial,sans-serif;
+  letter-spacing: 1.7px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+
+.more-information-button::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 5px;
+  height: 2px;
+  background: rgba(20,15,8,.5);
+  transform: scaleX(.36);
+  transform-origin: center;
+  transition: transform .18s ease;
+}
+
+.more-information-button:hover,
+.more-information-button:focus-visible {
+  transform: translateY(-2px);
+  filter: saturate(1.12) brightness(1.04);
+  box-shadow: 0 14px 30px rgba(0,0,0,.42), 0 0 24px rgba(255,141,16,.22);
+  outline: none;
+}
+
+.more-information-button:hover::after,
+.more-information-button:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.news-slide.is-prev .news-more-row,
+.news-slide.is-next .news-more-row {
+  opacity: .88;
+}
+
+.news-slide.is-far-left .more-information-button,
+.news-slide.is-far-right .more-information-button {
+  pointer-events: none;
+}
+
+.tutorial-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tutorial-card-media {
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.tutorial-card-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.tutorial-card-media h3 {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 58px 18px 15px;
+  color: #fff;
+  background: linear-gradient(transparent,rgba(0,0,0,.9));
+  font-family: Impact,"Arial Narrow Bold",sans-serif;
+  letter-spacing: .8px;
+}
+
+.tutorial-more-row {
+  flex: 0 0 auto;
+  padding: 13px 15px 16px;
+}
+
+.tutorial-more-row .more-information-button {
+  width: min(245px, 92%);
+}
+
+body.information-modal-open {
+  overflow: hidden;
+}
+
+.information-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2600;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2,5,8,.9);
+  backdrop-filter: blur(12px) saturate(.8);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .24s ease, visibility .24s ease;
+}
+
+.information-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.information-panel {
+  --information-accent: #ff9e16;
+  position: relative;
+  width: min(1040px, 96vw);
+  height: min(92vh, 900px);
+  max-height: min(92vh, 900px);
+  display: grid;
+  grid-template-rows: minmax(230px, 30vh) minmax(0,1fr);
+  overflow: hidden;
+  color: #f5f1ea;
+  background:
+    linear-gradient(115deg, rgba(255,92,18,.08), transparent 42%),
+    #0d1115;
+  border: 1px solid rgba(255,177,35,.65);
+  clip-path: polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);
+  box-shadow: 0 38px 110px rgba(0,0,0,.78), inset 0 1px 0 rgba(255,255,255,.16);
+  transform: translateY(22px) scale(.975);
+  transition: transform .3s cubic-bezier(.16,.84,.2,1);
+  isolation: isolate;
+}
+
+.information-modal.is-open .information-panel {
+  transform: translateY(0) scale(1);
+}
+
+.information-panel::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+  border-top: 5px solid #ff5a13;
+  background:
+    linear-gradient(115deg, transparent 0 71%, rgba(255,165,18,.09) 71.2% 76%, transparent 76.2%),
+    repeating-linear-gradient(120deg, transparent 0 74px, rgba(255,255,255,.025) 74px 76px);
+}
+
+.information-backdrop {
+  position: relative;
+  grid-row: 1;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.information-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5,8,11,.18), rgba(5,8,11,.45)),
+    linear-gradient(180deg, rgba(5,8,11,.08) 0%, rgba(5,8,11,.2) 48%, #0d1115 100%);
+}
+
+.information-backdrop::after {
+  content: "";
+  position: absolute;
+  right: 7%;
+  top: -35%;
+  width: 125px;
+  height: 180%;
+  transform: rotate(24deg);
+  background: linear-gradient(180deg, rgba(255,210,33,.72), rgba(255,76,15,.38));
+  opacity: .32;
+  box-shadow: 0 0 0 18px rgba(0,0,0,.22);
+}
+
+.information-heading {
+  position: absolute;
+  z-index: 7;
+  left: clamp(24px,5vw,58px);
+  right: clamp(64px,8vw,96px);
+  top: clamp(42px,8vh,88px);
+  color: #fff;
+  text-shadow: 0 4px 18px rgba(0,0,0,.75);
+}
+
+.information-kicker {
+  margin: 0 0 10px;
+  color: #ffc224;
+  font: 950 .72rem/1 Arial,sans-serif;
+  letter-spacing: 2.4px;
+}
+
+.information-heading h2 {
+  max-width: 900px;
+  margin: 0;
+  color: #fff;
+  font-family: Impact,"Arial Narrow Bold",sans-serif;
+  font-size: clamp(2rem,4vw,4.25rem);
+  line-height: .95;
+  letter-spacing: .8px;
+}
+
+.information-close {
+  position: absolute;
+  z-index: 12;
+  top: 16px;
+  right: 17px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255,211,76,.72);
+  color: #fff;
+  background: rgba(8,12,16,.84);
+  box-shadow: 0 12px 26px rgba(0,0,0,.36);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease;
+}
+
+.information-close:hover,
+.information-close:focus-visible {
+  transform: rotate(5deg) scale(1.04);
+  background: #e84912;
+  outline: none;
+}
+
+.information-scroll {
+  position: relative;
+  z-index: 6;
+  grid-row: 2;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(28px,4vw,46px) clamp(25px,5vw,62px) clamp(38px,5vw,62px);
+  scrollbar-width: thin;
+  scrollbar-color: #ff9f17 #171b1f;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255,127,14,.13), transparent 30%),
+    linear-gradient(180deg,#0d1115,#080b0e);
+  font-size: clamp(.97rem,1.25vw,1.08rem);
+  line-height: 1.78;
+}
+
+.information-scroll::-webkit-scrollbar { width: 10px; }
+.information-scroll::-webkit-scrollbar-track { background: #171b1f; }
+.information-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(#ffc425,#ff5a12);
+  border: 2px solid #171b1f;
+}
+
+.information-scroll h3 {
+  margin: 0 0 20px;
+  color: #fff;
+  font-family: Impact,"Arial Narrow Bold",sans-serif;
+  font-size: clamp(1.75rem,3vw,2.8rem);
+  line-height: 1.02;
+  letter-spacing: .7px;
+}
+
+.information-scroll h4 {
+  margin: 26px 0 14px;
+  color: #ffc224;
+  font-size: 1.05rem;
+  letter-spacing: .3px;
+}
+
+.information-scroll p {
+  margin: 0 0 20px;
+  color: #dce1e4;
+}
+
+.information-scroll ul {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.information-scroll li {
+  position: relative;
+  margin: 0;
+  padding: 13px 16px 13px 36px;
+  color: #eef1f2;
+  background: linear-gradient(90deg, rgba(255,141,17,.11), rgba(255,255,255,.025));
+  border-left: 3px solid #ff9c16;
+}
+
+.information-scroll li::before {
+  content: "•";
+  position: absolute;
+  left: 17px;
+  top: 11px;
+  color: #ffc224;
+  font-size: 1.2rem;
+}
+
+.information-scroll a {
+  color: #ffc224;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 820px) {
+  .news-showcase { height: clamp(500px, 70vh, 620px); }
+  .news-more-row { padding: 10px 12px 13px; }
+  .more-information-button { min-width: 188px; padding-inline: 18px; letter-spacing: 1.25px; }
+
+  .information-modal { padding: 10px; }
+  .information-panel {
+    width: 100%;
+    height: 96vh;
+    max-height: 96vh;
+    grid-template-rows: minmax(190px, 27vh) minmax(0,1fr);
+    clip-path: polygon(13px 0,100% 0,100% calc(100% - 13px),calc(100% - 13px) 100%,0 100%,0 13px);
+  }
+  .information-heading { left: 22px; right: 62px; top: 48px; }
+  .information-heading h2 { font-size: clamp(1.75rem,8vw,3rem); }
+  .information-scroll { padding: 26px 22px 42px; font-size: .98rem; }
+  .information-close { top: 10px; right: 10px; width: 42px; height: 42px; }
+}
+
+@media (max-width: 560px) {
+  .news-showcase { height: 555px; }
+  .news-slide-caption { min-height: 92px; }
+  .news-slide-caption h3 { font-size: 1.05rem; line-height: 1.05; }
+  .news-more-row { padding-bottom: 12px; }
+  .more-information-button { min-height: 40px; font-size: .65rem; }
+
+  .tutorial-card-media h3 { padding-top: 48px; font-size: 1.05rem; }
+  .tutorial-more-row { padding: 11px 10px 14px; }
+
+  .information-panel { grid-template-rows: 185px minmax(0,1fr); }
+  .information-kicker { font-size: .62rem; letter-spacing: 1.8px; }
+  .information-heading { top: 52px; }
+  .information-scroll li { padding-left: 30px; }
+  .information-scroll li::before { left: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .information-panel,
+  .more-information-button,
+  .information-close {
+    transition: none !important;
+  }
+}
