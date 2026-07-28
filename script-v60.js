@@ -42,6 +42,31 @@
   /* --------------------------------------------------------------------------
      News & Features cinematic carousel
   -------------------------------------------------------------------------- */
+  const originalVehiclesInformation = `
+    <p>In this trailer, i will showcase an epic crossover bringing back the ultimate nostalgia ❤️‍🔥<br>
+    I've ported all your favorite classic cars from the original Vigilante 8 and made them fully playable inside the Vigilante 8: 2nd Offense engine!</p>
+
+    <p>The ultimate V8 crossover project SOON! 🛠️💣<br>
+    Ever imagined playing as the original Vigilante 8 characters in 2nd Offense arenas? Now it's a reality!</p>
+
+    <p>Get ready to cause massive destruction with the OG roster in V8 2nd arenas! 🛞💣</p>
+
+    <p>📌 What to expect in this video:</p>
+    <ul>
+      <li>Showcase for the OG vehicles in the survival mode and arcade mode lobby.</li>
+      <li>I made the OG vehicles can be upgraded to be fair stats between the 2nd vehicles and but without visual parts 🛠️</li>
+    </ul>
+
+    <p>There’s more coming<br>
+    New features and more so stay tuned ⏳</p>`;
+
+  const originalHudInformation = `
+    <p><strong>Adding the original HUD to the game</strong></p>
+
+    <p>This video shows the classic PlayStation 1 HUD being added to the Unity project, including the original weapon display, health information, radar, and familiar combat interface from the first Vigilante 8.</p>
+
+    <p>The goal is to preserve the original game feeling while keeping the HUD clear and functional with the current gameplay systems.</p>`;
+
   const teamModesUpdateInformation = `
     <h3>VIGILANTE 8 Online Multiplayer Update – New Features &amp; Improvements</h3>
 
@@ -83,7 +108,16 @@
         video: 'assets/news/original-v8-vehicles.mp4',
         eyebrow: 'PROJECT NEWS',
         title: 'Original Vigilante 8 vehicles join the game soon with upgrade system!',
-        date: '2026.07.28'
+        date: '2026.07.28',
+        infoHtml: originalVehiclesInformation
+      },
+      {
+        poster: 'assets/news/original-hud-showcase-cover.jpg',
+        video: 'assets/news/original-hud-showcase.mp4',
+        eyebrow: 'PROJECT NEWS',
+        title: 'Adding the original HUD to the game',
+        date: '2026.07.28',
+        infoHtml: originalHudInformation
       },
       { image: 'assets/news/team-battle.svg', eyebrow: 'PROJECT NEWS', title: 'Online road wars enter a new testing phase', date: '2026.07.25' },
       { image: 'assets/news/special-weapons.svg', eyebrow: 'PROJECT NEWS', title: 'Development report: the legacy arsenal expands', date: '2026.07.25' }
