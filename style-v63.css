@@ -5834,9 +5834,10 @@ body.scene-engine-ready .social.scene-entering .social-card:nth-child(3) { anima
 
 .tutorial-card-media img {
   width: 100%;
-  height: auto;
+  height: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 

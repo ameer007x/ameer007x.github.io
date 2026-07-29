@@ -1575,39 +1575,39 @@ window.V8_SITE_DATA = {
   "beginner": [
     {
       "title": "Movement",
-      "image": "assets/tutorial/movement.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     },
     {
       "title": "Weapons",
-      "image": "assets/tutorial/weapons.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     },
     {
       "title": "Lock-On",
-      "image": "assets/tutorial/lock-on.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     }
   ],
   "advanced": [
     {
       "title": "Team Play",
-      "image": "assets/tutorial/team-play.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     },
     {
       "title": "Special Weapons",
-      "image": "assets/tutorial/specials.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     },
     {
       "title": "Survival",
-      "image": "assets/tutorial/survival.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     }
   ],
   "master": [
     {
       "title": "Upgrades",
-      "image": "assets/tutorial/upgrades.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     },
     {
       "title": "Combat Tips",
-      "image": "assets/tutorial/combat-tips.svg"
+      "image": "assets/tutorial/tutorials-battle-background.png"
     }
   ]
 }

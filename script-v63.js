@@ -42,6 +42,15 @@
   /* --------------------------------------------------------------------------
      News & Updates cinematic carousel
   -------------------------------------------------------------------------- */
+  const ultimateNostalgiaInformation = `
+    <p>I am bringing the iconic cars from the original Vigilante 8 straight into the Vigilante 8: 2nd Offense engine!</p>
+
+    <p>The ultimate V8 crossover project is coming SOON! 🛠️💥</p>
+
+    <p>Ever wanted to drive the original OG roster inside 2nd Offense arenas? Now you can experience total vehicular mayhem with classic favorites!</p>
+
+    <p><strong>Ported and Developed by: Ameer_007x</strong></p>`;
+
   const originalVehiclesInformation = `
     <p>In this trailer, i will showcase an epic crossover bringing back the ultimate nostalgia ❤️‍🔥<br>
     I've ported all your favorite classic cars from the original Vigilante 8 and made them fully playable inside the Vigilante 8: 2nd Offense engine!</p>
@@ -115,6 +124,13 @@
 
   const newsCollections = {
     news: [
+      {
+        video: 'assets/news/ultimate-nostalgia-trip.mp4',
+        eyebrow: 'PROJECT NEWS',
+        title: 'get ready for the ultimate nostalgia trip!',
+        date: '2026.07.29',
+        infoHtml: ultimateNostalgiaInformation
+      },
       {
         poster: 'assets/news/original-v8-vehicles-cover.jpg',
         video: 'assets/news/original-v8-vehicles.mp4',
