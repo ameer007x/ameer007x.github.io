@@ -67,6 +67,18 @@
 
     <p>The goal is to preserve the original game feeling while keeping the HUD clear and functional with the current gameplay systems.</p>`;
 
+  const newWeaponSlotsInformation = `
+    <p>A showcase of the updated weapon slot interface, featuring full arsenal visibility and instant switching for a smoother gameplay experience.</p>
+
+    <h4>Key Features:</h4>
+
+    <ul>
+      <li>Full 3-slot inventory visibility.</li>
+      <li>Real-time item count indicators</li>
+      <li>Instant and seamless weapon switching.</li>
+      <li>Enhanced Ul visibility and design.</li>
+    </ul>`;
+
   const teamModesUpdateInformation = `
     <h3>VIGILANTE 8 Online Multiplayer Update – New Features &amp; Improvements</h3>
 
@@ -118,6 +130,14 @@
         title: 'Adding the original HUD to the game',
         date: '2026.07.28',
         infoHtml: originalHudInformation
+      },
+      {
+        poster: 'assets/news/new-weapon-slots-cover.jpg',
+        video: 'assets/news/new-weapon-slots.mp4',
+        eyebrow: 'PROJECT NEWS',
+        title: 'The new weapon Slots! Coming soon….',
+        date: '2026.07.29',
+        infoHtml: newWeaponSlotsInformation
       },
       { image: 'assets/news/team-battle.svg', eyebrow: 'PROJECT NEWS', title: 'Online road wars enter a new testing phase', date: '2026.07.25' },
       { image: 'assets/news/special-weapons.svg', eyebrow: 'PROJECT NEWS', title: 'Development report: the legacy arsenal expands', date: '2026.07.25' }
