@@ -3999,8 +3999,13 @@ body.scene-engine-ready.all-ambient-animations .scene-section:not(.scene-active)
 }
 .news-shot-frame video:fullscreen,
 .news-shot-frame video:-webkit-full-screen {
-  object-fit: contain;
-  background: #000;
+  object-fit: contain !important;
+  background: #000 !important;
+}
+.news-media:fullscreen,
+.news-media:-webkit-full-screen {
+  object-fit: contain !important;
+  background: #000 !important;
 }
 .news-slide.has-video .news-shot-frame {
   background:
