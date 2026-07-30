@@ -1447,7 +1447,7 @@
       {
         role: 'PROJECT CREATOR',
         name: 'Stefan Vranjes',
-        description: 'Credit goes to him for the Unity project development and PC porting and bringing the game to life again.'
+        description: 'All credit goes to him for the Unity project development and PC porting and bringing the game to life again.'
       },
       {
         role: 'ASSOCIATE DEVELOPER',
