@@ -88,6 +88,22 @@
 
     <p>The goal is to preserve the original game feeling while keeping the HUD clear and functional with the current gameplay systems.</p>`;
 
+  const combatShowcaseInformation = `
+    <p><strong>Combat Showcase – Vigilante 8: Second Offense</strong></p>
+
+    <p>A full combat showcase featuring the classic school bus <em>Molo</em> and its upgraded 2nd Offense variant in an intense head-to-head duel across the desert battlefield.</p>
+
+    <p>Watch both the OG vehicle and the 2nd vehicle face off in real gameplay action, demonstrating the destructive potential, handling differences, and special weapon interactions in this exciting showcase.</p>
+
+    <p>The video highlights:
+    <ul>
+      <li>OG Vehicle: The Classic Molo school bus in action.</li>
+      <li>2nd Vehicle: Molo upgraded variant with enhanced combat capability.</li>
+      <li>Live combat footage with explosions, special weapons, and vehicular destruction.</li>
+    </ul></p>
+
+    <p><a href="https://youtu.be/yXXAi27gjpc?si=fWdbXRFQ-X69KdUl" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></p>`;
+
   const newWeaponSlotsInformation = `
     <p>A showcase of the updated weapon slot interface, featuring full arsenal visibility and instant switching for a smoother gameplay experience.</p>
 
@@ -142,6 +158,14 @@
         title: 'Important Announcement, read it first…',
         date: '2026.07.30',
         infoHtml: importantAnnouncementInformation
+      },
+      {
+        poster: 'assets/news/combat-showcase-vigilante8-cover.jpg',
+        youtubeId: 'yXXAi27gjpc',
+        eyebrow: 'PROJECT NEWS',
+        title: 'Combat Showcase – Vigilante 8: Molo vs Molo!',
+        date: '2026.07.30',
+        infoHtml: combatShowcaseInformation
       },
       {
         poster: 'assets/news/loading-menu-faster-cover.jpg',
@@ -300,7 +324,14 @@
       else if (relative === 1) positionClass = 'is-next';
       else if (relative < -1) positionClass = 'is-far-left';
 
-      const mediaMarkup = item.video
+      const mediaMarkup = item.youtubeId
+        ? `<div class="news-youtube-wrap" data-ytid="${item.youtubeId}">
+             <img src="${item.poster || `https://img.youtube.com/vi/${item.youtubeId}/maxresdefault.jpg`}" alt="${item.title}" class="news-media news-youtube-thumb" decoding="async">
+             <button class="news-youtube-play" aria-label="Play video on YouTube" type="button">
+               <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg"><path class="yt-play-bg" d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56 0 34 0 34 0S12 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C12 48 34 48 34 48s22 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z"/><path class="yt-play-arrow" d="M45 24 27 14v20z"/></svg>
+             </button>
+           </div>`
+        : item.video
         ? `<video class="news-media" ${relative === 0 ? 'controls' : ''} preload="metadata" playsinline poster="${item.poster || ''}">
              <source src="${item.video}" type="video/mp4">
            </video>`
@@ -348,6 +379,28 @@
         syncPlayingState();
       }
 
+      // YouTube click-to-load handler
+      const ytWrap = q('.news-youtube-wrap', slide);
+      const ytPlayBtn = q('.news-youtube-play', slide);
+      if (ytWrap && ytPlayBtn) {
+        ytPlayBtn.addEventListener('click', event => {
+          event.stopPropagation();
+          const ytId = ytWrap.dataset.ytid;
+          if (!ytId) return;
+          const iframe = document.createElement('iframe');
+          iframe.className = 'news-media news-youtube-iframe';
+          iframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          iframe.title = 'YouTube video player';
+          ytWrap.innerHTML = '';
+          ytWrap.appendChild(iframe);
+          const sheen = q('.news-shot-sheen', slide);
+          if (sheen) { sheen.hidden = true; sheen.style.display = 'none'; }
+          slide.classList.add('is-video-playing');
+        });
+      }
+
       slide.addEventListener('click', event => {
         const index = Number(slide.dataset.newsIndex);
         if (!Number.isFinite(index)) return;
@@ -356,6 +409,7 @@
           return;
         }
         if (event.target.closest('video')) return;
+        if (event.target.closest('.news-youtube-wrap')) return;
       });
     });
 
