@@ -91,15 +91,15 @@
   const combatShowcaseInformation = `
     <p><strong>Combat Showcase – Vigilante 8: Second Offense</strong></p>
 
-    <p>A full combat showcase featuring the classic school bus <em>Molo</em> and its upgraded 2nd Offense variant in an intense head-to-head duel across the desert battlefield.</p>
+    <p>In this video, I showcase combat matchup between the Original Vehicles and the 2nd Vehicles.</p>
 
-    <p>Watch both the OG vehicle and the 2nd vehicle face off in real gameplay action, demonstrating the destructive potential, handling differences, and special weapon interactions in this exciting showcase.</p>
+    <p>Experience and showcasing classic vehicular combat action, special weapons, retro nostalgia in high quality and iconic voices.</p>
 
     <p>The video highlights:
     <ul>
-      <li>OG Vehicle: The Classic Molo school bus in action.</li>
-      <li>2nd Vehicle: Molo upgraded variant with enhanced combat capability.</li>
-      <li>Live combat footage with explosions, special weapons, and vehicular destruction.</li>
+      <li>All the Original special weapons in action.</li>
+      <li>retro nostalgia in high quality.</li>
+      <li>iconic voices of the old vehicles.</li>
     </ul></p>
 
     <p><a href="https://youtu.be/yXXAi27gjpc?si=fWdbXRFQ-X69KdUl" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></p>`;
@@ -163,7 +163,7 @@
         poster: 'assets/news/combat-showcase-vigilante8-cover.jpg',
         youtubeId: 'yXXAi27gjpc',
         eyebrow: 'PROJECT NEWS',
-        title: 'Combat Showcase – Vigilante 8: Molo vs Molo!',
+          title: 'Gameplay Showcase the original vehicles vs 2nd vehicles!',
         date: '2026.07.30',
         infoHtml: combatShowcaseInformation
       },
