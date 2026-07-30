@@ -1484,7 +1484,7 @@
       {
         role: 'ASSOCIATE DEVELOPER',
         name: 'INFINITY',
-        description: 'Credit goes to him for fixing bugs, maintaining the online community, providing support to players, and streaming online gameplay weekly.'
+        description: 'Credit goes to him for fixing bugs, maintaining the online game server, covering the multiplayer server hosting costs, providing player support, and streaming gameplay weekly.'
       }
     ];
 
