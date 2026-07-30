@@ -3997,6 +3997,11 @@ body.scene-engine-ready.all-ambient-animations .scene-section:not(.scene-active)
   object-fit: cover;
   background: #050607;
 }
+.news-shot-frame video:fullscreen,
+.news-shot-frame video:-webkit-full-screen {
+  object-fit: contain;
+  background: #000;
+}
 .news-slide.has-video .news-shot-frame {
   background:
     radial-gradient(circle at top,#21354d 0%,#111822 48%,#090c10 100%);

@@ -51,6 +51,18 @@
 
     <p><strong>Ported and Developed by: Ameer_007x</strong></p>`;
 
+  const importantAnnouncementInformation = `
+    <p>I would like to clarify a few things regarding the original base project. Neither I nor anybody created the core Unity project. All credit, effort, and ownership of the original foundation belong to the original developer, Stephen. I want to express my sincere gratitude and appreciation to him for creating this masterpiece and bringing a forgotten game back to life. His contributions are fully recognized and credited in the Credits section.</p>
+
+    <p>As for the additions made after the original developer departed, those are entirely my work. This includes integrating classic vehicles from the original game, adding TDM and LTS game modes, alongside several major improvements and features that the community has long wished for. All this hard work was done solely to make the project better and more enjoyable for everyone—a simple word of thanks is more than enough.</p>
+
+    <p>If anyone has an issue with the features I have added, please keep in mind that unless you are the original developer, you have no say in the matter. Let’s put an end to the hypocrisy and let the players enjoy this amazing project. If you have a legitimate issue or any question, feel free to message me directly for a mature, professional discussion. We are developers, not children.</p>
+
+    <p><strong>Thank you,<br>Ameer</strong></p>`;
+
+  const loadingMenuInformation = `
+    <p>This video showcases a faster loading menu experience, reducing the time between launching the game and getting into the action.</p>`;
+
   const originalVehiclesInformation = `
     <p>In this trailer, i will showcase an epic crossover bringing back the ultimate nostalgia ❤️‍🔥<br>
     I've ported all your favorite classic cars from the original Vigilante 8 and made them fully playable inside the Vigilante 8: 2nd Offense engine!</p>
@@ -124,6 +136,21 @@
 
   const newsCollections = {
     news: [
+      {
+        image: 'assets/news/important-announcement.png',
+        eyebrow: 'IMPORTANT ANNOUNCEMENT',
+        title: 'Important Announcement, read it first…',
+        date: '2026.07.30',
+        infoHtml: importantAnnouncementInformation
+      },
+      {
+        poster: 'assets/news/loading-menu-faster-cover.jpg',
+        video: 'assets/news/loading-menu-faster.mp4',
+        eyebrow: 'PROJECT NEWS',
+        title: 'Making the Loading menu much faster!',
+        date: '2026.07.30',
+        infoHtml: loadingMenuInformation
+      },
       {
         video: 'assets/news/ultimate-nostalgia-trip.mp4',
         eyebrow: 'PROJECT NEWS',
